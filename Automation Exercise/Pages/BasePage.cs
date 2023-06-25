@@ -1,11 +1,6 @@
-﻿using OpenQA.Selenium.Interactions;
-using OpenQA.Selenium.Support.UI;
+﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Automation_Exercise.Pages
 {
@@ -23,6 +18,9 @@ namespace Automation_Exercise.Pages
         public IWebElement cartLink => driver.FindElement(By.XPath("//a[contains(@href,'/view cart')]"));
         public IWebElement loginLink => driver.FindElement(By.XPath("//a[contains(@href,'/login')]"));
         public IWebElement contactusLink => driver.FindElement(By.XPath("//a[contains(@href,'/contact us')]"));
+        public IWebElement logoHomeLink => driver.FindElement(By.XPath("//*[src='/static/images/home/logo.png']"));
+        public IWebElement subscribeField => driver.FindElement(By.XPath("//input[@id='susbscribe_email']"));
+        public IWebElement subscribeButton => driver.FindElement(By.XPath("//button[@id='susbscribe']"));
         protected WebDriverWait waitDriver { get; set; }
         public abstract string PageURL { get; }
         public void Open() => driver.Navigate().GoToUrl(PageURL);

@@ -1,11 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static System.Net.WebRequestMethods;
 
 namespace Automation_Exercise.Pages
 {
@@ -20,6 +13,8 @@ namespace Automation_Exercise.Pages
         public IWebElement proceedToCheckoutButton => driver.FindElement(By.XPath("//a[@class='btn btn-default check_out']"));
         public IWebElement continueOnCardButton => driver.FindElement(By.XPath("//button[@class='btn btn-success close-checkout-modal btn-block']"));
         public IWebElement loginRegister => driver.FindElement(By.XPath("//p[contains(@href,'/login']"));
+        public IWebElement emptyCartMessage => driver.FindElement(By.XPath("//span[@id='empty_cart']/p"));
+        public IWebElement homeButton => driver.FindElement(By.XPath("//*[@id='cart_items']//a[contains(text(),'Home')]"));
 
     }
 }

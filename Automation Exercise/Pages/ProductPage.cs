@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automation_Exercise.Pages
 {
@@ -35,8 +30,6 @@ namespace Automation_Exercise.Pages
         public IWebElement brandsAllenSollyJunior => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Allen Solly Junior')]"));
         public IWebElement brandsKookieKids => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Kookie Kids')]"));
         public IWebElement brandsBiba => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Biba')]"));
-        public IWebElement subscribeField => driver.FindElement(By.XPath("//*[@id='susbscribe_email']"));
-
         public override string PageURL => "https://www.automationexercise.com/products";
         
     }

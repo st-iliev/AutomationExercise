@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automation_Exercise.Pages
 {
@@ -20,5 +15,7 @@ namespace Automation_Exercise.Pages
         public IWebElement signupNameField => driver.FindElement(By.XPath("//input[@data-qa='signup-name']"));
         public IWebElement signupEmailField => driver.FindElement(By.XPath("//input[@data-qa='signup-email']"));
         public IWebElement signupButton => driver.FindElement(By.XPath("//button[@data-qa='signup-button']"));
+        public IWebElement incorrectInputMessage => driver.FindElement(By.XPath("//form[@action='/login']/p"));
+        
     }
 }
