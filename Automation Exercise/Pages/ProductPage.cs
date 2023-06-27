@@ -8,6 +8,7 @@ namespace Automation_Exercise.Pages
         public ProductPage(IWebDriver driver) : base(driver)
         {
         }
+        public override string PageURL => "https://www.automationexercise.com/products";
         public IWebElement searchField => driver.FindElement(By.XPath("//*[@id='search_product']"));
         public IWebElement searchButton => driver.FindElement(By.XPath("//*[@id='submit_search']"));
 
@@ -30,7 +31,7 @@ namespace Automation_Exercise.Pages
         public IWebElement brandsAllenSollyJunior => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Allen Solly Junior')]"));
         public IWebElement brandsKookieKids => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Kookie Kids')]"));
         public IWebElement brandsBiba => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Biba')]"));
-        public override string PageURL => "https://www.automationexercise.com/products";
+        
         
     }
 }

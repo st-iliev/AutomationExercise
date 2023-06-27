@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
+﻿using DescriptionAttribute = System.ComponentModel.DescriptionAttribute;
 
 namespace Automation_Exercise.Utilities
 {

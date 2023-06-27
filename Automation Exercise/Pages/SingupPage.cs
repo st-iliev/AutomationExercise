@@ -26,6 +26,7 @@ namespace Automation_Exercise.Pages
         public IWebElement receiveOffersCheckbox => driver.FindElement(By.XPath("//input[@id='optin']"));
         public IWebElement firstNameField => driver.FindElement(By.XPath("//input[@id='first_name']"));
         public IWebElement lastNameField => driver.FindElement(By.XPath("//input[@id='last_name']"));
+        public IWebElement companyField => driver.FindElement(By.XPath("//input[@id='company']"));
         public IWebElement addressField => driver.FindElement(By.XPath("//input[@id='address1']"));
         public IWebElement address2Field => driver.FindElement(By.XPath("//input[@id='address2']"));
         public IWebElement stateField => driver.FindElement(By.XPath("//input[@id='state']"));
