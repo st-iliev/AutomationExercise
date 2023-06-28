@@ -38,6 +38,6 @@ namespace Automation_Exercise.Pages
         public IWebElement placeOrderButton => driver.FindElement(By.XPath("//*[@href='/payment']"));
 
        
-
+        public string TotalOrderAmount() => cartTotalPrice.ToString().Split(" ")[1];
     }
 }

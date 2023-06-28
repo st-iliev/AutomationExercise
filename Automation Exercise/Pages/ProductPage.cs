@@ -11,7 +11,8 @@ namespace Automation_Exercise.Pages
         public override string PageURL => "https://www.automationexercise.com/products";
         public IWebElement searchField => driver.FindElement(By.XPath("//*[@id='search_product']"));
         public IWebElement searchButton => driver.FindElement(By.XPath("//*[@id='submit_search']"));
-
+        public IWebElement allProducts => driver.FindElement(By.XPath("//*[@class='features_items']"));
+        
         public IWebElement categoryProducts => driver.FindElement(By.XPath("//h2[@class='title text-center']"));
         public IWebElement womenCategory => driver.FindElement(By.XPath("//*[contains(@href, '#Women')]"));
         public IWebElement womenDress => driver.FindElement(By.XPath("//*[contains(@href, '/category_products/1')]"));
