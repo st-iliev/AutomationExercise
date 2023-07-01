@@ -5,20 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
-namespace Automation_Exercise.Pages
+namespace Automation_Exercise.Pages.AccountCreatedPage
 {
-    internal class AccountCreatedPage: BasePage
+    partial class AccountCreatedPage
     {
-        public AccountCreatedPage(IWebDriver driver) : base(driver)
-        {
-        }
-
-        public override string PageURL => "https://www.automationexercise.com/account_created";
         public IWebElement accountCreatedMsg => driver.FindElement(By.XPath("//h2[@data-qa='account-created']"));
-        public IWebElement continueButton => driver.FindElement(By.XPath("//a[@data-qa='continue-button']"));
         public IWebElement accountCreatedSuccessfullMsg => driver.FindElement(By.XPath("//p[contains(text(), 'Congratulations!')]"));
-
-        
+        public IWebElement secondAccountCreatedSuccessfullMsg => driver.FindElement(By.XPath("//*[@class='col-sm-9 col-sm-offset-1')/p[2]]"));
+        public IWebElement continueButton => driver.FindElement(By.XPath("//a[@data-qa='continue-button']"));
     }
 }

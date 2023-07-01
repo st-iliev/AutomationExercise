@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Automation_Exercise.Utilities
+﻿namespace Automation_Exercise.Utilities
 {
-    static class SuccessfulMessages
+    public static class SuccessfulMessages
     {
-        const string accountCreated = "Congratulations! Your new account has been successfully created!";
-        const string accountDeleted = "Your account has been permanently deleted!";
-        const string successfulOrder = "Your order has been placed successfully!";
+       public const string accountCreated = "Congratulations! Your new account has been successfully bliccreated!";
+       public const string secondAccountCreated = "Congratulations! Your new account has been successfully bliccreated!";
+       public const string accountDeleted = "Your account has been permanently deleted!";
+       public const string secondAccountDeleted = "You can create new account to take advantage of member privileges to enhance your online shopping experience with us.";
+        public const string contactUsSuccessfulMessage = "Success! Your details have been submitted successfully.";
+       public const string successfulOrder = "Your order has been placed successfully!";
     }
 }

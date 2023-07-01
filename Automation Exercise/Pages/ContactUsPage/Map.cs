@@ -1,23 +1,18 @@
 ﻿using OpenQA.Selenium;
 
-namespace Automation_Exercise.Pages
+namespace Automation_Exercise.Pages.ContactUsPage
 {
-    public class ContactUsPage : BasePage
+    partial class ContactUsPage
     {
-        public ContactUsPage(IWebDriver driver) : base(driver)
-        {
-        }
 
-        public override string PageURL => "https://www.automationexercise.com/contact_us";
+        public IWebElement contactUsFormTitle => driver.FindElement(By.XPath("//h2[@class='title text-center']"));
         public IWebElement nameField => driver.FindElement(By.XPath("//input[@data-qa='name']"));
         public IWebElement emailField => driver.FindElement(By.XPath("//input[@data-qa='email']"));
         public IWebElement subjectField => driver.FindElement(By.XPath("//input[@data-qa='subject']"));
         public IWebElement messagetField => driver.FindElement(By.XPath("//textarea[@data-qa='message']"));
+        public IWebElement uploadFileButton => driver.FindElement(By.XPath("//input[@name='upload_file']"));
         public IWebElement submitButton => driver.FindElement(By.XPath("//input[@data-qa='submit-button']"));
-        public IWebElement successMessaGE => driver.FindElement(By.XPath("//*[@class='status alert alert-success']"));
+        public IWebElement successfulMessage => driver.FindElement(By.XPath("//*[@class='status alert alert-success']"));
         public IWebElement homeButton => driver.FindElement(By.XPath("//a[@class='btn btn-success']"));
-        
-
-    
     }
 }

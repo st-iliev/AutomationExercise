@@ -5,17 +5,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Automation_Exercise.Pages
+namespace Automation_Exercise.Pages.DeleteAccountPage
 {
-    public class DeleteAccountPage : BasePage
+    partial class DeleteAccountPage
     {
-        public DeleteAccountPage(IWebDriver driver) : base(driver)
-        {
-        }
-
-        public override string PageURL => "https://www.automationexercise.com/delete_account";
         public IWebElement accountDeleteMsg => driver.FindElement(By.XPath("//h2[@data-qa='account-created']"));
         public IWebElement continueButton => driver.FindElement(By.XPath("//a[@data-qa='continue-button']"));
         public IWebElement firstAccountDeletedSuccessfullMsg => driver.FindElement(By.XPath("//*[contains(text(), 'deleted!')]"));
+        public IWebElement secondAccountDeletedSuccessfullMsg => driver.FindElement(By.XPath("//*[@class='col-sm-9 col-sm-offset-1')/p[2]]"));
     }
 }
