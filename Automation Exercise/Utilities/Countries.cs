@@ -3,20 +3,13 @@
 namespace Automation_Exercise.Utilities
 {
     public enum Countries
-    {
-        [Description("India")]
-        India,
-        [Description("United States")]
-        UnitedStates,
-        [Description("Canada")]
-        Canada,
-        [Description("Australia")]
-        Australia,
-        [Description("Israel")]
-        Israel,
-        [Description("New Zealand")]
+    {     
+        India,     
+        UnitedStates,      
+        Canada,     
+        Australia,     
+        Israel,       
         NewZealand,
-        [Description("Singapore")]
         Singapore
     }
 }

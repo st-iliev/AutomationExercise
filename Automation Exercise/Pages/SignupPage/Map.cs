@@ -9,6 +9,7 @@ namespace Automation_Exercise.Pages.SignupPage
 {
     partial class SingupPage
     {
+        public IWebElement accountInfoTitle => driver.FindElement(By.XPath("//*[@class='login-form']h2"));
         public IWebElement titleMrRadioButton => driver.FindElement(By.XPath("//input[@id='id_gender1']"));
         public IWebElement titleMrsRadioButton => driver.FindElement(By.XPath("//input[@id='id_gender2']"));
         public IWebElement nameField => driver.FindElement(By.XPath("//input[@id='id_gender2']"));
@@ -19,6 +20,7 @@ namespace Automation_Exercise.Pages.SignupPage
         public IWebElement yearOfBirthDropDown => driver.FindElement(By.XPath("//select[@id='years']"));
         public IWebElement newsLetterCheckbox => driver.FindElement(By.XPath("//input[@id='newsletter']"));
         public IWebElement receiveOffersCheckbox => driver.FindElement(By.XPath("//input[@id='optin']"));
+        public IWebElement addressInfoTitle => driver.FindElement(By.XPath("//*[@action='/signup']h2"));
         public IWebElement firstNameField => driver.FindElement(By.XPath("//input[@id='first_name']"));
         public IWebElement lastNameField => driver.FindElement(By.XPath("//input[@id='last_name']"));
         public IWebElement companyField => driver.FindElement(By.XPath("//input[@id='company']"));
@@ -30,5 +32,6 @@ namespace Automation_Exercise.Pages.SignupPage
         public IWebElement zipCodeField => driver.FindElement(By.XPath("//input[@data-qa='zipcode']"));
         public IWebElement mobileNumberField => driver.FindElement(By.XPath("//input[@id='mobile_number']"));
         public IWebElement createAccountButton => driver.FindElement(By.XPath("//button[@data-qa='create-account']"));
+       
     }
 }

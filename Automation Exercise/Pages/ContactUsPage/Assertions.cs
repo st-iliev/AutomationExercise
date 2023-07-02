@@ -4,13 +4,13 @@ namespace Automation_Exercise.Pages.ContactUsPage
 {
     partial class ContactUsPage
     {
-        public void AssertCorrectPageIsLoade()
+        public void AssertCorrectPageIsLoaded()
         {
             Assert.AreEqual("Automation Exercise - Contact Us", GetPageTitle());
         }
         public void AssertContactUsFormTitleIsDisplayedCorectly()
         {
-            Assert.AreEqual("GET IN TOUCH", contactUsFormTitle.ToString());
+            Assert.AreEqual("GET IN TOUCH", contactUsFormTitle.Text);
         }
         public void AssertNameFieldIsDisplayed()
         {

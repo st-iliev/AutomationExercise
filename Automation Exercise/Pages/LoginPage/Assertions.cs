@@ -2,13 +2,13 @@
 {
     partial class LoginPage
     {
-        public void AssertCorrectPageIsLoade()
+        public void AssertCorrectPageIsLoaded()
         {
             Assert.AreEqual("Automation Exercise Singup/Login", GetPageTitle());
         }
         public void AssertCorrectLoginFormTitleIsDisplayed()
         {
-            Assert.AreEqual("Login to your account",loginFormTitle.ToString());
+            Assert.AreEqual("Login to your account",loginFormTitle.Text);
         }
         public void AssertLoginEmailAddressFieldIsDisplayed()
         {
@@ -28,7 +28,7 @@
         }
         public void AssertCorrectSignupFormTitleIsDisplayed()
         {
-            Assert.AreEqual("New User Signup!", signupFormTitle.ToString());
+            Assert.AreEqual("New User Signup!", signupFormTitle.Text);
         }
         public void AssertSignupNameFieldIsDisplayed()
         {

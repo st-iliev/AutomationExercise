@@ -11,6 +11,8 @@ using Automation_Exercise.Pages.SignupPage;
 using Automation_Exercise.Pages.AccountCreatedPage;
 using Automation_Exercise.Pages.DeleteAccountPage;
 using Automation_Exercise.Pages.ContactUsPage;
+using Automation_Exercise.Pages.PaymentDonePage;
+using Automation_Exercise.Pages.PaymentPage;
 
 namespace Automation_Exercise.Test_Scripts
 {
