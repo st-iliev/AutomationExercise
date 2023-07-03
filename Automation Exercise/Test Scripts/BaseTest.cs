@@ -1,18 +1,14 @@
 ﻿using Automation_Exercise.Pages;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Automation_Exercise.Pages.LoginPage;
-using Automation_Exercise.Pages.SignupPage;
 using Automation_Exercise.Pages.AccountCreatedPage;
-using Automation_Exercise.Pages.DeleteAccountPage;
 using Automation_Exercise.Pages.ContactUsPage;
+using Automation_Exercise.Pages.DeleteAccountPage;
+using Automation_Exercise.Pages.LoginPage;
 using Automation_Exercise.Pages.PaymentDonePage;
 using Automation_Exercise.Pages.PaymentPage;
+using Automation_Exercise.Pages.ProductPage;
+using Automation_Exercise.Pages.SignupPage;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace Automation_Exercise.Test_Scripts
 {
