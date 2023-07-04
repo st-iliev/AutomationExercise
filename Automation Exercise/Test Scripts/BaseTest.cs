@@ -5,6 +5,7 @@ using Automation_Exercise.Pages.DeleteAccountPage;
 using Automation_Exercise.Pages.LoginPage;
 using Automation_Exercise.Pages.PaymentDonePage;
 using Automation_Exercise.Pages.PaymentPage;
+using Automation_Exercise.Pages.ProductDetailsPage;
 using Automation_Exercise.Pages.ProductPage;
 using Automation_Exercise.Pages.SignupPage;
 using OpenQA.Selenium;

@@ -10,7 +10,7 @@ namespace Automation_Exercise.Pages.ProductPage
         {
         }
         public override string PageURL => "https://www.automationexercise.com/products";
-       public void SelectCategoryAndProductType(string categoryName,string productType )
+        public void SelectCategoryAndProductType(string categoryName, string productType)
         {
             switch (categoryName)
             {
@@ -28,13 +28,13 @@ namespace Automation_Exercise.Pages.ProductPage
                     break;
                 case "Men":
                     menCategory.Click();
-                    switch(productType) 
+                    switch (productType)
                     {
                         case "TSHIRTS":
                             menTshirts.Click(); break;
                         case "JEANS":
                             menJeans.Click(); break;
-                        
+
                     }
                     break;
                 case "Kids":
