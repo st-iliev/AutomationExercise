@@ -9,5 +9,7 @@
         public const string contactUsSuccessfulMessage = "Success! Your details have been submitted successfully.";
         public const string successfulOrder = "Your order has been placed successfully!";
         public const string orderConfirmed = "Congratulations! Your order has been confirmed!";
+        public const string productAddSuccessful = "Your product has been added to cart.";
+        public const string loginToContinueToCheckout = "Register / Login account to proceed on checkout.";
     }
 }

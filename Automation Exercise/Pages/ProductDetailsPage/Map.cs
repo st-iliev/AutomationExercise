@@ -16,7 +16,5 @@ namespace Automation_Exercise.Pages.ProductDetailsPage
         public IWebElement emailAddressField => driver.FindElement(By.XPath("//*[@id='email']"));
         public IWebElement reviewField => driver.FindElement(By.XPath("//*[@id='review']"));
         public IWebElement submitButton => driver.FindElement(By.XPath("//*[@id='button-review']"));
-
-       
     }
 }

@@ -29,6 +29,7 @@ namespace Automation_Exercise.Pages
         public abstract string PageURL { get; }
         public void Open() => driver.Navigate().GoToUrl(PageURL);
         public string GetPageTitle() => driver.Title;
+        public string GetPageUrl () => driver.Url;
 
     }
 }

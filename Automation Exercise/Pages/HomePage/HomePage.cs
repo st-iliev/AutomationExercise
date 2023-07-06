@@ -1,18 +1,16 @@
 ﻿using Automation_Exercise.Utilities;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
 
-namespace Automation_Exercise.Pages.ProductPage
+namespace Automation_Exercise.Pages.HomePage
 {
-    public partial class ProductPage : BasePage
+    public partial class HomePage : BasePage
     {
-
-        public ProductPage(IWebDriver driver) : base(driver)
+        public HomePage(IWebDriver driver) : base(driver)
         {
         }
         private int productId;
-        public int GetProductId() => productId;
-        public override string PageURL => "https://www.automationexercise.com/products";
+        public int GetProductId () =>  productId;
+        public override string PageURL => "https://www.automationexercise.com/";
         public void SelectCategoryAndProductType(string categoryName, string productType)
         {
             switch (categoryName)
@@ -75,8 +73,6 @@ namespace Automation_Exercise.Pages.ProductPage
                     brandsBiba.Click(); break;
             }
         }
-        public void SearchProduct(string productName) => searchField.SendKeys(productName);
-        public void ClickOnSearch() => searchField.Click();
         public void AddProductToCart(string productName)
         {
             foreach (var product in productsName)
@@ -100,7 +96,5 @@ namespace Automation_Exercise.Pages.ProductPage
                 }
             }
         }
-        public void ContinueToShopping() => continueShoppingButton.Click();
-        public void OpenCart() => viewCart.Click();
     }
 }

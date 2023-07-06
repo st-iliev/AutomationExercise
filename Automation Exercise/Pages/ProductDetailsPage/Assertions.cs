@@ -10,6 +10,10 @@
         {
             Assert.True(productPicture.Displayed);
         }
+        public void AssertCorrectProductDetailsPageIsOpened(string productId)
+        {
+            Assert.AreEqual(GeneratePageDetailsUrl(productId), GetPageUrl());
+        }
         //TODO
     }
 }

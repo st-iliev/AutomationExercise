@@ -1,7 +1,9 @@
-﻿using Automation_Exercise.Pages;
-using Automation_Exercise.Pages.AccountCreatedPage;
+﻿using Automation_Exercise.Pages.AccountCreatedPage;
+using Automation_Exercise.Pages.CartPage;
+using Automation_Exercise.Pages.CheckoutPage;
 using Automation_Exercise.Pages.ContactUsPage;
 using Automation_Exercise.Pages.DeleteAccountPage;
+using Automation_Exercise.Pages.HomePage;
 using Automation_Exercise.Pages.LoginPage;
 using Automation_Exercise.Pages.PaymentDonePage;
 using Automation_Exercise.Pages.PaymentPage;
