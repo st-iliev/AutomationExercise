@@ -1,9 +1,4 @@
 ﻿using Automation_Exercise.Utilities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automation_Exercise.Pages.PaymentPage
 {
@@ -20,6 +15,15 @@ namespace Automation_Exercise.Pages.PaymentPage
         public void AssertCorrectSuccessfulOrderMessageIsDisplayed()
         {
             Assert.AreEqual(SuccessfulMessages.successfulOrder, successfulOrderMsg.Text);
+        }
+        public void AssertCorrectPaymentFormIsDisplayed()
+        {
+            Assert.True(nameOnCardField.Displayed);
+            Assert.True(cardNumberField.Displayed);
+            Assert.True(cvcField.Displayed);
+            Assert.True(expirationMonthField.Displayed);
+            Assert.True(expirationYearField.Displayed);
+            Assert.True(payOrderButton.Displayed);
         }
     }
 }

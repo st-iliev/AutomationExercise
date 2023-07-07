@@ -4,7 +4,7 @@ namespace Automation_Exercise.Pages.CheckoutPage
 {
     partial class CheckoutPage
     {
-        public IWebElement addressDetailsMessage => driver.FindElement(By.XPath("//*[@class='heading']"));
+        public IWebElement addressFormTitle => driver.FindElement(By.XPath("//*[@class='step-one']/h2[contains(text(),'Address')]"));
         public IWebElement deliveryAddress => driver.FindElement(By.XPath("//*[@id='address_delivery']/li[1]"));
         public IWebElement deliveryFirstLastNameInfo => driver.FindElement(By.XPath("//*[@id='address_delivery']/li[2]"));
         public IWebElement deliveryCompanyInfo => driver.FindElement(By.XPath("//*[@id='address_delivery']/li[3]"));
@@ -21,14 +21,8 @@ namespace Automation_Exercise.Pages.CheckoutPage
         public IWebElement billingCityNameStateZipCode => driver.FindElement(By.XPath("//*[@id='address_invoice']/li[6]"));
         public IWebElement billingCountryInfo => driver.FindElement(By.XPath("//*[@id='address_invoice']/li[7]"));
         public IWebElement billingPhoneNumberInfo => driver.FindElement(By.XPath("//*[@id='address_invoice']/li[8]"));
-        public IWebElement productsOrder => driver.FindElement(By.XPath("//*[@id='cart_info']//tbody/tr"));
         public IList<WebElement> orderProducts => (IList<WebElement>)driver.FindElements(By.XPath("//*[@id='cart_info']//tbody/tr"));
-        public IWebElement cartDescription => productsOrder.FindElement(By.XPath("//td[@class='cart_description']/h4/a"));
-        public IWebElement cartPrice => productsOrder.FindElement(By.XPath("//td[@class='cart_price']/h4/a"));
-        public IWebElement cartQuantity => productsOrder.FindElement(By.XPath("//td[@class='cart_quantity']/button"));
-        public IWebElement cartTotal => productsOrder.FindElement(By.XPath("//td[@class='cart_total']/button"));
-        public IWebElement cartTotalPrice => productsOrder.FindElement(By.XPath("//td[4]/p"));
-
+        public IWebElement orderTotalAmount => orderProducts[orderProducts.Count - 1].FindElement(By.XPath("//*[@class='cart_total_price']"));
         public IWebElement commentArea => driver.FindElement(By.XPath("//textarea[@class='form-control']"));
         public IWebElement placeOrderButton => driver.FindElement(By.XPath("//*[@href='/payment']"));
     }

@@ -1,4 +1,6 @@
-﻿namespace Automation_Exercise.Pages.ProductDetailsPage
+﻿using Automation_Exercise.Utilities;
+
+namespace Automation_Exercise.Pages.ProductDetailsPage
 {
     partial class ProductDetailsPage
     {
@@ -14,7 +16,22 @@
         {
             Assert.AreEqual(GeneratePageDetailsUrl(productId), GetPageUrl());
         }
-        //TODO
+        public void AssertCorrectProductName(string nameOfProduct)
+        {
+            Assert.AreEqual(nameOfProduct, productName.Text);
+        }
+        public void AssertCorrectProductAvailability()
+        {
+            Assert.AreEqual("In Stock", avaliableInfo.Text);
+        }
+        public void AssertCorrectProductCondition(string condition)
+        {
+            Assert.AreEqual(condition, conditionInfo.Text);
+        }
+        public void AssertCorrectProductBrandName(Brands brandName)
+        {
+            Assert.AreEqual(brandName.ToString(), brandInfo.Text);
+        }
     }
 }
 

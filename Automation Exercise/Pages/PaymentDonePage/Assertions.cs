@@ -20,9 +20,9 @@ namespace Automation_Exercise.Pages.PaymentDonePage
         {
             Assert.IsTrue(File.Exists(Constants.downloadedFilePath), "Downloaded file does exist.");
         }
-        public void AssrtFileContentIsCorrectly()
+        public void AssrtFileContentIsCorrectly(int orderTotalAmount)
         {
-            Assert.AreEqual(string.Format(Constants.expectedFileText,Constants.firstName,Constants.lastName, TotalOrderAmount),ReadingDownloadedFile(Constants.downloadedFilePath));
+            Assert.AreEqual(string.Format(Constants.expectedFileText,Constants.firstName,Constants.lastName, orderTotalAmount),ReadingDownloadedFile(Constants.downloadedFilePath));
         }
     }
 }

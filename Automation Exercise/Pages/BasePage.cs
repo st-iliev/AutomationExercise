@@ -25,11 +25,18 @@ namespace Automation_Exercise.Pages
         public IWebElement logoHomeLink => driver.FindElement(By.XPath("//*[src='/static/images/home/logo.png']"));
         public IWebElement subscribeField => driver.FindElement(By.XPath("//input[@id='susbscribe_email']"));
         public IWebElement subscribeButton => driver.FindElement(By.XPath("//button[@id='susbscribe']"));
+        public IWebElement subscribleSuccessfulMessage => driver.FindElement(By.XPath("//*[@class='Alert-success alert']"));
         protected WebDriverWait waitDriver { get; set; }
         public abstract string PageURL { get; }
         public void Open() => driver.Navigate().GoToUrl(PageURL);
         public string GetPageTitle() => driver.Title;
         public string GetPageUrl () => driver.Url;
-
+        public void Logout() => logoutLink.Click();
+        public void DeleteAccount() => deleteAccountLink.Click();
+        public void Subscrible()
+        {
+            subscribeField.SendKeys(Constants.email);
+            subscribeButton.Click();
+        }
     }
 }

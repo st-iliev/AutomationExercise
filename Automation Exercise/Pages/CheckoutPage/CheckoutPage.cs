@@ -24,9 +24,9 @@ namespace Automation_Exercise.Pages.CheckoutPage
                     }
                 }
             }
-            return "Product name doesn't exist";
+            return 0;
         }
-        public int CalculateTotalPrice()
+        public int TotalPriceCalculation()
         {
             int totalPrice = 0;
             foreach (var product in orderProducts)
@@ -37,6 +37,8 @@ namespace Automation_Exercise.Pages.CheckoutPage
             return totalPrice;
         }
 
-        public int TotalOrderAmount() => int.Parse(cartTotalPrice.Text.Split(" ")[1]);
+        public int OrderTotalAmount() => int.Parse(orderTotalAmount.Text.Split(" ")[1]);
+        public void WriteCommentMessage(string commentMessage) => commentArea.SendKeys(commentMessage);
+        public void PlaceOrder() => placeOrderButton.Click();
     }
 }

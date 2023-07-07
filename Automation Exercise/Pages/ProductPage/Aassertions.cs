@@ -16,7 +16,7 @@ namespace Automation_Exercise.Pages.ProductPage
         {
             Assert.True(successfulAddedIcon.Displayed);
         }
-        public void AssertSuccessfulTextIsDisplayedCorrectly()
+        public void AssertCorrectSuccessfulTextIsDisplayed()
         {
             Assert.AreEqual(SuccessfulMessages.productAddSuccessful, productAddedSuccessfulMsg.Text);
         }
@@ -28,6 +28,5 @@ namespace Automation_Exercise.Pages.ProductPage
         {
             Assert.AreEqual(0,allProducts.Count);
         }
-        //TODO
     }
 }

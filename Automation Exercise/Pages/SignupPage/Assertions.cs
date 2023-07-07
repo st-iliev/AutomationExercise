@@ -20,7 +20,7 @@ namespace Automation_Exercise.Pages.SignupPage
         {
             Assert.True(validationDisplayed);
         }
-        public void AssertAllRequiredFieldAreFill()
+        public void AssertAllRequiredFieldAreFilled()
         {
             Assert.True(nameField.GetAttribute("value")!=null,"Name field is not empty.");
             Assert.True(emailField.GetAttribute("value")!=null, "Email field is not empty.");

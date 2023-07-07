@@ -8,19 +8,19 @@ namespace Automation_Exercise.Pages.LoginPage
         public LoginPage(IWebDriver driver) : base(driver)
         {
         }
-
         public override string PageURL => "https://www.automationexercise.com/login";
-        public void Singup()
+        public void FillSingupForm()
         {
             signupNameField.SendKeys(Constants.firstName);
             signupEmailField.SendKeys(Constants.email);
-            signupButton.Click();
+            
         }
-        public void Login()
+        public void ClickOnSignupButton() => signupButton.Click();
+        public void FillLoginForm()
         {
             loginEmailField.SendKeys(Constants.email);
             loginPasswordField.SendKeys(Constants.password);
-            loginButton.Click();
         }
+        public void ClickOnSigupButton() => loginButton.Click();
     }
 }

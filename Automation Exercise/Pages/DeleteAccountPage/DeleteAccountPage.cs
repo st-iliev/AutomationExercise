@@ -1,9 +1,4 @@
 ﻿using OpenQA.Selenium;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Automation_Exercise.Pages.DeleteAccountPage
 {
@@ -14,6 +9,6 @@ namespace Automation_Exercise.Pages.DeleteAccountPage
         }
 
         public override string PageURL => "https://www.automationexercise.com/delete_account";
-       //TODO
+        public void ClickOnContinue() => continueButton.Click();
     }
 }

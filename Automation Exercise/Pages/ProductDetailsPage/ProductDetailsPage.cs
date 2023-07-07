@@ -10,15 +10,19 @@ public partial class ProductDetailsPage : BasePage
     }
     public override string PageURL => "https://www.automationexercise.com/product_details/";
     public string GeneratePageDetailsUrl(string productId) => $"https://www.automationexercise.com/product_details/{productId}";
-    public void AddToCartProduct() => addToCartButton.Click();
+    public void AddProductToCart() => addToCartButton.Click();
     
-    public void ReviewFormFill(string name , string email , string message)
+    public void FillReviewForm(string name , string email , string message)
     {
         nameField.SendKeys(name);
         emailAddressField.SendKeys(email);
         reviewField.SendKeys(message);
     }
     public void SubmitReview() => submitButton.Click();
-    //TODO
+    public void SetProductQuantity(int quantity)
+    {
+        productQuantity.Clear();
+        productQuantity.SendKeys(quantity.ToString());
+    }
 
 }
