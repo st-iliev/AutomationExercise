@@ -1,4 +1,7 @@
-﻿namespace Automation_Exercise.Pages.HomePage
+﻿using Automation_Exercise.Utilities;
+using System.Reflection.Metadata;
+
+namespace Automation_Exercise.Pages.HomePage
 {
     partial class HomePage
     {
@@ -39,6 +42,10 @@
             Assert.True(brandsAllenSollyJunior.Displayed);
             Assert.True(brandsKookieKids.Displayed);
             Assert.True(brandsBiba.Displayed);
+        }
+        public void AssertUserIsLogin()
+        {
+            Assert.AreEqual($"{Constants.name}", usernameLogin.Text);
         }
     }
 }

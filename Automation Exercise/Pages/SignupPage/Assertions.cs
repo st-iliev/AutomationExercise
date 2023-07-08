@@ -2,7 +2,7 @@
 
 namespace Automation_Exercise.Pages.SignupPage
 {
-    partial class SingupPage
+    partial class SignupPage
     {
         public void AssertCorrectPageIsLoaded()
         {

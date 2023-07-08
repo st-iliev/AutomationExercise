@@ -8,17 +8,17 @@ namespace Automation_Exercise.Pages.AccountCreatedPage
         {
             Assert.AreEqual("Automation Exercise - Account Created", GetPageTitle());
         }
-        public void AssertAccountCreatedMessageIsDisplayedCorrectly()
+        public void AssertAccountCreatedTitleIsDisplayedCorrectly()
         {
             Assert.AreEqual("ACCOUNT CREATED!", accountCreatedMsg.Text);
         }
-        public void AssertAccountCreatedSuccessfullMessageIsDisplayedCorrectly()
+        public void AssertFirstSuccessfullMessageIsDisplayedCorrectly()
         {
             Assert.AreEqual(SuccessfulMessages.accountCreated, accountCreatedSuccessfullMsg.Text);
         }
-        public void AssertSecondAccountCreatedSuccessfullMessageIsDisplayedCorrectly()
+        public void AssertSecondSuccessfullMessageIsDisplayedCorrectly()
         {
-            Assert.AreEqual(SuccessfulMessages.accountCreated, accountCreatedSuccessfullMsg.Text);
+            Assert.AreEqual(SuccessfulMessages.secondAccountCreated, secondAccountCreatedSuccessfullMsg.Text);
         }
         public void AsserCountinueButtonIsDisplayed()
         {

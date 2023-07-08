@@ -9,18 +9,19 @@ namespace Automation_Exercise.Pages.LoginPage
         {
         }
         public override string PageURL => "https://www.automationexercise.com/login";
-        public void FillSingupForm()
+        public void FillSingupForm(string name, string email)
         {
-            signupNameField.SendKeys(Constants.firstName);
-            signupEmailField.SendKeys(Constants.email);
+            signupNameField.SendKeys(name);
+            signupEmailField.SendKeys(email);
             
         }
         public void ClickOnSignupButton() => signupButton.Click();
-        public void FillLoginForm()
+        public void FillLoginForm(string email, string password)
         {
-            loginEmailField.SendKeys(Constants.email);
-            loginPasswordField.SendKeys(Constants.password);
+            loginEmailField.SendKeys(email);
+            loginPasswordField.SendKeys(password);
         }
-        public void ClickOnSigupButton() => loginButton.Click();
+        public void ClickOnLoginButton() => loginButton.Click();
+        public string ValidationMessage(IWebElement field) => field.GetAttribute("validationMessage");
     }
 }

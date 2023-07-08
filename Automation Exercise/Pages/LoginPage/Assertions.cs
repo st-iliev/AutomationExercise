@@ -1,10 +1,13 @@
-﻿namespace Automation_Exercise.Pages.LoginPage
+﻿using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
+
+namespace Automation_Exercise.Pages.LoginPage
 {
     partial class LoginPage
     {
         public void AssertCorrectPageIsLoaded()
         {
-            Assert.AreEqual("Automation Exercise Singup/Login", GetPageTitle());
+            Assert.AreEqual("Automation Exercise - Signup / Login", GetPageTitle());
         }
         public void AssertCorrectLoginFormTitleIsDisplayed()
         {
@@ -21,11 +24,7 @@
         public void AssertLoginButtonIsDisplayed()
         {
             Assert.True(loginButton.Displayed);
-        }
-        public void AssertLoginErrorMessageIsDisplayed()
-        {
-            Assert.True(errorLoginMessage.Displayed);
-        }
+        }  
         public void AssertCorrectSignupFormTitleIsDisplayed()
         {
             Assert.AreEqual("New User Signup!", signupFormTitle.Text);
@@ -42,9 +41,22 @@
         {
             Assert.True(signupButton.Displayed);
         }
-        public void AssertSignupErrorMessageIsDisplayed()
+        public void AssertErrorEmptyFieldMessageIsDisplayed(IWebElement field)
         {
-            Assert.True(errorSignupMessage.Displayed);
+            Assert.AreEqual(ErrorMessages.emptyField, ValidationMessage(field));
         }
+        public void AssertIncorrectInputDataMessageIsDisplayed()
+        {
+            Assert.AreEqual(ErrorMessages.incorrectData,incorrectDataMessage.Text);
+        }
+        public void AssertErrorInvalidEmailAddressMessageIsDisplayed(IWebElement field,string email)
+        {
+            Assert.AreEqual(string.Format(ErrorMessages.incorrectEmailAddress,email), ValidationMessage(field));
+        }
+        public void AssertErrorEmailAddressAlreadyExistMessageIsDisplayed()
+        {
+            Assert.AreEqual(ErrorMessages.emailAddressAlreadyExist, emailAddressAlreadyExistMsg.Text);
+        }
+        
     }
 }

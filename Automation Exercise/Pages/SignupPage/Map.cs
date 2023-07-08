@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Automation_Exercise.Pages.SignupPage
 {
-    partial class SingupPage
+    partial class SignupPage
     {
         public IWebElement accountInfoTitle => driver.FindElement(By.XPath("//*[@class='login-form']h2"));
         public IWebElement titleMrRadioButton => driver.FindElement(By.XPath("//input[@id='id_gender1']"));

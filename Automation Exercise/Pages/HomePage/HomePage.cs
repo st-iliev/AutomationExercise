@@ -96,5 +96,12 @@ namespace Automation_Exercise.Pages.HomePage
                 }
             }
         }
+        public void Logout() => logoutLink.Click();
+        public void DeleteAccount() => deleteAccountLink.Click();
+        public void Subscrible()
+        {
+            subscribeField.SendKeys(Constants.email);
+            subscribeButton.Click();
+        }
     }
 }

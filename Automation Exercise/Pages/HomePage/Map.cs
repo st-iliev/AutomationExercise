@@ -1,9 +1,23 @@
-﻿using OpenQA.Selenium;
+﻿using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
 
 namespace Automation_Exercise.Pages.HomePage
 {
     partial class HomePage
     {
+        public IWebElement homeLink => driver.FindElement(By.XPath("//a[contains(text(),'Home')]"));
+        public IWebElement productsLink => driver.FindElement(By.XPath("//a[contains(@href,'/products')]"));
+        public IWebElement cartLink => driver.FindElement(By.XPath("//a[contains(@href,'/view cart')]"));
+        public IWebElement loginLink => driver.FindElement(By.XPath("//a[contains(@href,'/login')]"));
+        public IWebElement logoutLink => driver.FindElement(By.XPath("//a[contains(@href,'/logout')]"));
+        public IWebElement deleteAccountLink => driver.FindElement(By.XPath("//a[contains(@href,'/delete account')]"));
+        public IWebElement contactusLink => driver.FindElement(By.XPath("//a[contains(@href,'/contact us')]"));
+        public IWebElement usernameLogin => driver.FindElement(By.XPath($"//*[@class='nav navbar-nav']//b[contains(text(), '{Constants.name}')]"));
+
+        public IWebElement logoHomeLink => driver.FindElement(By.XPath("//*[src='/static/images/home/logo.png']"));
+        public IWebElement subscribeField => driver.FindElement(By.XPath("//input[@id='susbscribe_email']"));
+        public IWebElement subscribeButton => driver.FindElement(By.XPath("//button[@id='susbscribe']"));
+        public IWebElement subscribleSuccessfulMessage => driver.FindElement(By.XPath("//*[@class='Alert-success alert']"));
         public IWebElement webBanner => driver.FindElement(By.XPath("//*[@id='slider-carousel']"));
         public IWebElement rightArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-right']"));
         public IWebElement leftArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-left']"));

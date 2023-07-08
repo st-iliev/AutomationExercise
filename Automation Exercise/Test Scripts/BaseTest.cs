@@ -10,6 +10,7 @@ using Automation_Exercise.Pages.PaymentPage;
 using Automation_Exercise.Pages.ProductDetailsPage;
 using Automation_Exercise.Pages.ProductPage;
 using Automation_Exercise.Pages.SignupPage;
+using Automation_Exercise.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -17,23 +18,26 @@ namespace Automation_Exercise.Test_Scripts
 {
     public abstract class BaseTest
     {
-        private IWebDriver driver;
-        private HomePage homePage;
-        private ProductPage productPage;
-        private ProductDetailsPage productDetailsPage;
-        private CartPage cartPage;
-        private PaymentPage paymentPage;
-        private PaymentDonePage paymentDonePage;
-        private CheckoutPage checkoutPage;
-        private LoginPage loginPage;
-        private SingupPage singupPage;
-        private AccountCreatedPage accountCreatedPage;
-        private DeleteAccountPage deleteAccountPage;
-        private ContactUsPage contactUsPage;
-
-        public BaseTest()
+        protected IWebDriver driver;
+        protected HomePage homePage;
+        protected ProductPage productPage;
+        protected ProductDetailsPage productDetailsPage;
+        protected CartPage cartPage;
+        protected PaymentPage paymentPage;
+        protected PaymentDonePage paymentDonePage;
+        protected CheckoutPage checkoutPage;
+        protected LoginPage loginPage;
+        protected SignupPage signupPage;
+        protected AccountCreatedPage accountCreatedPage;
+        protected DeleteAccountPage deleteAccountPage;
+        protected ContactUsPage contactUsPage;
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
-            driver = new ChromeDriver();
+            //DriverHelper.Start(BrowserType.Chrome);
+            ChromeOptions options = new ChromeOptions();
+            options.AddArguments("--lang=en-US");
+            driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
             homePage = new HomePage(driver);
             productPage = new ProductPage(driver);
@@ -43,12 +47,13 @@ namespace Automation_Exercise.Test_Scripts
             paymentDonePage = new PaymentDonePage(driver);
             checkoutPage = new CheckoutPage(driver);
             loginPage = new LoginPage(driver);
-            singupPage = new SingupPage(driver);
+            signupPage = new SignupPage(driver);
             accountCreatedPage = new AccountCreatedPage(driver);
             deleteAccountPage = new DeleteAccountPage(driver);
             contactUsPage = new ContactUsPage(driver);
            
         }
+        [OneTimeTearDown]
         public void Dispose()
         {
             driver.Dispose();
