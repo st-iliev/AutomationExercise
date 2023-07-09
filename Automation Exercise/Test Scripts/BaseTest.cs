@@ -10,7 +10,6 @@ using Automation_Exercise.Pages.PaymentPage;
 using Automation_Exercise.Pages.ProductDetailsPage;
 using Automation_Exercise.Pages.ProductPage;
 using Automation_Exercise.Pages.SignupPage;
-using Automation_Exercise.Utilities;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -58,5 +57,6 @@ namespace Automation_Exercise.Test_Scripts
         {
             driver.Dispose();
         }
+       
     }
 }

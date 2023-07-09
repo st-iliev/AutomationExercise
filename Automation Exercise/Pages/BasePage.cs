@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium.Support.UI;
 using OpenQA.Selenium;
-using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Pages
 {

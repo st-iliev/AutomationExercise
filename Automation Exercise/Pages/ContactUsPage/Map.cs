@@ -10,7 +10,7 @@ namespace Automation_Exercise.Pages.ContactUsPage
         public IWebElement emailField => driver.FindElement(By.XPath("//input[@data-qa='email']"));
         public IWebElement subjectField => driver.FindElement(By.XPath("//input[@data-qa='subject']"));
         public IWebElement messagetField => driver.FindElement(By.XPath("//textarea[@data-qa='message']"));
-        public IWebElement uploadFileButton => driver.FindElement(By.XPath("//input[@name='upload_file']"));
+        public IWebElement chooseFileButton => driver.FindElement(By.XPath("//input[@name='upload_file']"));
         public IWebElement submitButton => driver.FindElement(By.XPath("//input[@data-qa='submit-button']"));
         public IWebElement successfulMessage => driver.FindElement(By.XPath("//*[@class='status alert alert-success']"));
         public IWebElement homeButton => driver.FindElement(By.XPath("//a[@class='btn btn-success']"));

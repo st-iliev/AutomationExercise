@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
 
 namespace Automation_Exercise.Pages.ContactUsPage
 {
@@ -12,28 +13,13 @@ namespace Automation_Exercise.Pages.ContactUsPage
         {
             Assert.AreEqual("GET IN TOUCH", contactUsFormTitle.Text);
         }
-        public void AssertNameFieldIsDisplayed()
+        public void AssertContactFormFieldsAreDisplayed()
         {
             Assert.True(nameField.Displayed);
-        }
-        public void AssertEmailFieldIsDisplayed()
-        {
             Assert.True(emailField.Displayed);
-        }
-        public void AssertSubjectFieldIsDisplayed()
-        {
             Assert.True(subjectField.Displayed);
-        }
-        public void AssertMessageFieldIsDisplayed()
-        {
             Assert.True(messagetField.Displayed);
-        }
-        public void AssertUploadFileButtonIsDisplayed()
-        {
-            Assert.True(uploadFileButton.Displayed);
-        }
-        public void AssertSubmitButtonIsDisplayed()
-        {
+            Assert.True(chooseFileButton.Displayed);
             Assert.True(submitButton.Displayed);
         }
         public void AssertSuccessfulMessageIsDisplayed()
@@ -44,5 +30,18 @@ namespace Automation_Exercise.Pages.ContactUsPage
         {
             Assert.True(homeButton.Displayed);
         }
+        public void AssertErrorEmptyFieldMessageIsDisplayed(IWebElement field)
+        {
+            Assert.AreEqual(ErrorMessages.emptyField, ValidationMessage(field));
+        }
+        public void AssertErrorInvalidEmailAddressMessageIsDisplayed(IWebElement field, string email)
+        {
+            Assert.AreEqual(string.Format(ErrorMessages.incorrectEmailAddress, email), ValidationMessage(field));
+        }
+        public void AssertErrorIncompleteEmailAddressMessageIsDisplayed(IWebElement field, string email)
+        {
+            Assert.AreEqual(string.Format(ErrorMessages.incompleteEmailAddress, email), ValidationMessage(field));
+        }
+
     }
 }

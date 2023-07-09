@@ -10,7 +10,7 @@ namespace Automation_Exercise.Pages.HomePage
         public IWebElement cartLink => driver.FindElement(By.XPath("//a[contains(@href,'/view cart')]"));
         public IWebElement loginLink => driver.FindElement(By.XPath("//a[contains(@href,'/login')]"));
         public IWebElement logoutLink => driver.FindElement(By.XPath("//a[contains(@href,'/logout')]"));
-        public IWebElement deleteAccountLink => driver.FindElement(By.XPath("//a[contains(@href,'/delete account')]"));
+        public IWebElement deleteAccountLink => driver.FindElement(By.XPath("//a[contains(@href,'/delete')]"));
         public IWebElement contactusLink => driver.FindElement(By.XPath("//a[contains(@href,'/contact us')]"));
         public IWebElement usernameLogin => driver.FindElement(By.XPath($"//*[@class='nav navbar-nav']//b[contains(text(), '{Constants.name}')]"));
 

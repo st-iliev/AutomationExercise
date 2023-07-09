@@ -13,15 +13,15 @@ namespace Automation_Exercise.Pages.DeleteAccountPage
         {
             Assert.AreEqual("Automation Exercise - Account Created", GetPageTitle());
         }
-        public void AssertAccountDeleteMessageIsDisplayedCorrectly()
+        public void AssertCorrectAccountDeleteMessageIsDisplayed()
         {
             Assert.AreEqual("ACCOUNT DELETED!", accountDeleteMsg.Text);
         }
-        public void AssertAccountDeletedSuccessfullMessageIsDisplayedCorrectly()
+        public void AssertCorrectAccountDeletedSuccessfullMessageIsDisplayed()
         {
-            Assert.AreEqual(SuccessfulMessages.accountDeleted, accountDeleteMsg.Text);
+            Assert.AreEqual(SuccessfulMessages.accountDeleted, firstAccountDeletedSuccessfullMsg.Text);
         }
-        public void AssertSecondAccountDeletedSuccessfullMessageIsDisplayedCorrectly()
+        public void AssertCorrectSecondAccountDeletedSuccessfullMessageIsDisplayed()
         {
             Assert.AreEqual(SuccessfulMessages.secondAccountDeleted, secondAccountDeletedSuccessfullMsg.Text);
         }

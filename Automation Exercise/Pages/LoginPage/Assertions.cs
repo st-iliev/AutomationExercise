@@ -53,6 +53,10 @@ namespace Automation_Exercise.Pages.LoginPage
         {
             Assert.AreEqual(string.Format(ErrorMessages.incorrectEmailAddress,email), ValidationMessage(field));
         }
+        public void AssertErrorIncompleteEmailAddressMessageIsDisplayed(IWebElement field, string email)
+        {
+            Assert.AreEqual(string.Format(ErrorMessages.incompleteEmailAddress, email), ValidationMessage(field));
+        }
         public void AssertErrorEmailAddressAlreadyExistMessageIsDisplayed()
         {
             Assert.AreEqual(ErrorMessages.emailAddressAlreadyExist, emailAddressAlreadyExistMsg.Text);

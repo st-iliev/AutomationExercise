@@ -1,5 +1,4 @@
 ﻿using Automation_Exercise.Utilities;
-using System.Reflection.Metadata;
 
 namespace Automation_Exercise.Pages.HomePage
 {
@@ -46,6 +45,10 @@ namespace Automation_Exercise.Pages.HomePage
         public void AssertUserIsLogin()
         {
             Assert.AreEqual($"{Constants.name}", usernameLogin.Text);
+        }
+        public void AssertUserIsLogout()
+        {
+            Assert.True(loginLink.Displayed);
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(2)]
         [TestCase(Constants.email, "qatest")]
         [TestCase("incorrectEmail", Constants.password)]
-        [TestCase("testEmail", "qatest")]
+        [TestCase("incorrectEmail@", Constants.password)]
         public void VerifyLoginWithInvalidEmailOrPassword(string email, string password)
         {
             loginPage.Open();
@@ -38,14 +38,19 @@ namespace Automation_Exercise.Test_Scripts
             loginPage.AssertCorrectLoginFormTitleIsDisplayed();
             loginPage.FillLoginForm(email, password);
             loginPage.ClickOnLoginButton();
-            if (email != Constants.email)
+            switch (email)
             {
-                loginPage.AssertErrorInvalidEmailAddressMessageIsDisplayed(loginPage.loginEmailField, email);
-            }
-            else
-            {
-            loginPage.AssertIncorrectInputDataMessageIsDisplayed();
-            }
+                case "incorrectEmail":
+                    loginPage.AssertErrorInvalidEmailAddressMessageIsDisplayed(loginPage.loginEmailField, email);
+                    break;
+                case "incorrectEmail@":
+                    loginPage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(loginPage.loginEmailField, email);
+                    break;
+                case Constants.email:
+                    loginPage.AssertIncorrectInputDataMessageIsDisplayed();
+                    break;
+            };
+            
         }
         [Test, Order(3)]
         [TestCase(Constants.name, "")]
@@ -68,10 +73,10 @@ namespace Automation_Exercise.Test_Scripts
                     break;
             };
         }
-        [Test,Order(4)]
+        [Test, Order(4)]
         public void VerifyRegisterNewUserWithValidData()
         {
-            
+
             loginPage.Open();
             loginPage.AssertCorrectPageIsLoaded();
             loginPage.AssertCorrectSignupFormTitleIsDisplayed();
@@ -98,17 +103,16 @@ namespace Automation_Exercise.Test_Scripts
             accountCreatedPage.AssertAccountCreatedTitleIsDisplayedCorrectly();
             accountCreatedPage.AssertFirstSuccessfullMessageIsDisplayedCorrectly();
             accountCreatedPage.AssertSecondSuccessfullMessageIsDisplayedCorrectly();
-          //accountCreatedPage.ClickOnContinue();
-          //homePage.AssertCorrectPageIsLoaded();
-          //homePage.AssertUserIsLogin();
-          //homePage.Logout();
-          //loginPage.AssertCorrectPageIsLoaded();
+            accountCreatedPage.ClickOnContinue();
+            AdverticeHelper.CheckForAdvertice(driver);
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.AssertUserIsLogin();
+            homePage.Logout();
+            loginPage.AssertCorrectPageIsLoaded();
         }
-        [Test,Order(5)]
+        [Test, Order(5)]
         public void VerifyUserLoginWithValidData()
         {
-            homePage.Open();
-            homePage.Logout();
             loginPage.Open();
             loginPage.AssertCorrectPageIsLoaded();
             loginPage.AssertCorrectLoginFormTitleIsDisplayed();
