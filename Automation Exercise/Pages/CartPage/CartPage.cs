@@ -52,5 +52,25 @@ namespace Automation_Exercise.Pages.CartPage
             return false;
         }
         public void ContinueToCheckout() => proceedToCheckoutButton.Click();
+        public void RemoveAllProductFromOrder()
+        {
+            foreach (var product in productList)
+            {
+                product.FindElement(By.XPath("//*[@class='cart_delete']/a")).Click();
+            }
+        }
+        public void ContinueToProductPage() => continueToProductPage.Click();
+        public bool CheckProductIsAddedToCart(string productName)
+        {
+            foreach (var product in productList)
+            {
+                string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']/p")).Text;
+                if (productName == nameOfProduct)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

@@ -81,10 +81,12 @@ namespace Automation_Exercise.Pages.ProductPage
         {
             foreach (var product in productsName)
             {
-                if (product.ToString() == productName)
+                if (product.FindElement(By.TagName("p")).Text == productName)
                 {
-                    productId = int.Parse(product.GetDomProperty("data-product-id"));
+                    var aElement = product.FindElement(By.TagName("a"));
+                    productId = int.Parse(aElement.GetAttribute("data-product-id"));
                     addProductButton[productId].Click();
+                    break;
                 }
             }
 
@@ -102,5 +104,35 @@ namespace Automation_Exercise.Pages.ProductPage
         }
         public void ContinueToShopping() => continueShoppingButton.Click();
         public void OpenCart() => viewCart.Click();
+        
+        public int GetCountOfBrandProducts(Brands brandName)
+        {
+            int count = 0;
+            switch (brandName)
+            {
+                case Brands.Polo:
+                  count = int.Parse(brandsPolo.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.HandM:
+                    count = int.Parse(brandsHandM.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.Madame:
+                    count = int.Parse(brandsMademe.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.Babyhug:
+                    count = int.Parse(brandsBabyhug.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.AllenSollyJunior:
+                    count = int.Parse(brandsAllenSollyJunior.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.KookieKids:
+                    count = int.Parse(brandsKookieKids.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.Biba:
+                    count = int.Parse(brandsBiba.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+            }
+            return count;
+        }
     }
 }

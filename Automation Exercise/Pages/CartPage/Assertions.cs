@@ -16,5 +16,21 @@ namespace Automation_Exercise.Pages.CartPage
         {
             Assert.AreEqual(SuccessfulMessages.loginToContinueToCheckout, loginMessage.Text);
         }
+        public void AssertProductListIsNotEmpty()
+        {
+            Assert.Greater(productList.Count,0);
+        }
+        public void AssertProductIsRemoved(string productName)
+        {
+            Assert.True(CheckProductRemoval(productName));
+        }
+        public void AssertCorrectEmptyCartMessageIsDisplayed()
+        {
+            Assert.True(emptyCartMessage.Displayed);
+        }
+        public void AssertProductIsAddedToCart(string productName)
+        {
+            Assert.True(CheckProductIsAddedToCart(productName));
+        }
     }
 }

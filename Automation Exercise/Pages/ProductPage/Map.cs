@@ -7,9 +7,9 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement bigSaleBanner => driver.FindElement(By.XPath("//*[@id='sale_image']"));
         public IWebElement searchField => driver.FindElement(By.XPath("//*[@id='search_product']"));
         public IWebElement searchButton => driver.FindElement(By.XPath("//*[@id='submit_search']"));
-        public IList<WebElement> allProducts => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='features_items']"));
-        public IList<WebElement> productsName => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
-        public IList<WebElement> addProductButton => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='product-overlay']//a[contains(@data-product-id,'')]"));
+        public IList<IWebElement> allProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='features_items']/*[@class='col-sm-4']"));
+        public IList<IWebElement> productsName => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']"));
+        public IList<IWebElement> addProductButton => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']//a[contains(@data-product-id,'')]"));
         public IList<WebElement> viewProducts => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='choose']"));
         public IWebElement categoryProducts => driver.FindElement(By.XPath("//h2[@class='title text-center']"));
         public IWebElement womenCategory => driver.FindElement(By.XPath("//*[contains(@href, '#Women')]"));
@@ -31,8 +31,8 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement brandsKookieKids => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Kookie Kids')]"));
         public IWebElement brandsBiba => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Biba')]"));
         public IWebElement successfulAddedIcon => driver.FindElement(By.XPath("//i[@class='material-icons']"));
-        public IWebElement productAddedSuccessfulMsg => driver.FindElement(By.XPath("//*[@class='text-center']p"));
-        public IWebElement viewCart => driver.FindElement(By.XPath("//a[@href='/view_cart']"));
+        public IWebElement productAddedSuccessfulMsg => driver.FindElement(By.XPath("//p[@class='text-center'][1]"));
+        public IWebElement viewCart => driver.FindElement(By.XPath("//p[@class='text-center'][2]/a"));
         public IWebElement continueShoppingButton => driver.FindElement(By.XPath("//button[@data-dismiss='modal']"));
     }
 }
