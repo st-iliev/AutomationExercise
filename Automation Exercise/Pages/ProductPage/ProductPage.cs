@@ -83,9 +83,9 @@ namespace Automation_Exercise.Pages.ProductPage
             {
                 if (product.FindElement(By.TagName("p")).Text == productName)
                 {
-                    var aElement = product.FindElement(By.TagName("a"));
-                    productId = int.Parse(aElement.GetAttribute("data-product-id"));
-                    addProductButton[productId].Click();
+                    var element = product.FindElement(By.TagName("a"));
+                    productId = int.Parse(element.GetAttribute("data-product-id"));
+                    addProductButton[productId-1].Click();
                     break;
                 }
             }

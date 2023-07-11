@@ -31,7 +31,7 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement brandsKookieKids => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Kookie Kids')]"));
         public IWebElement brandsBiba => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Biba')]"));
         public IWebElement successfulAddedIcon => driver.FindElement(By.XPath("//i[@class='material-icons']"));
-        public IWebElement productAddedSuccessfulMsg => driver.FindElement(By.XPath("//p[@class='text-center'][1]"));
+        public IWebElement productAddedSuccessfulMsg => WaitAndFindElements(By.XPath("//p[@class='text-center'][1]"));
         public IWebElement viewCart => driver.FindElement(By.XPath("//p[@class='text-center'][2]/a"));
         public IWebElement continueShoppingButton => driver.FindElement(By.XPath("//button[@data-dismiss='modal']"));
     }

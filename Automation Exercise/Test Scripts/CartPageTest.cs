@@ -9,15 +9,15 @@ namespace Automation_Exercise.Test_Scripts
         {
             productPage.Open();
             productPage.AssertCorrectPageIsLoaded();
+            AdverticeHelper.ScrollDown(driver, 250);
             productPage.AddProductToCart("Blue Top");
-            Thread.Sleep(1000);
-            //TODO BASEPAGE
             productPage.AssertCorrectSuccessfulTextIsDisplayed();
             productPage.OpenCart();
             cartPage.AssertCorrectPageIsLoaded();
             cartPage.AssertProductListIsNotEmpty();
             cartPage.ContinueToCheckout();
             cartPage.AssertCorrectLoginToAccoutMessageIsDisplayed();
+            cartPage.ContinueOnCart();
         }
         [Test,Order(2)]
         public void VerifyUserCanRemoveProductFromCart()
@@ -38,17 +38,17 @@ namespace Automation_Exercise.Test_Scripts
             AdverticeHelper.CheckForAdvertice(driver);
             productPage.AssertCorrectPageIsLoaded();
         }
-        [Test, Order(4)] //TODO
+        [Test, Order(4)]
         public void VerifyUserCanAddProductToCartWithoutLogin()
         {
             cartPage.Open();
             cartPage.AssertCorrectPageIsLoaded();
             cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
             cartPage.ContinueToProductPage();
+            AdverticeHelper.CheckForAdvertice(driver);
             productPage.AssertCorrectPageIsLoaded();
+            AdverticeHelper.ScrollDown(driver, 250);
             productPage.AddProductToCart("Blue Top");
-            Thread.Sleep(1000);
-            //TODO BASEPAGE
             productPage.AssertCorrectSuccessfulTextIsDisplayed();
             productPage.OpenCart();
             cartPage.AssertCorrectPageIsLoaded();

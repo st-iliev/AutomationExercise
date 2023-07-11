@@ -60,11 +60,12 @@ namespace Automation_Exercise.Pages.CartPage
             }
         }
         public void ContinueToProductPage() => continueToProductPage.Click();
+        public void ContinueOnCart() => continueOnCartButton.Click();
         public bool CheckProductIsAddedToCart(string productName)
         {
             foreach (var product in productList)
             {
-                string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']/p")).Text;
+                string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
                 if (productName == nameOfProduct)
                 {
                     return true;
