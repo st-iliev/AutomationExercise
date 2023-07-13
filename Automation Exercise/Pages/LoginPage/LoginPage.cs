@@ -1,5 +1,4 @@
-﻿using Automation_Exercise.Utilities;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Automation_Exercise.Pages.LoginPage
 {

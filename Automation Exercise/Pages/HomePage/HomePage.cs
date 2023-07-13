@@ -11,25 +11,26 @@ namespace Automation_Exercise.Pages.HomePage
         private int productId;
         public int GetProductId () =>  productId;
         public override string PageURL => "https://www.automationexercise.com/";
-        public void SelectCategoryAndProductType(string categoryName, string productType)
+        public void SelectCategoryAndSubCategory(string categoryName, string subCategory
+            )
         {
             switch (categoryName)
             {
                 case "Women":
                     womenCategory.Click();
-                    switch (productType)
+                    switch (subCategory)
                     {
                         case "DRESS":
                             womenDress.Click(); break;
                         case "TOPS":
-                            womenDress.Click(); break;
+                            womenTops.Click(); break;
                         case "SAREE":
                             womenSaree.Click(); break;
                     }
                     break;
                 case "Men":
                     menCategory.Click();
-                    switch (productType)
+                    switch (subCategory)
                     {
                         case "TSHIRTS":
                             menTshirts.Click(); break;
@@ -40,7 +41,7 @@ namespace Automation_Exercise.Pages.HomePage
                     break;
                 case "Kids":
                     kidsCategory.Click();
-                    switch (productType)
+                    switch (subCategory)
                     {
                         case "DRESS":
                             kidsDress.Click(); break;
@@ -98,10 +99,48 @@ namespace Automation_Exercise.Pages.HomePage
         }
         public void Logout() => logoutLink.Click();
         public void DeleteAccount() => deleteAccountLink.Click();
-        public void Subscrible()
+        public void Subscrible(string email) => subscribeField.SendKeys(email);
+        public void ClickOnSubscribeButton() => subscribeButton.Click();
+        public void SwitchCarolselUsingIndicators(int indicator)
         {
-            subscribeField.SendKeys(Constants.email);
-            subscribeButton.Click();
+
+            activeIndicators[indicator].Click();
+
         }
+        public int GetCountOfBrandProducts(Brands brandName)
+        {
+            int count = 0;
+            switch (brandName)
+            {
+                case Brands.Polo:
+                    count = int.Parse(brandsPolo.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.HandM:
+                    count = int.Parse(brandsHandM.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.Madame:
+                    count = int.Parse(brandsMademe.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.Babyhug:
+                    count = int.Parse(brandsBabyhug.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.AllenSollyJunior:
+                    count = int.Parse(brandsAllenSollyJunior.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.KookieKids:
+                    count = int.Parse(brandsKookieKids.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.Biba:
+                    count = int.Parse(brandsBiba.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+            }
+            return count;
+        }
+        public int NumberOfDisplayedBrandProducts(Brands brandName)
+        {
+            SelectBrands(brandName);
+            return productsName.Count;
+        }
+        public string ValidationMessage(IWebElement field) => field.GetAttribute("validationMessage");
     }
 }

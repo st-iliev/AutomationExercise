@@ -16,13 +16,13 @@ namespace Automation_Exercise.Pages.HomePage
 
         public IWebElement logoHomeLink => driver.FindElement(By.XPath("//*[src='/static/images/home/logo.png']"));
         public IWebElement subscribeField => driver.FindElement(By.XPath("//input[@id='susbscribe_email']"));
-        public IWebElement subscribeButton => driver.FindElement(By.XPath("//button[@id='susbscribe']"));
+        public IWebElement subscribeButton => driver.FindElement(By.XPath("//button[@id='subscribe']"));
         public IWebElement subscribleSuccessfulMessage => driver.FindElement(By.XPath("//*[@class='Alert-success alert']"));
         public IWebElement webBanner => driver.FindElement(By.XPath("//*[@id='slider-carousel']"));
         public IWebElement rightArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-right']"));
         public IWebElement leftArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-left']"));
-        public IWebElement activeIndicators => driver.FindElement(By.XPath("//*[@id='slider-carousel']/ol"));
-        public IList<WebElement> allProducts => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='features_items']"));
+        public IList<IWebElement> activeIndicators => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@id='slider-carousel']/ol"));
+        public IList<IWebElement> allProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='features_items']"));
         public IList<WebElement> productsName => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
         public IList<WebElement> addProductButton => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='product-overlay']//a[contains(@data-product-id,'')]"));
         public IList<WebElement> viewProducts => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='choose']"));

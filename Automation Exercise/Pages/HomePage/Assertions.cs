@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
 
 namespace Automation_Exercise.Pages.HomePage
 {
@@ -49,6 +50,26 @@ namespace Automation_Exercise.Pages.HomePage
         public void AssertUserIsLogout()
         {
             Assert.True(loginLink.Displayed);
+        }
+        public void AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(Brands brandName)
+        {
+            Assert.AreEqual(GetCountOfBrandProducts(brandName), NumberOfDisplayedBrandProducts(brandName));
+        }
+        public void AssertCorrectSuccessfulSubscribeMessageIsDisplayed()
+        {
+            Assert.AreEqual(SuccessfulMessages.subscribedSuccessfulMessage, subscribleSuccessfulMessage.Text);
+        }
+        public void AssertErrorInvalidEmailAddressMessageIsDisplayed(IWebElement field, string email)
+        {
+            Assert.AreEqual(string.Format(ErrorMessages.incorrectEmailAddress, email), ValidationMessage(field));
+        }
+        public void AssertErrorIncompleteEmailAddressMessageIsDisplayed(IWebElement field, string email)
+        {
+            Assert.AreEqual(string.Format(ErrorMessages.incompleteEmailAddress, email), ValidationMessage(field));
+        }
+        public void AssertErrorEmptyFieldMessageIsDisplayed(IWebElement field)
+        {
+            Assert.AreEqual(ErrorMessages.emptyField, ValidationMessage(field));
         }
     }
 }

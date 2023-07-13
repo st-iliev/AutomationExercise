@@ -28,5 +28,9 @@ namespace Automation_Exercise.Pages.ProductPage
         {
             Assert.AreEqual(0,allProducts.Count);
         }
+        public void AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(Brands brandName)
+        {
+            Assert.AreEqual(GetCountOfBrandProducts(brandName), NumberOfDisplayedBrandProducts(brandName));
+        }
     }
 }

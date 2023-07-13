@@ -134,5 +134,10 @@ namespace Automation_Exercise.Pages.ProductPage
             }
             return count;
         }
+        public int NumberOfDisplayedBrandProducts(Brands brandName)
+        {
+            SelectBrands(brandName);
+            return productsName.Count;
+        }
     }
 }
