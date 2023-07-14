@@ -3,6 +3,8 @@ using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {
+    [TestFixture]
+    [Order(1)]
     public class LoginPageTest : BaseTest
     {
         private AccountInfo accountInfo;

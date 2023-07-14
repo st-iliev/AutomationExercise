@@ -2,6 +2,8 @@
 
 namespace Automation_Exercise.Test_Scripts
 {
+    [TestFixture]
+    [Order(2)]
     public class HomePageTests : BaseTest
     {
         [TestCase("WOMEN")]

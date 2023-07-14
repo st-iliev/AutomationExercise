@@ -2,6 +2,8 @@
 
 namespace Automation_Exercise.Test_Scripts
 {
+    [TestFixture]
+    [Order(4)]
     public class CartPageTest : BaseTest
     {
         [Test,Order(1)]

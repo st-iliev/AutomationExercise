@@ -3,6 +3,8 @@ using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {
+    [TestFixture]
+    [Order(3)]
     public class ContactUsPageTest : BaseTest
     {
         private ContactUsForm form;
