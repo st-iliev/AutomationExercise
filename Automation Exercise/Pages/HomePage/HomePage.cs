@@ -16,7 +16,7 @@ namespace Automation_Exercise.Pages.HomePage
         {
             switch (categoryName)
             {
-                case "Women":
+                case "WOMEN":
                     womenCategory.Click();
                     switch (subCategory)
                     {
@@ -28,7 +28,7 @@ namespace Automation_Exercise.Pages.HomePage
                             womenSaree.Click(); break;
                     }
                     break;
-                case "Men":
+                case "MEN":
                     menCategory.Click();
                     switch (subCategory)
                     {
@@ -39,7 +39,7 @@ namespace Automation_Exercise.Pages.HomePage
 
                     }
                     break;
-                case "Kids":
+                case "KIDS":
                     kidsCategory.Click();
                     switch (subCategory)
                     {
@@ -73,6 +73,7 @@ namespace Automation_Exercise.Pages.HomePage
                 case Brands.Biba:
                     brandsBiba.Click(); break;
             }
+            AdverticeHelper.CheckForAdvertice(driver);
         }
         public void AddProductToCart(string productName)
         {
@@ -139,7 +140,7 @@ namespace Automation_Exercise.Pages.HomePage
         public int NumberOfDisplayedBrandProducts(Brands brandName)
         {
             SelectBrands(brandName);
-            return productsName.Count;
+            return allProducts.Count;
         }
         public string ValidationMessage(IWebElement field) => field.GetAttribute("validationMessage");
     }

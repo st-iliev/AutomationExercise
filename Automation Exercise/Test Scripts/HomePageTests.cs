@@ -4,32 +4,32 @@ namespace Automation_Exercise.Test_Scripts
 {
     public class HomePageTests : BaseTest
     {
-        [Test]
-        public void VerifyWomenSubCategoris()
+        [TestCase("WOMEN")]
+        [TestCase("MEN")]
+        [TestCase("KIDS")]
+        
+        public void VerifyCategoryAndSubcategory(string categoryName)
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
-            homePage.SelectCategoryAndSubCategory("WOMEN", "");
-            homePage.AssertWomenCategoryIsDisplayed();
-        }
-        [Test]
-        public void VerifyMenSubCategoris()
-        {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
-            homePage.SelectCategoryAndSubCategory("MEN", "");
-            homePage.AssertMenCategoryIsDisplayed();
-        }
-        [Test]
-        public void VerifyKidsSubCategoris()
-        {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
-            homePage.SelectCategoryAndSubCategory("KIDS", "");
-            homePage.AssertKidsCategoryIsDisplayed();
+            ScrollDown(driver, 250);
+            homePage.SelectCategoryAndSubCategory(categoryName, "");
+            switch (categoryName)
+            {
+                case "WOMEN":
+                    homePage.AssertWomenCategoryIsDisplayed();
+                    break;
+                case "MEN":
+                    homePage.AssertMenCategoryIsDisplayed();
+                    break;
+                case "KIDS":
+                    homePage.AssertKidsCategoryIsDisplayed();
+                    break;
+                default:
+                    break;
+            }
+            
         }
         [Test]
         public void VerifyNumberOfBrandProductIsSameAsBrandProductCount()
@@ -37,6 +37,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
+            ScrollDown(driver, 500);
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(Brands.Biba);
         }
         [Test]
@@ -45,6 +46,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
+            ScrollToBottom(driver);
             homePage.Subscrible(Constants.email);
             homePage.ClickOnSubscribeButton();
             homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
@@ -57,7 +59,8 @@ namespace Automation_Exercise.Test_Scripts
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
-            homePage.Subscrible(Constants.email);
+            ScrollToBottom(driver);
+            homePage.Subscrible(email);
             homePage.ClickOnSubscribeButton();
             switch (email)
             {
@@ -66,7 +69,7 @@ namespace Automation_Exercise.Test_Scripts
                 case "invalidEmail":
                     homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField,email); break;
                 case "invalidEmail@":
-                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+                    homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
             };
         }
     }

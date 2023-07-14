@@ -9,7 +9,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             productPage.Open();
             productPage.AssertCorrectPageIsLoaded();
-            AdverticeHelper.ScrollDown(driver, 250);
+            ScrollDown(driver, 250);
             productPage.AddProductToCart("Blue Top");
             productPage.AssertCorrectSuccessfulTextIsDisplayed();
             productPage.OpenCart();
@@ -47,7 +47,7 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.ContinueToProductPage();
             AdverticeHelper.CheckForAdvertice(driver);
             productPage.AssertCorrectPageIsLoaded();
-            AdverticeHelper.ScrollDown(driver, 250);
+            ScrollDown(driver, 250);
             productPage.AddProductToCart("Blue Top");
             productPage.AssertCorrectSuccessfulTextIsDisplayed();
             productPage.OpenCart();

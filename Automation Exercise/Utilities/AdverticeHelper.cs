@@ -14,10 +14,5 @@ namespace Automation_Exercise.Utilities
                 driver.SwitchTo().Window(parentWindowHandle);
             }
         }
-        public static void ScrollDown(IWebDriver driver, int pixels)
-        {
-            IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
-            jsExecutor.ExecuteScript($"window.scrollBy(0, {pixels});");
-        }
     }
 }
