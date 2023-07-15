@@ -1,5 +1,6 @@
 ﻿using Automation_Exercise.Utilities;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V112.Debugger;
 
 namespace Automation_Exercise.Pages.HomePage
 {
@@ -9,7 +10,12 @@ namespace Automation_Exercise.Pages.HomePage
         {
         }
         private int productId;
-        public int GetProductId () =>  productId;
+        private string previusModelImage;
+        private string previusIndicator;
+        private string GetCurrectModelImage() => modelImage.ToString();
+        private string GetNumberOfActiveIndicator() =>activeIndicator.GetAttribute("data-slide-to");
+
+        public int GetProductId() => productId;
         public override string PageURL => "https://www.automationexercise.com/";
         public void SelectCategoryAndSubCategory(string categoryName, string subCategory
             )
@@ -102,12 +108,6 @@ namespace Automation_Exercise.Pages.HomePage
         public void DeleteAccount() => deleteAccountLink.Click();
         public void Subscrible(string email) => subscribeField.SendKeys(email);
         public void ClickOnSubscribeButton() => subscribeButton.Click();
-        public void SwitchCarolselUsingIndicators(int indicator)
-        {
-
-            activeIndicators[indicator].Click();
-
-        }
         public int GetCountOfBrandProducts(Brands brandName)
         {
             int count = 0;
@@ -143,5 +143,41 @@ namespace Automation_Exercise.Pages.HomePage
             return allProducts.Count;
         }
         public string ValidationMessage(IWebElement field) => field.GetAttribute("validationMessage");
+        public void ClickOnElement(IWebElement element) => element.Click();
+        public void GoBackToPreveusPage() => driver.Navigate().Back();
+        public void ClickOnArrow(string side)
+        {
+            previusModelImage = modelImage.ToString();
+            previusIndicator =activeIndicator.GetAttribute("data-slide-to");
+            if (side == "left")
+            {
+                leftArrow.Click();
+                return;
+            }
+            rightArrow.Click();
+            
+        }
+        public void ClickOnIndicators(string indicator)
+        {
+            previusModelImage = modelImage.ToString();
+            previusIndicator =activeIndicator.GetAttribute("data-slide-to");
+            foreach (var ind in indicators)
+            {
+                switch (indicator)
+                {
+                    case "First":
+                        ind.FindElement(By.XPath("//*[@data-slide-to='0']")).Click();
+                        break;
+                    case "Second":
+                        ind.FindElement(By.XPath("//*[@data-slide-to='1']")).Click();
+                        break;
+                    case "Third":
+                        ind.FindElement(By.XPath("//*[@data-slide-to='2']")).Click();
+                        break;
+                }
+            }
+
+        }
+
     }
 }

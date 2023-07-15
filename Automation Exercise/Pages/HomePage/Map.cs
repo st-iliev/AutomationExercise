@@ -7,11 +7,15 @@ namespace Automation_Exercise.Pages.HomePage
     {
         public IWebElement homeLink => driver.FindElement(By.XPath("//a[contains(text(),'Home')]"));
         public IWebElement productsLink => driver.FindElement(By.XPath("//a[contains(@href,'/products')]"));
-        public IWebElement cartLink => driver.FindElement(By.XPath("//a[contains(@href,'/view cart')]"));
+        public IWebElement cartLink => driver.FindElement(By.XPath("//*[contains(@class, 'nav') and contains(@class, 'navbar-nav')]//li[a[@href='/view_cart']]"));
         public IWebElement loginLink => driver.FindElement(By.XPath("//a[contains(@href,'/login')]"));
         public IWebElement logoutLink => driver.FindElement(By.XPath("//a[contains(@href,'/logout')]"));
+        public IWebElement testCasesLink => driver.FindElement(By.XPath("//*[contains(@class, 'nav') and contains(@class, 'navbar-nav')]//li[a[@href='/test_cases']]"));
+        public IWebElement apiTestingLink => driver.FindElement(By.XPath("//*[contains(@class, 'nav') and contains(@class, 'navbar-nav')]//li[a[@href='/api_list']]"));
+        public IWebElement videoTutorialsLink => driver.FindElement(By.XPath("//a[contains(@href,'https')]"));
+
         public IWebElement deleteAccountLink => driver.FindElement(By.XPath("//a[contains(@href,'/delete')]"));
-        public IWebElement contactusLink => driver.FindElement(By.XPath("//a[contains(@href,'/contact us')]"));
+        public IWebElement contactusLink => driver.FindElement(By.XPath("//*[contains(@class, 'nav') and contains(@class, 'navbar-nav')]//li[a[@href='/contact_us']]"));
         public IWebElement usernameLogin => driver.FindElement(By.XPath($"//*[@class='nav navbar-nav']//b[contains(text(), '{Constants.name}')]"));
 
         public IWebElement logoHomeLink => driver.FindElement(By.XPath("//*[src='/static/images/home/logo.png']"));
@@ -20,8 +24,17 @@ namespace Automation_Exercise.Pages.HomePage
         public IWebElement subscribleSuccessfulMessage => driver.FindElement(By.XPath("//*[@id='success-subscribe']"));
         public IWebElement webBanner => driver.FindElement(By.XPath("//*[@id='slider-carousel']"));
         public IWebElement rightArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-right']"));
-        public IWebElement leftArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-left']"));
-        public IList<IWebElement> activeIndicators => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@id='slider-carousel']/ol"));
+        public IWebElement leftArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-left']")); 
+        public IWebElement carouselFirstText => WaitAndFindElements(By.XPath("//*[@class='item active']//h1")); 
+        public IWebElement carouselSecondText => WaitAndFindElements(By.XPath("//*[@class='item active']//h2")); 
+        public IWebElement carouselThirdText => WaitAndFindElements(By.XPath("//*[@class='item active']//p")); 
+
+        public IWebElement modelImage => driver.FindElement(By.XPath("//*[@class='col-sm-6']/img")); 
+
+        public IWebElement testCasesButton => driver.FindElement(By.XPath("//*[@href='/test cases' and contains(@class,'test_cases_list')]"));
+        public IWebElement apisListButton => driver.FindElement(By.XPath("//*[@href='/api_list' and contains(@class,'apis_list')]"));
+        public IList<IWebElement> indicators => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@data-target='#slider-carousel']"));
+        public IWebElement activeIndicator => driver.FindElement(By.XPath("//*[@data-target='#slider-carousel' and @class='active']"));
         public IList<IWebElement> allProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='features_items']/*[@class='col-sm-4']"));
         public IList<IWebElement> productsName => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
         public IList<IWebElement> addProductButton => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='product-overlay']//a[contains(@data-product-id,'')]"));
