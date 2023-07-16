@@ -1,6 +1,5 @@
 ﻿using Automation_Exercise.Utilities;
 using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V112.Debugger;
 
 namespace Automation_Exercise.Pages.HomePage
 {
@@ -133,6 +132,9 @@ namespace Automation_Exercise.Pages.HomePage
                     break;
                 case Brands.Biba:
                     count = int.Parse(brandsBiba.FindElement(By.TagName("span")).Text.Trim('(', ')'));
+                    break;
+                case Brands.MastAndHarbour:
+                    count = int.Parse(brandsMasterAndHarbour.FindElement(By.TagName("span")).Text.Trim('(', ')'));
                     break;
             }
             return count;

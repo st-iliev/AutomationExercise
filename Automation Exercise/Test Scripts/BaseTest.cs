@@ -51,7 +51,7 @@ namespace Automation_Exercise.Test_Scripts
             accountCreatedPage = new AccountCreatedPage(driver);
             deleteAccountPage = new DeleteAccountPage(driver);
             contactUsPage = new ContactUsPage(driver);
-           
+
         }
         protected static void ScrollToBottom(IWebDriver driver)
         {
@@ -65,9 +65,8 @@ namespace Automation_Exercise.Test_Scripts
         }
         [OneTimeTearDown]
         public void Dispose()
-       {
+        {
             driver.Dispose();
         }
-       
     }
 }

@@ -4,13 +4,13 @@ using Automation_Exercise.Utilities;
 namespace Automation_Exercise.Test_Scripts
 {
     [TestFixture]
-    [Order(3)]
+    [Order(2)]
     public class ContactUsPageTest : BaseTest
     {
         private ContactUsForm form;
         [TestCase("invalidEmail")]
         [TestCase("invalidEmail@")]
-        [TestCase("")]
+        [TestCase(null)]
         public void VerifySubmitContactFormWithEmptyEmailAddressOrInvalidEmailAddress(string email)
         {
             contactUsPage.Open();
@@ -26,17 +26,17 @@ namespace Automation_Exercise.Test_Scripts
             contactUsPage.SubmiteForm();
             switch (email)
             {
-               
+
                 case "invalidEmail":
-                    contactUsPage.AssertErrorInvalidEmailAddressMessageIsDisplayed(contactUsPage.emailField,email);
+                    contactUsPage.AssertErrorInvalidEmailAddressMessageIsDisplayed(contactUsPage.emailField, email);
                     break;
                 case "invalidEmail@":
                     contactUsPage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(contactUsPage.emailField, email);
                     break;
-                case "":
+                case null:
                     contactUsPage.AssertErrorEmptyFieldMessageIsDisplayed(contactUsPage.emailField);
                     break;
-            };       
+            };
         }
         [Test]
         public void VerifySubmitContactFormWithValidData()
@@ -58,6 +58,5 @@ namespace Automation_Exercise.Test_Scripts
             AdverticeHelper.CheckForAdvertice(driver);
             homePage.AssertCorrectPageIsLoaded();
         }
-
     }
 }

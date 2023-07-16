@@ -3,7 +3,7 @@
 namespace Automation_Exercise.Test_Scripts
 {
     [TestFixture]
-    [Order(2)]
+    [Order(1)]
     public class HomePageTests : BaseTest
     {
         [Test,Order(1)]
@@ -49,13 +49,13 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("MEN")]
         [TestCase("KIDS")]
         
-        public void VerifyCategoryAndSubcategory(string categoryName)
+        public void VerifyCategoryAndSubcategoryAreLoaded(string categoryName)
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
             ScrollDown(driver, 250);
-            homePage.SelectCategoryAndSubCategory(categoryName, "");
+            homePage.SelectCategoryAndSubCategory(categoryName, null);
             switch (categoryName)
             {
                 case "WOMEN":
@@ -73,16 +73,24 @@ namespace Automation_Exercise.Test_Scripts
             
         }
         [Test, Order(5)]
-        public void VerifyNumberOfBrandProductIsSameAsBrandProductCount()
+        [TestCase(Brands.Polo)]
+        [TestCase(Brands.AllenSollyJunior)]
+        [TestCase(Brands.HandM)]
+        [TestCase(Brands.MastAndHarbour)]
+        [TestCase(Brands.KookieKids)]
+        [TestCase(Brands.Biba)]
+        [TestCase(Brands.Babyhug)]
+        [TestCase(Brands.Madame)]
+        public void VerifyNumberOfBrandProductIsSameAsBrandProductCount(Brands brandName)
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
             ScrollDown(driver, 500);
-            homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(Brands.Biba);
+            homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
         [Test, Order(6)]
-        public void VerifySuccessfullSubscribe()
+        public void VerifySuccessfulSubscribe()
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
@@ -93,7 +101,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
         }
         [Test, Order(7)]
-        [TestCase("")]
+        [TestCase(null)]
         [TestCase("invalidEmail")]
         [TestCase("invalidEmail@")]
         public void VerifySubscribeWithInvalidEmail(string email)
@@ -106,7 +114,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.ClickOnSubscribeButton();
             switch (email)
             {
-                case "":
+                case null:
                     homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
                 case "invalidEmail":
                     homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField,email); break;
@@ -162,5 +170,6 @@ namespace Automation_Exercise.Test_Scripts
                     break;
             }
         }
+
     }
 }

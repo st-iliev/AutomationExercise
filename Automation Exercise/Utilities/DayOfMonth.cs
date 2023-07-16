@@ -3,7 +3,7 @@ using OpenQA.Selenium.Support.UI;
 
 namespace Automation_Exercise.Utilities
 {
-    enum DayOfMonth
+    public enum DayOfMonth
     {
         Day1 =1,
         Day2,

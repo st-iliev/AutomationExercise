@@ -52,9 +52,9 @@ namespace Automation_Exercise.Pages.HomePage
         public IWebElement kidsTopsAndShirts => WaitAndFindElements(By.XPath("//*[contains(@href, '/category_products/5')]"));
         public IWebElement brandsPolo => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Polo')]"));
         public IWebElement brandsHandM => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/H&M')]"));
-        public IWebElement brandsMademe => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Mademe')]"));
-        public IWebElement brandsMasterAndHarbour => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Master & Harbour')]"));
-        public IWebElement brandsBabyhug => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/BabyHug')]"));
+        public IWebElement brandsMademe => driver.FindElement(By.XPath("//*[@href='/brand_products/Madame']"));
+        public IWebElement brandsMasterAndHarbour => driver.FindElement(By.XPath("//a[@href='/brand_products/Mast & Harbour']"));
+        public IWebElement brandsBabyhug => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Babyhug')]"));
         public IWebElement brandsAllenSollyJunior => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Allen Solly Junior')]"));
         public IWebElement brandsKookieKids => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Kookie Kids')]"));
         public IWebElement brandsBiba => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Biba')]"));

@@ -16,9 +16,9 @@ namespace Automation_Exercise.Pages.CartPage
                 string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']/p")).Text;
                 if (productName == nameOfProduct)
                 {
-                    int productPrice = int.Parse(product.FindElement(By.XPath("//*[@class='cart_price']/p")).Text.Split(" ")[1]);
+                    int productPrice = int.Parse(product.FindElement(By.XPath("//*[@class='cart_price']/p")).Text.Split(null)[1]);
                     int productQuantity = int.Parse(product.FindElement(By.XPath("//button[@class='disable']")).Text);
-                    int productTotalPrice = int.Parse(product.FindElement(By.XPath("//*[@class='cart_total']/p")).Text.Split(" ")[1]);
+                    int productTotalPrice = int.Parse(product.FindElement(By.XPath("//*[@class='cart_total']/p")).Text.Split(null)[1]);
                     if (productPrice * productQuantity == productTotalPrice)
                     {
                         return productPrice;

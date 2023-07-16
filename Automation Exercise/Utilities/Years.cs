@@ -1,6 +1,6 @@
 ﻿namespace Automation_Exercise.Utilities
 {
-    enum Years
+    public enum Years
     {
         Year1900 = 1900,
         Year1901,

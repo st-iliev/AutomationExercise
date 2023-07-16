@@ -27,11 +27,10 @@ namespace Automation_Exercise.Utilities
         public const string CVC = "672";
         public const string expirationMonth = "09";
         public const string expirationYear = "29";
-        public const string contactUsMessage = "Dear [Site Support Team/Technical Support Team],\\r\\n\\r\\nI hope this email finds you well. I am writing to request the addition of validation on an important field within the [name of the site/application/service]. This enhancement will help ensure data accuracy, integrity, and provide a better user experience for all users.";
+        public const string contactUsMessage = "Dear [Site Support Team/Technical Support Team],\r\n I hope this email finds you well. I am writing to request the addition of validation on an important field within the [name of the site/application/service]. This enhancement will help ensure data accuracy, integrity, and provide a better user experience for all users.";
         public const string contactUsSubject = "Field validations.";
         public const string carouselFirstText = "AutomationExercise";
         public const string carouselSecondText = "Full-Fledged practice website for Automation Engineers";
         public const string carouselThirdText = "All QA engineers can use this website for automation practice and API testing either they are at beginner or advance level. This is for everybody to help them brush up their automation skills.";
-
     }
 }

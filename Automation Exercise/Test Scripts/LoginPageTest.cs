@@ -4,14 +4,13 @@ using Automation_Exercise.Utilities;
 namespace Automation_Exercise.Test_Scripts
 {
     [TestFixture]
-    [Order(1)]
+    [Order(5)]
     public class LoginPageTest : BaseTest
     {
-        private AccountInfo accountInfo;
         [Test, Order(1)]
-        [TestCase(Constants.email, "")]
-        [TestCase("", Constants.password)]
-        [TestCase("", "")]
+        [TestCase(Constants.email, null)]
+        [TestCase(null, Constants.password)]
+        [TestCase(null, null)]
         public void VerifyUserLoginWithoutEmailOrPassword(string email, string password)
         {
             loginPage.Open();
@@ -21,7 +20,7 @@ namespace Automation_Exercise.Test_Scripts
             loginPage.ClickOnLoginButton();
             switch (password)
             {
-                case "":
+                case null:
                     loginPage.AssertErrorEmptyFieldMessageIsDisplayed(loginPage.loginPasswordField);
                     break;
                 case Constants.password:
@@ -55,9 +54,9 @@ namespace Automation_Exercise.Test_Scripts
             
         }
         [Test, Order(3)]
-        [TestCase(Constants.name, "")]
-        [TestCase("", Constants.email)]
-        [TestCase("", "")]
+        [TestCase(Constants.name, null)]
+        [TestCase(null, Constants.email)]
+        [TestCase(null, null)]
         public void VerifySignupUserWithoutNameOrEmail(string name, string email)
         {
             loginPage.Open();
@@ -67,7 +66,7 @@ namespace Automation_Exercise.Test_Scripts
             loginPage.ClickOnSignupButton();
             switch (email)
             {
-                case "":
+                case null:
                     loginPage.AssertErrorEmptyFieldMessageIsDisplayed(loginPage.signupEmailField);
                     break;
                 case Constants.email:
@@ -75,44 +74,8 @@ namespace Automation_Exercise.Test_Scripts
                     break;
             };
         }
+        
         [Test, Order(4)]
-        public void VerifyRegisterNewUserWithValidData()
-        {
-
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectSignupFormTitleIsDisplayed();
-            loginPage.FillSingupForm(Constants.name, Constants.email);
-            loginPage.ClickOnSignupButton();
-            signupPage.AssertCorrectPageIsLoaded();
-            accountInfo = new AccountInfo()
-            {
-                Title = Titles.Mr,
-                Password = Constants.password,
-                FirstName = Constants.firstName,
-                LastName = Constants.lastName,
-                Company = Constants.companyName,
-                Address1 = Constants.firstAddress,
-                Country = Countries.Australia,
-                State = Constants.state,
-                City = Constants.city,
-                ZipCode = Constants.zipCode,
-                MobileNumber = Constants.mobileNumber
-            };
-            signupPage.FillSignupForm(accountInfo);
-            signupPage.ClickOnCreateAccount();
-            accountCreatedPage.AssertCorrectPageIsLoaded();
-            accountCreatedPage.AssertAccountCreatedTitleIsDisplayedCorrectly();
-            accountCreatedPage.AssertFirstSuccessfullMessageIsDisplayedCorrectly();
-            accountCreatedPage.AssertSecondSuccessfullMessageIsDisplayedCorrectly();
-            accountCreatedPage.ClickOnContinue();
-            AdverticeHelper.CheckForAdvertice(driver);
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertUserIsLogin();
-            homePage.Logout();
-            loginPage.AssertCorrectPageIsLoaded();
-        }
-        [Test, Order(5)]
         public void VerifyUserLoginWithValidData()
         {
             loginPage.Open();

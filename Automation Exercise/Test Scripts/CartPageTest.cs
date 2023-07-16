@@ -3,10 +3,10 @@
 namespace Automation_Exercise.Test_Scripts
 {
     [TestFixture]
-    [Order(4)]
+    [Order(3)]
     public class CartPageTest : BaseTest
     {
-        [Test,Order(1)]
+        [Test, Order(1)]
         public void VerifyUserCantCheckoutWithoutLogin()
         {
             productPage.Open();
@@ -21,7 +21,7 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.AssertCorrectLoginToAccoutMessageIsDisplayed();
             cartPage.ContinueOnCart();
         }
-        [Test,Order(2)]
+        [Test, Order(2)]
         public void VerifyUserCanRemoveProductFromCart()
         {
             cartPage.Open();
@@ -29,7 +29,7 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.RemoveProductFromOrder("Blue Top");
             cartPage.CheckProductRemoval("Blue Top");
         }
-        [Test,Order(3)]
+        [Test, Order(3)]
         public void VerifyUserCanRemoveAllProductFromCart()
         {
             cartPage.Open();

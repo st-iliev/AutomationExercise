@@ -16,9 +16,9 @@ namespace Automation_Exercise.Pages.SignupPage
         {
             Assert.AreEqual("ADDRESS INFORMATION", addressInfoTitle.Text);
         }
-        public void AssertValidationMessageIsDisplayed()
+        public void AssertValidationMessageIsDisplayed(IWebElement nameOfField)
         {
-            Assert.True(validationDisplayed);
+            Assert.True(ValidationMessageIsDisplayed(nameOfField));
         }
         public void AssertAllRequiredFieldAreFilled()
         {
@@ -33,5 +33,6 @@ namespace Automation_Exercise.Pages.SignupPage
             Assert.True(zipCodeField.GetAttribute("value")!=null, "Zipcode field is not empty.");
             Assert.True(mobileNumberField.GetAttribute("value")!=null, "MobileNumber field is not empty.");
         }
+       
     }
 }

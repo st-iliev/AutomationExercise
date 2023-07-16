@@ -1,6 +1,4 @@
-﻿
-
-namespace Automation_Exercise.Utilities
+﻿namespace Automation_Exercise.Utilities
 {
     public enum Countries
     {     
