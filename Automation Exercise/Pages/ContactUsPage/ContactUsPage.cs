@@ -15,7 +15,7 @@ namespace Automation_Exercise.Pages.ContactUsPage
             emailField.SendKeys(form.Email);
             subjectField.SendKeys(form.Subject);
             messagetField.SendKeys(form.Message);
-            chooseFileButton.SendKeys(form.ChoosenFile);
+           // chooseFileButton.SendKeys(form.ChoosenFile);
         }
         public void ClickOnHomeButton() => homeButton.Click();
         public void SubmiteForm() => submitButton.Click();

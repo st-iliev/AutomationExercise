@@ -140,6 +140,7 @@ namespace Automation_Exercise.Test_Scripts
                 ZipCode = Constants.zipCode,
                 MobileNumber = Constants.mobileNumber
             };
+            ScrollDown(driver, 250);
             signupPage.CheckForNewsLetter();
             signupPage.CheckForReceiveSpecialOffers();
             signupPage.FillSignupForm(accountInfo);

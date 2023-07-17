@@ -8,9 +8,9 @@ namespace Automation_Exercise.Test_Scripts
     public class LoginPageTest : BaseTest
     {
         [Test, Order(1)]
-        [TestCase(Constants.email, null)]
-        [TestCase(null, Constants.password)]
-        [TestCase(null, null)]
+        [TestCase(Constants.email, "")]
+        [TestCase("", Constants.password)]
+        [TestCase("", "")]
         public void VerifyUserLoginWithoutEmailOrPassword(string email, string password)
         {
             loginPage.Open();
@@ -54,9 +54,9 @@ namespace Automation_Exercise.Test_Scripts
             
         }
         [Test, Order(3)]
-        [TestCase(Constants.name, null)]
-        [TestCase(null, Constants.email)]
-        [TestCase(null, null)]
+        [TestCase(Constants.name, "")]
+        [TestCase("", Constants.email)]
+        [TestCase("", "")]
         public void VerifySignupUserWithoutNameOrEmail(string name, string email)
         {
             loginPage.Open();

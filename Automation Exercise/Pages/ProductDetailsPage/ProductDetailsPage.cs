@@ -9,7 +9,7 @@ public partial class ProductDetailsPage : BasePage
        
     }
     public override string PageURL => "https://www.automationexercise.com/product_details/";
-    public string GeneratePageDetailsUrl(string productId) => $"https://www.automationexercise.com/product_details/{productId}";
+    public string GeneratePageDetailsUrl(int productId) => $"https://www.automationexercise.com/product_details/{productId}";
     public void AddProductToCart() => addToCartButton.Click();
     
     public void FillReviewForm(string name , string email , string message)
@@ -24,5 +24,6 @@ public partial class ProductDetailsPage : BasePage
         productQuantity.Clear();
         productQuantity.SendKeys(quantity.ToString());
     }
+    public int GetProductPrice() => int.Parse(productPrice.Text.Split(" ")[1]);
 
 }

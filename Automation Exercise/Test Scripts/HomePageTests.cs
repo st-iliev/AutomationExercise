@@ -59,15 +59,16 @@ namespace Automation_Exercise.Test_Scripts
             switch (categoryName)
             {
                 case "WOMEN":
-                    homePage.AssertWomenCategoryIsDisplayed();
+                    homePage.AssertWomenCategoryAndSubCategoriesAreDisplayed();
                     break;
                 case "MEN":
-                    homePage.AssertMenCategoryIsDisplayed();
+                    homePage.AssertMenCategoryAndSubCategoriesAreDisplayed();
                     break;
                 case "KIDS":
-                    homePage.AssertKidsCategoryIsDisplayed();
+                    homePage.AssertKidsCategoryAndSubCategoriesAreDisplayed();
                     break;
                 default:
+                    Assert.Fail("Wrong category name");
                     break;
             }
             
@@ -86,7 +87,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
-            ScrollDown(driver, 500);
+            ScrollDown(driver,650);
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
         [Test, Order(6)]
@@ -101,7 +102,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
         }
         [Test, Order(7)]
-        [TestCase(null)]
+        [TestCase("")]
         [TestCase("invalidEmail")]
         [TestCase("invalidEmail@")]
         public void VerifySubscribeWithInvalidEmail(string email)
@@ -128,7 +129,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("Login")]
         [TestCase("Test Cases")]
         [TestCase("API Testing")]
-        [TestCase("Video Tutorials")]
+        //[TestCase("Video Tutorials")]
         [TestCase("Contact us")]
         public void VerifyNavigationLinksNavigateToCorrectPage(string pageName)
         {
@@ -152,6 +153,7 @@ namespace Automation_Exercise.Test_Scripts
                     break;
                 case "Test Cases":
                     homePage.ClickOnElement(homePage.testCasesLink);
+                    AdverticeHelper.CheckForAdvertice(driver);
                     homePage.AssertTestCasesNavigationLinkOpenCorrectPage();
                     break;
                 case "API Testing":
@@ -159,17 +161,51 @@ namespace Automation_Exercise.Test_Scripts
                     AdverticeHelper.CheckForAdvertice(driver);
                     homePage.AssertAPITestingNavigationLinkOpenCorrectPage();
                     break;
-                case "Video Tutorials":
-                    homePage.ClickOnElement(homePage.videoTutorialsLink);
-                    YTConsentPageHelper.CheckForYYConsentPage(driver);
-                    homePage.AssertVideoTutorialsNavigationLinkOpenCorrectPage();
-                    break;
+                //case "Video Tutorials":
+                //    homePage.ClickOnElement(homePage.videoTutorialsLink);
+                //   YTConsentPageHelper.CheckForYYConsentPage(driver);
+                //    homePage.AssertVideoTutorialsNavigationLinkOpenCorrectPage();
+                //    break;
                 case "Contact us":
                     homePage.ClickOnElement(homePage.contactusLink);
                     homePage.AssertContactUsNavigationLinkOpenCorrectPage();
                     break;
             }
         }
+        [Test, Order(9)]
+        [TestCase("Winter Top")]
+        public void VerifyOpenProductDetailsPage(string productName)
+        {
+            homePage.Open();
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.AssertWebBannerIsDisplayed();
+            ScrollDown(driver, 750);
+            int priceFromHomePage = homePage.GetProductPrice(productName);
+            homePage.ViewProduct(productName);
+            AdverticeHelper.CheckForAdvertice(driver);
+            productDetailsPage.AssertCorrectPageIsLoaded();
+            productDetailsPage.AssertCorrectProductDetailsPageIsOpened(homePage.GetProductId());
+            productDetailsPage.AssertCorrectProductName(productName);
+            productDetailsPage.AssertCorrectProductPrice(priceFromHomePage,productDetailsPage.GetProductPrice());
 
+
+        }
+        [Test]
+        [TestCase("WOMEN","DRESS")]
+        [TestCase("WOMEN","TOPS")]
+        [TestCase("WOMEN","SAREE")]
+        [TestCase("MEN","TSHIRTS")]
+        [TestCase("MEN","JEANS")]
+        [TestCase("KIDS","DRESS")]
+        [TestCase("KIDS","TOPS & SHIRTS")]
+        public void VerifyCorrectProductFromSubCategoryAreLoaded(string categoryName , string subCategoryName)
+        {
+            homePage.Open();
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.AssertWebBannerIsDisplayed();
+            ScrollDown(driver, 250);
+            homePage.SelectCategoryAndSubCategory(categoryName, subCategoryName);
+            homePage.AssertCorrectProductSubCategoryTitleIsDisplayed(categoryName, subCategoryName);
+        }
     }
 }

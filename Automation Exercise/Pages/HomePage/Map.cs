@@ -35,7 +35,7 @@ namespace Automation_Exercise.Pages.HomePage
         public IWebElement apisListButton => driver.FindElement(By.XPath("//*[@href='/api_list' and contains(@class,'apis_list')]"));
         public IList<IWebElement> indicators => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@data-target='#slider-carousel']"));
         public IWebElement activeIndicator => driver.FindElement(By.XPath("//*[@data-target='#slider-carousel' and @class='active']"));
-        public IList<IWebElement> allProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='features_items']/*[@class='col-sm-4']"));
+        public IList<IWebElement> allProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']"));
         public IList<IWebElement> productsName => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
         public IList<IWebElement> addProductButton => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='product-overlay']//a[contains(@data-product-id,'')]"));
         public IList<IWebElement> viewProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='choose']"));

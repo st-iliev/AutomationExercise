@@ -8,7 +8,7 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement searchField => driver.FindElement(By.XPath("//*[@id='search_product']"));
         public IWebElement searchButton => driver.FindElement(By.XPath("//*[@id='submit_search']"));
         public IList<IWebElement> allProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='features_items']/*[@class='col-sm-4']"));
-        public IList<IWebElement> productsName => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']"));
+        public IList<IWebElement> productsName => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
         public IList<IWebElement> addProductButton => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']//a[contains(@data-product-id,'')]"));
         public IList<WebElement> viewProducts => (IList<WebElement>)driver.FindElements(By.XPath("//*[@class='choose']"));
         public IWebElement categoryProducts => driver.FindElement(By.XPath("//h2[@class='title text-center']"));

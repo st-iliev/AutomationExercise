@@ -10,7 +10,7 @@ namespace Automation_Exercise.Test_Scripts
         private ContactUsForm form;
         [TestCase("invalidEmail")]
         [TestCase("invalidEmail@")]
-        [TestCase(null)]
+        [TestCase(" ")]
         public void VerifySubmitContactFormWithEmptyEmailAddressOrInvalidEmailAddress(string email)
         {
             contactUsPage.Open();
@@ -20,7 +20,7 @@ namespace Automation_Exercise.Test_Scripts
                 Email = email,
                 Subject = Constants.contactUsSubject,
                 Message = Constants.contactUsMessage,
-                ChoosenFile = Constants.choosenFilePath
+               // ChoosenFile = Constants.choosenFilePath
             };
             contactUsPage.FillContactUsForm(form);
             contactUsPage.SubmiteForm();

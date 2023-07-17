@@ -20,9 +20,10 @@ namespace Automation_Exercise.Pages.ProductPage
         {
             Assert.AreEqual(SuccessfulMessages.productAddSuccessful, productAddedSuccessfulMsg.Text);
         }
-        public void AssertSearchedProductAreDisplaed()
+        public void AssertSearchedProductIsDisplaed(string productName)
         {
             Assert.That(allProducts.Count,Is.GreaterThan(0));
+            Assert.True(SearchedProductIsDisplayed(productName));
         }
         public void AssertNonProductsAreDisplayed()
         {

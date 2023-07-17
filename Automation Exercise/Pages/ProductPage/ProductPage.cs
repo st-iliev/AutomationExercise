@@ -37,7 +37,6 @@ namespace Automation_Exercise.Pages.ProductPage
                             menTshirts.Click(); break;
                         case "JEANS":
                             menJeans.Click(); break;
-
                     }
                     break;
                 case "Kids":
@@ -48,7 +47,6 @@ namespace Automation_Exercise.Pages.ProductPage
                             kidsDress.Click(); break;
                         case "TOPS&SHIRTS":
                             kidsTopsAndShirts.Click(); break;
-
                     }
                     break;
             }
@@ -75,15 +73,21 @@ namespace Automation_Exercise.Pages.ProductPage
                     brandsBiba.Click(); break;
             }
         }
-        public void SearchProduct(string productName) => searchField.SendKeys(productName);
-        public void ClickOnSearch() => searchField.Click();
+        public void SearchForProduct(string productName)
+        {
+            searchField.SendKeys(productName);
+            searchButton.Click();
+
+        }
+        public void ClickOnSearch() => searchButton.Click();
         public void AddProductToCart(string productName)
         {
-            foreach (var product in productsName)
+            foreach (var product in allProducts)
             {
-                if (product.FindElement(By.TagName("p")).Text == productName)
+                string name = product.FindElement(By.XPath(".//p")).Text;
+                if (name == productName)
                 {
-                    var element = product.FindElement(By.TagName("a"));
+                    var element = product.FindElement(By.XPath(".//a"));
                     productId = int.Parse(element.GetAttribute("data-product-id"));
                     addProductButton[productId-1].Click();
                     break;
@@ -138,6 +142,17 @@ namespace Automation_Exercise.Pages.ProductPage
         {
             SelectBrands(brandName);
             return productsName.Count;
+        }
+        public bool SearchedProductIsDisplayed(string productName)
+        {
+            if (productsName.First().Text == productName)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

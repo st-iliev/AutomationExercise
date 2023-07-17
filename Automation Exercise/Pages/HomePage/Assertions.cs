@@ -66,20 +66,20 @@ namespace Automation_Exercise.Pages.HomePage
         }
 
 
-        public void AssertWomenCategoryIsDisplayed()
+        public void AssertWomenCategoryAndSubCategoriesAreDisplayed()
         {
             Assert.True(womenCategory.Displayed);
             Assert.True(womenDress.Displayed);
             Assert.True(womenTops.Displayed);
             Assert.True(womenSaree.Displayed);
         } 
-        public void AssertMenCategoryIsDisplayed()
+        public void AssertMenCategoryAndSubCategoriesAreDisplayed()
         {
             Assert.True(menCategory.Displayed);
             Assert.True(menTshirts.Displayed);
             Assert.True(menJeans.Displayed);
         }
-        public void AssertKidsCategoryIsDisplayed()
+        public void AssertKidsCategoryAndSubCategoriesAreDisplayed()
         {
             Assert.True(kidsCategory.Displayed);
             Assert.True(kidsDress.Displayed);
@@ -137,6 +137,14 @@ namespace Automation_Exercise.Pages.HomePage
             Assert.AreEqual(Constants.carouselFirstText,carouselFirstText.Text);
             Assert.AreEqual(Constants.carouselSecondText,carouselSecondText.Text);
             Assert.AreEqual(Constants.carouselThirdText,carouselThirdText.Text);
+        }
+        public void AssertCorrectProductSubCategoryTitleIsDisplayed(string category,string subcategory)
+        {
+            Assert.AreEqual($"{category.ToUpper()} - {subcategory.ToUpper()} PRODUCTS", categoryProducts.Text);
+        }
+        public void AssertCorrectProductsFromSubCategoryAreDisplayed(string subcategory)
+        {
+            Assert.True(DisplayedProductsAreFromSelectedSubCategory(subcategory));
         }
     }
 }

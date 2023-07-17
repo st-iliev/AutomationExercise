@@ -5,7 +5,8 @@ namespace Automation_Exercise.Pages.ProductDetailsPage
     partial class ProductDetailsPage
     {
         public IWebElement productPicture => driver.FindElement(By.XPath("//*[contains(@src,'/get_product_picture/')]"));
-        public IWebElement productName => driver.FindElement(By.XPath("//*[@class='product-information']//h2"));
+        public IWebElement productName => driver.FindElement(By.XPath("//*[@class='product-information']//h2"));  
+        public IWebElement productPrice => driver.FindElement(By.XPath("//*[contains(text(),'Rs.')]"));
         public IWebElement productQuantity => driver.FindElement(By.XPath("//*[@id='quantity']"));
         public IWebElement addToCartButton => driver.FindElement(By.XPath("//button[@type='button']"));
         public IWebElement avaliableInfo => driver.FindElement(By.XPath("//*[@class='product-information']//p[2]/text()"));

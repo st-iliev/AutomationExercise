@@ -1,5 +1,8 @@
 ﻿using Automation_Exercise.Utilities;
+using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
+using OpenQA.Selenium.DevTools.V112.Fetch;
+using System.Xml.XPath;
 
 namespace Automation_Exercise.Pages.HomePage
 {
@@ -50,7 +53,7 @@ namespace Automation_Exercise.Pages.HomePage
                     {
                         case "DRESS":
                             kidsDress.Click(); break;
-                        case "TOPS&SHIRTS":
+                        case "TOPS & SHIRTS":
                             kidsTopsAndShirts.Click(); break;
 
                     }
@@ -94,12 +97,14 @@ namespace Automation_Exercise.Pages.HomePage
         }
         public void ViewProduct(string productName)
         {
-            foreach (var product in productsName)
+            foreach (var product in allProducts)
             {
-                if (product.ToString() == productName)
+                string name = product.FindElement(By.XPath(".//p")).Text;
+                if (name == productName)
                 {
-                    int productId = int.Parse(product.GetDomProperty("data-product-id"));
-                    viewProducts[productId].Click();
+                    productId = int.Parse(product.FindElement(By.XPath(".//a")).GetDomAttribute("data-product-id"));
+                    viewProducts[productId-1].Click();
+                    break;
                 }
             }
         }
@@ -180,6 +185,37 @@ namespace Automation_Exercise.Pages.HomePage
             }
 
         }
-
+        public int GetProductPrice(string productName)
+        {
+            //TODO
+            foreach (var product in allProducts)
+            {
+                string name = product.FindElement(By.XPath(".//p")).Text;
+                if (name == productName)
+                {
+                    return int.Parse(product.FindElement(By.XPath(".//h2")).Text.Split(" ")[1]);
+                   
+                }   
+            }
+            return -1;
+        }
+        private bool DisplayedProductsAreFromSelectedSubCategory(string subcategory)
+        {
+            bool result = false;
+            foreach (var name in productsName)
+            {
+                string pName = name.Text.ToUpper();
+                if (pName.Contains(subcategory))
+                {
+                    result = true;
+                }
+                else
+                {
+                    result |= false;
+                    break;
+                }
+            }
+            return result;
+        }
     }
 }

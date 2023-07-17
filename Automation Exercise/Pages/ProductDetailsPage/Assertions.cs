@@ -12,7 +12,7 @@ namespace Automation_Exercise.Pages.ProductDetailsPage
         {
             Assert.True(productPicture.Displayed);
         }
-        public void AssertCorrectProductDetailsPageIsOpened(string productId)
+        public void AssertCorrectProductDetailsPageIsOpened(int productId)
         {
             Assert.AreEqual(GeneratePageDetailsUrl(productId), GetPageUrl());
         }
@@ -31,6 +31,10 @@ namespace Automation_Exercise.Pages.ProductDetailsPage
         public void AssertCorrectProductBrandName(Brands brandName)
         {
             Assert.AreEqual(brandName.ToString(), brandInfo.Text);
+        }
+        public void AssertCorrectProductPrice(int expected, int actual)
+        {
+            Assert.AreEqual(expected, actual);
         }
     }
 }
