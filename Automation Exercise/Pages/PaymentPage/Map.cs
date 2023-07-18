@@ -4,7 +4,7 @@ namespace Automation_Exercise.Pages.PaymentPage
 {
     partial class PaymentPage
     {
-        public IWebElement paymentTitle => driver.FindElement(By.XPath("//*[@class='step_one']h2"));
+        public IWebElement paymentTitle => driver.FindElement(By.XPath("//*[@class='step-one']/h2"));
         public IWebElement nameOnCardField => driver.FindElement(By.XPath("//input[@data-qa='name-on-card']"));
         public IWebElement cardNumberField => driver.FindElement(By.XPath("//input[@data-qa='card-number']"));
         public IWebElement cvcField => driver.FindElement(By.XPath("//input[@data-qa='cvc']"));

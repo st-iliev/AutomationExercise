@@ -18,5 +18,7 @@ namespace Automation_Exercise.Pages.PaymentPage
             expirationYearField.SendKeys(cardInfo.ExpirationYear);
         }
         public void PayAndConfirmOrder() => payOrderButton.Click();
+        public string ValidationMessage(IWebElement field) => field.GetAttribute("validationMessage");
+        public void ClickOnPayOrder() => payOrderButton.Click();
     }
 }

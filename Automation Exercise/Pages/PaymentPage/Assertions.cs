@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
 
 namespace Automation_Exercise.Pages.PaymentPage
 {
@@ -24,6 +25,10 @@ namespace Automation_Exercise.Pages.PaymentPage
             Assert.True(expirationMonthField.Displayed);
             Assert.True(expirationYearField.Displayed);
             Assert.True(payOrderButton.Displayed);
+        }
+        public void AssertErrorEmptyFieldMessageIsDisplayed(IWebElement field)
+        {
+            Assert.AreEqual(ErrorMessages.emptyField, ValidationMessage(field));
         }
     }
 }
