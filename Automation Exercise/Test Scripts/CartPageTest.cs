@@ -1,4 +1,5 @@
-﻿using Automation_Exercise.Utilities;
+﻿using Automation_Exercise.Pages.ProductPage;
+using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -56,5 +57,38 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.AssertCorrectPageIsLoaded();
             cartPage.AssertProductIsAddedToCart("Blue Top");
         }
+        [Test, Order(5)]
+        public void VerifyTotalPriceOfAllAddedProductsAreCorrect()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            ScrollDown(driver, 350);
+            productPage.AddProductToCart("Men Tshirt");
+            productPage.ContinueToShopping();
+            productPage.AddProductToCart("Blue Top");
+            productPage.ContinueToShopping();
+            productPage.AddProductToCart("Sleeveless Dress");
+            productPage.AssertCorrectSuccessfulTextIsDisplayed();
+            productPage.OpenCart();
+            cartPage.AssertCorrectPageIsLoaded();
+            List<string> productNames = cartPage.GetNameOfAllAddedProducts();
+            foreach (var product in productNames)
+            {
+                cartPage.AssertTotalPriceOfProductIsCorrect(product);
+            }
+        }
+        [Test, Order(6)]
+        public void VerifyTotalPriceOfAddedProductIsCorrect()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            ScrollDown(driver, 250);
+            productPage.AddProductToCart("Blue Top");
+            productPage.AssertCorrectSuccessfulTextIsDisplayed();
+            productPage.OpenCart();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.AssertTotalPriceOfProductIsCorrect("Blue Top");
+        }
+        
     }
 }

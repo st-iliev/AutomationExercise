@@ -32,5 +32,9 @@ namespace Automation_Exercise.Pages.CartPage
         {
             Assert.True(CheckProductIsAddedToCart(productName));
         }
+        public void AssertTotalPriceOfProductIsCorrect(string productName)
+        {
+            Assert.AreEqual(GetTotalPriceOfProduct(productName), CalculateTotalPriceForProduct(productName));
+        }
     }
 }

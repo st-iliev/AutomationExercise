@@ -33,6 +33,6 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement successfulAddedIcon => driver.FindElement(By.XPath("//i[@class='material-icons']"));
         public IWebElement productAddedSuccessfulMsg => WaitAndFindElements(By.XPath("//p[@class='text-center'][1]"));
         public IWebElement viewCart => driver.FindElement(By.XPath("//p[@class='text-center'][2]/a"));
-        public IWebElement continueShoppingButton => driver.FindElement(By.XPath("//button[@data-dismiss='modal']"));
+        public IWebElement continueShoppingButton => WaitAndFindElements(By.XPath("//button[@data-dismiss='modal']"));
     }
 }

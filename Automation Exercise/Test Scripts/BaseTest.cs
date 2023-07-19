@@ -36,7 +36,7 @@ namespace Automation_Exercise.Test_Scripts
             //DriverHelper.Start(BrowserType.Chrome);
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--lang=en-US");
-            options.AddArgument("--headless");
+            //options.AddArgument("--headless");
             driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
             homePage = new HomePage(driver);
