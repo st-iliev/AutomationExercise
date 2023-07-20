@@ -1,4 +1,6 @@
-﻿using OpenQA.Selenium;
+﻿using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
+using System.Reflection.Metadata;
 
 namespace Automation_Exercise.Pages.CheckoutPage
 {
@@ -12,11 +14,11 @@ namespace Automation_Exercise.Pages.CheckoutPage
         {
             foreach (var product in orderProducts)
             {
-                string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']/p")).Text;
+                string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
                 if (productName == nameOfProduct)
                 {
                     int productPrice = int.Parse(product.FindElement(By.XPath("//*[@class='cart_price']/p")).Text.Split(null)[1]);
-                    int productQuantity = int.Parse(product.FindElement(By.XPath("//button[@class='disable']")).Text);
+                    int productQuantity = int.Parse(product.FindElement(By.XPath("//*[@class='cart_quantity']/button")).Text);
                     int productTotalPrice = int.Parse(product.FindElement(By.XPath("//*[@class='cart_total']/p")).Text.Split(null)[1]);
                     if (productPrice * productQuantity == productTotalPrice)
                     {
@@ -40,5 +42,16 @@ namespace Automation_Exercise.Pages.CheckoutPage
         public int OrderTotalAmount() => int.Parse(orderTotalAmount.Text.Split(null)[1]);
         public void WriteCommentMessage(string commentMessage) => commentArea.SendKeys(commentMessage);
         public void PlaceOrder() => placeOrderButton.Click();
+        private bool CheckIfProductIsAdded(string productName)
+        {
+            foreach (var product in orderProducts)
+            {
+                if (product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text == productName)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

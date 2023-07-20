@@ -12,7 +12,7 @@ namespace Automation_Exercise.Pages.CheckoutPage
         {
             Assert.AreEqual("Address Details", addressFormTitle.Text);
         }
-        public void AssertDeliveryAddressFormIsFilledCorrectly(Countries country)
+        public void AssertDeliveryAddressFormIsFilledCorrectly()
         {
             
             Assert.AreEqual("Your delivery address", deliveryAddress.Text);  
@@ -21,10 +21,10 @@ namespace Automation_Exercise.Pages.CheckoutPage
             Assert.AreEqual(Constants.firstAddress, deliveryAddress1Info.Text);
             Assert.AreEqual(Constants.secondAddress, deliveryAddress2Info.Text);
             Assert.AreEqual($"{Constants.city} {Constants.state} {Constants.zipCode}", deliveryCityNameStateZipCode.Text);
-            Assert.AreEqual(country.ToString(), deliveryCountryInfo.Text);
+            Assert.AreEqual(Constants.country, deliveryCountryInfo.Text);
             Assert.AreEqual(Constants.mobileNumber, deliveryPhoneNumberInfo.Text);
         }
-        public void AssertBillingAddressFormIsFilledCorrectly(Countries country)
+        public void AssertBillingAddressFormIsFilledCorrectly()
         {
             Assert.AreEqual("Your billing address", billingAddress.Text);
             Assert.AreEqual($". {Constants.firstName} {Constants.lastName}", billingFirstLastNameInfo.Text);
@@ -32,7 +32,7 @@ namespace Automation_Exercise.Pages.CheckoutPage
             Assert.AreEqual(Constants.firstAddress, billingAddress1Info.Text);
             Assert.AreEqual(Constants.secondAddress, billingAddress2Info.Text);
             Assert.AreEqual($"{Constants.city} {Constants.state} {Constants.zipCode}", billingCityNameStateZipCode.Text);
-            Assert.AreEqual(country.ToString(), billingCountryInfo.Text);
+            Assert.AreEqual(Constants.country, billingCountryInfo.Text);
             Assert.AreEqual(Constants.mobileNumber, billingPhoneNumberInfo.Text);
         }
         public void AssertCorrectTotalPriceOfProductIsCalculation(int expectedAmount, string productName)
@@ -44,7 +44,13 @@ namespace Automation_Exercise.Pages.CheckoutPage
             Assert.AreEqual(expectedAmount, TotalPriceCalculation());
             Assert.AreEqual(expectedAmount, OrderTotalAmount());
         }
-        
-
+        public void AssertProductListIsNotEmpty()
+        {
+            Assert.Greater(orderProducts.Count, 0);
+        }
+        public void AssertProductIsInOrder(string productName)
+        {
+            Assert.True(CheckIfProductIsAdded(productName));
+        }
     }
 }

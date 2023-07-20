@@ -19,6 +19,7 @@ namespace Automation_Exercise.Utilities
         public const string companyName = "Space Z";
         public const string state = "Sula";
         public const string city = "Hamilton";
+        public const string country = "Australia";
         public const string zipCode = "64834";
         public const string mobileNumber = "(492) 957-325";
         public const string homePageDescription = "All QA engineers can use this website for automation practice and API testing either they are at beginner or advance level. This is for everybody to help them brush up their automation skills.";

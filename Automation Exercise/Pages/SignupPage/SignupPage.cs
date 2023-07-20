@@ -56,7 +56,7 @@ namespace Automation_Exercise.Pages.SignupPage
             {
                 address2Field.SendKeys(accountInfo.Address2);
             }
-            countryField.SendKeys(accountInfo.Country.ToString());
+            countryField.SendKeys(accountInfo.Country);
             if (accountInfo.State != null)
             {
                 stateField.SendKeys(accountInfo.State);

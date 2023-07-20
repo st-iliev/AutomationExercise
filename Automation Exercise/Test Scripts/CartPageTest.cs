@@ -71,7 +71,7 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AssertCorrectSuccessfulTextIsDisplayed();
             productPage.OpenCart();
             cartPage.AssertCorrectPageIsLoaded();
-            List<string> productNames = cartPage.GetNameOfAllAddedProducts();
+            var productNames = cartPage.GetNameOfAllAddedProducts();
             foreach (var product in productNames)
             {
                 cartPage.AssertTotalPriceOfProductIsCorrect(product);
