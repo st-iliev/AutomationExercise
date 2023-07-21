@@ -16,7 +16,7 @@ namespace Automation_Exercise.Pages.SignupPage
         {
             if (accountInfo.Title != null)
             {
-                if (accountInfo.Title == Titles.Mr) 
+                if (accountInfo.Title == "Mr") 
                 {
                     titleMrRadioButton.Click();
                    

@@ -1,5 +1,4 @@
-﻿using Automation_Exercise.Pages.ProductPage;
-using Automation_Exercise.Utilities;
+﻿using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {

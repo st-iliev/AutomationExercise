@@ -81,10 +81,12 @@ namespace Automation_Exercise.Pages.CartPage
         public void ContinueToCheckout() => proceedToCheckoutButton.Click();
         public void RemoveAllProductFromOrder()
         {
-            foreach (var product in productList)
+            while(productList.Count > 0)
             {
-                product.FindElement(By.XPath("//*[@class='cart_delete']/a")).Click();
+                   WaitAndFindElements(By.XPath("//*[@class='cart_delete']/a")).Click();
+                Thread.Sleep(500);
             }
+           
         }
         public void ContinueToProductPage() => continueToProductPage.Click();
         public void ContinueOnCart() => continueOnCartButton.Click();
@@ -100,5 +102,6 @@ namespace Automation_Exercise.Pages.CartPage
             }
             return false;
         }
+
     }
 }

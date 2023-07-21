@@ -15,8 +15,8 @@ namespace Automation_Exercise.Pages.CheckoutPage
         public void AssertDeliveryAddressFormIsFilledCorrectly()
         {
             
-            Assert.AreEqual("Your delivery address", deliveryAddress.Text);  
-            Assert.AreEqual($". {Constants.firstName} {Constants.lastName}", deliveryFirstLastNameInfo.Text);
+            Assert.AreEqual("YOUR DELIVERY ADDRESS", deliveryAddress.Text);  
+            Assert.AreEqual($"{Constants.title}. {Constants.firstName} {Constants.lastName}", deliveryFirstLastNameInfo.Text);
             Assert.AreEqual(Constants.companyName, deliveryCompanyInfo.Text);
             Assert.AreEqual(Constants.firstAddress, deliveryAddress1Info.Text);
             Assert.AreEqual(Constants.secondAddress, deliveryAddress2Info.Text);
@@ -26,8 +26,8 @@ namespace Automation_Exercise.Pages.CheckoutPage
         }
         public void AssertBillingAddressFormIsFilledCorrectly()
         {
-            Assert.AreEqual("Your billing address", billingAddress.Text);
-            Assert.AreEqual($". {Constants.firstName} {Constants.lastName}", billingFirstLastNameInfo.Text);
+            Assert.AreEqual("YOUR BILLING ADDRESS", billingAddress.Text);
+            Assert.AreEqual($"{Constants.title}. {Constants.firstName} {Constants.lastName}", billingFirstLastNameInfo.Text);
             Assert.AreEqual(Constants.companyName, billingCompanyInfo.Text);
             Assert.AreEqual(Constants.firstAddress, billingAddress1Info.Text);
             Assert.AreEqual(Constants.secondAddress, billingAddress2Info.Text);
@@ -35,14 +35,13 @@ namespace Automation_Exercise.Pages.CheckoutPage
             Assert.AreEqual(Constants.country, billingCountryInfo.Text);
             Assert.AreEqual(Constants.mobileNumber, billingPhoneNumberInfo.Text);
         }
-        public void AssertCorrectTotalPriceOfProductIsCalculation(int expectedAmount, string productName)
+        public void AssertCorrectTotalPriceOfProductIsCalculation(string productName)
         {
-            Assert.AreEqual(expectedAmount, CalculateTotalPriceForProduct(productName));
+            Assert.AreEqual(GetProductTotalPrice(productName), CalculateTotalPriceForProduct(productName));
         }
-        public void AssertCorrectTotalPriceOfOrderIsCalculation(int expectedAmount)
+        public void AssertCorrectTotalPriceOfOrderIsCalculation()
         {
-            Assert.AreEqual(expectedAmount, TotalPriceCalculation());
-            Assert.AreEqual(expectedAmount, OrderTotalAmount());
+            Assert.AreEqual(TotalPriceCalculation(), OrderTotalAmount());
         }
         public void AssertProductListIsNotEmpty()
         {

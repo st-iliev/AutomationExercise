@@ -32,7 +32,7 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement brandsBiba => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Biba')]"));
         public IWebElement successfulAddedIcon => driver.FindElement(By.XPath("//i[@class='material-icons']"));
         public IWebElement productAddedSuccessfulMsg => WaitAndFindElements(By.XPath("//p[@class='text-center'][1]"));
-        public IWebElement viewCart => driver.FindElement(By.XPath("//p[@class='text-center'][2]/a"));
+        public IWebElement viewCart => WaitAndFindElements(By.XPath("//p[@class='text-center'][2]/a"));
         public IWebElement continueShoppingButton => WaitAndFindElements(By.XPath("//button[@data-dismiss='modal']"));
     }
 }

@@ -20,7 +20,7 @@ namespace Automation_Exercise.Test_Scripts
             signupPage.AssertCorrectPageIsLoaded();
             accountInfo = new AccountInfo()
             {
-                Title = Titles.Mr,
+                Title = "Mr",
                 Password = Constants.password,
                 FirstName = Constants.firstName,
                 LastName = Constants.lastName,
@@ -124,7 +124,7 @@ namespace Automation_Exercise.Test_Scripts
             signupPage.AssertCorrectPageIsLoaded();
             accountInfo = new AccountInfo()
             {
-                Title = Titles.Mr,
+                Title = Constants.title,
                 Password = Constants.password,
                 DayOfMonth = DayOfMonth.Day22,
                 MonthOfYear = MonthOfYear.July,
