@@ -6,41 +6,8 @@ namespace Automation_Exercise.Test_Scripts
     [Order(3)]
     public class CartPageTest : BaseTest
     {
+
         [Test, Order(1)]
-        public void VerifyUserCantCheckoutWithoutLogin()
-        {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            ScrollDown(driver, 250);
-            productPage.AddProductToCart("Blue Top");
-            productPage.AssertCorrectSuccessfulTextIsDisplayed();
-            productPage.OpenCart();
-            cartPage.AssertCorrectPageIsLoaded();
-            cartPage.AssertProductListIsNotEmpty();
-            cartPage.ContinueToCheckout();
-            cartPage.AssertCorrectLoginToAccoutMessageIsDisplayed();
-            cartPage.ContinueOnCart();
-        }
-        [Test, Order(2)]
-        public void VerifyUserCanRemoveProductFromCart()
-        {
-            cartPage.Open();
-            cartPage.AssertCorrectPageIsLoaded();
-            cartPage.RemoveProductFromOrder("Blue Top");
-            cartPage.CheckProductRemoval("Blue Top");
-        }
-        [Test, Order(3)]
-        public void VerifyUserCanRemoveAllProductFromCart()
-        {
-            cartPage.Open();
-            cartPage.AssertCorrectPageIsLoaded();
-            cartPage.RemoveAllProductFromOrder();
-            cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
-            cartPage.ContinueToProductPage();
-            AdverticeHelper.CheckForAdvertice(driver);
-            productPage.AssertCorrectPageIsLoaded();
-        }
-        [Test, Order(4)]
         public void VerifyUserCanAddProductToCartWithoutLogin()
         {
             cartPage.Open();
@@ -51,12 +18,88 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AssertCorrectPageIsLoaded();
             ScrollDown(driver, 250);
             productPage.AddProductToCart("Blue Top");
-            productPage.AssertCorrectSuccessfulTextIsDisplayed();
+            productPage.AssertProductAddedSuccessfulTextIsDisplayed();
             productPage.OpenCart();
             cartPage.AssertCorrectPageIsLoaded();
             cartPage.AssertProductIsAddedToCart("Blue Top");
         }
+        [Test, Order(2)]
+        public void VerifyUserCantCheckoutWithoutLogin()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            ScrollDown(driver, 250);
+            productPage.AddProductToCart("Blue Top");
+            productPage.AssertProductAddedSuccessfulTextIsDisplayed();
+            productPage.OpenCart();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.AssertProductListIsNotEmpty();
+            cartPage.ContinueToCheckout();
+            cartPage.AssertCorrectLoginToAccoutMessageIsDisplayed();
+            cartPage.ContinueOnCart();
+        }
+        [Test, Order(3)]
+        public void VerifyUserCanRemoveProductFromCartWithoutLogin()
+        {
+            cartPage.Open();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.RemoveProductFromOrder("Blue Top");
+            cartPage.CheckProductRemoval("Blue Top");
+        }
+        [Test, Order(4)]
+        public void VerifyUserCanRemoveAllProductFromCartWithoutLogin()
+        {
+            loginPage.Open();
+            loginPage.FillLoginForm(Constants.email, Constants.password);
+            loginPage.ClickOnLoginButton();
+            cartPage.Open();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.RemoveAllProductFromOrder();
+            cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
+            cartPage.ContinueToProductPage();
+            AdverticeHelper.CheckForAdvertice(driver);
+            productPage.AssertCorrectPageIsLoaded();
+        }
         [Test, Order(5)]
+        public void VerifyLoginUserCanAddProductToCart()
+        {
+            cartPage.Open();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
+            cartPage.ContinueToProductPage();
+            AdverticeHelper.CheckForAdvertice(driver);
+            productPage.AssertCorrectPageIsLoaded();
+            ScrollDown(driver, 250);
+            productPage.AddProductToCart("Blue Top");
+            productPage.AssertProductAddedSuccessfulTextIsDisplayed();
+            productPage.OpenCart();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.AssertProductIsAddedToCart("Blue Top");
+        }
+        [Test, Order(6)]
+        public void VerifyLoginUserCanCheckout()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            ScrollDown(driver, 250);
+            productPage.AddProductToCart("Blue Top");
+            productPage.AssertProductAddedSuccessfulTextIsDisplayed();
+            productPage.OpenCart();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.AssertProductListIsNotEmpty();
+            cartPage.ContinueToCheckout();
+            checkoutPage.AssertCorrectPageIsLoaded();
+        }
+        [Test, Order(7)]
+        public void VerifyLoginUserCanRemoveProductFromCart()
+        {
+            cartPage.Open();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.RemoveProductFromOrder("Blue Top");
+            cartPage.CheckProductRemoval("Blue Top");
+        }
+        
+        [Test, Order(8)]
         public void VerifyTotalPriceOfAllAddedProductsAreCorrect()
         {
             productPage.Open();
@@ -67,7 +110,7 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AddProductToCart("Blue Top");
             productPage.ContinueToShopping();
             productPage.AddProductToCart("Sleeveless Dress");
-            productPage.AssertCorrectSuccessfulTextIsDisplayed();
+            productPage.AssertProductAddedSuccessfulTextIsDisplayed();
             productPage.OpenCart();
             cartPage.AssertCorrectPageIsLoaded();
             var productNames = cartPage.GetNameOfAllAddedProducts();
@@ -76,18 +119,29 @@ namespace Automation_Exercise.Test_Scripts
                 cartPage.AssertTotalPriceOfProductIsCorrect(product);
             }
         }
-        [Test, Order(6)]
+        [Test, Order(9)]
+        public void VerifyLoginUserCanRemoveAllProductFromCart()
+        {
+            cartPage.Open();
+            cartPage.AssertCorrectPageIsLoaded();
+            cartPage.RemoveAllProductFromOrder();
+            cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
+            cartPage.ContinueToProductPage();
+            AdverticeHelper.CheckForAdvertice(driver);
+            productPage.AssertCorrectPageIsLoaded();
+        }
+        [Test, Order(10)]
         public void VerifyTotalPriceOfAddedProductIsCorrect()
         {
             productPage.Open();
             productPage.AssertCorrectPageIsLoaded();
             ScrollDown(driver, 250);
             productPage.AddProductToCart("Blue Top");
-            productPage.AssertCorrectSuccessfulTextIsDisplayed();
+            productPage.AssertProductAddedSuccessfulTextIsDisplayed();
             productPage.OpenCart();
             cartPage.AssertCorrectPageIsLoaded();
+            ScrollDown(driver, 250);
             cartPage.AssertTotalPriceOfProductIsCorrect("Blue Top");
         }
-        
     }
 }

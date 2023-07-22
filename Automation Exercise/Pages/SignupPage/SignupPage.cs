@@ -21,26 +21,26 @@ namespace Automation_Exercise.Pages.SignupPage
                     titleMrRadioButton.Click();
                    
                 }
-                else
+                else if(accountInfo.Title == "Mrs")
                 {
                     titleMrsRadioButton.Click();
                 }                 
             }
-            if (accountInfo.Password != null)
+            if (accountInfo.Password != "")
             {
             passwordField.SendKeys(accountInfo.Password);
             }
-            if (accountInfo.DayOfMonth != null && accountInfo.MonthOfYear != null && accountInfo.Years != null)
+            if (accountInfo.DayOfMonth.ToString() != null && accountInfo.MonthOfYear.ToString() != null && accountInfo.Years.ToString() != null)
             {
                 dayOfBirthDropDown.SendKeys(accountInfo.DayOfMonth.ToString());
                 monthOfBirthDropDown.SendKeys(accountInfo.MonthOfYear.ToString());
                 yearOfBirthDropDown.SendKeys(accountInfo.Years.ToString());
             }
-            if (accountInfo.FirstName != null)
+            if (accountInfo.FirstName != "")
             {
                 firstNameField.SendKeys(accountInfo.FirstName);
             }
-            if (accountInfo.LastName != null)
+            if (accountInfo.LastName != "")
             {
                 lastNameField.SendKeys(accountInfo.LastName);
             }
@@ -48,7 +48,7 @@ namespace Automation_Exercise.Pages.SignupPage
             {
                 companyField.SendKeys(accountInfo.Company);
             }
-            if (accountInfo.Address1 != null)
+            if (accountInfo.Address1 != "")
             {
                 addressField.SendKeys(accountInfo.Address1);
             }
@@ -56,20 +56,23 @@ namespace Automation_Exercise.Pages.SignupPage
             {
                 address2Field.SendKeys(accountInfo.Address2);
             }
+            if (accountInfo.Country != null)
+            {
             countryField.SendKeys(accountInfo.Country);
-            if (accountInfo.State != null)
+            }
+            if (accountInfo.State != "")
             {
                 stateField.SendKeys(accountInfo.State);
             }
-            if (accountInfo.City != null)
+            if (accountInfo.City != "")
             {
                 cityField.SendKeys(accountInfo.City);
             }
-            if (accountInfo.ZipCode != null)
+            if (accountInfo.ZipCode != "")
             {
                 zipCodeField.SendKeys(accountInfo.ZipCode);
             }
-            if (accountInfo.MobileNumber != null)
+            if (accountInfo.MobileNumber != "")
             {
                 mobileNumberField.SendKeys(accountInfo.MobileNumber);
             }

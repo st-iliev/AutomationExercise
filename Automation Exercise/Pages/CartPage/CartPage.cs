@@ -18,17 +18,17 @@ namespace Automation_Exercise.Pages.CartPage
                 string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
                 if (productName == nameOfProduct)
                 {
-                   return int.Parse(product.FindElement(By.XPath("//*[@class='cart_total']/p")).Text.Split(" ")[1]);
+                    return int.Parse(product.FindElement(By.XPath("//*[@class='cart_total']/p")).Text.Split(" ")[1]);
                 }
             }
-            return -1;
+            return -2;
         }
         public List<string> GetNameOfAllAddedProducts()
         {
             List<string> names = new List<string>();
             foreach (var product in productList)
             {
-              names.Add(product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text);     
+                names.Add(product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text);
             }
             return names;
         }
@@ -41,18 +41,10 @@ namespace Automation_Exercise.Pages.CartPage
                 {
                     int productPrice = int.Parse(product.FindElement(By.XPath("//*[@class='cart_price']/p")).Text.Split(" ")[1]);
                     int productQuantity = int.Parse(product.FindElement(By.XPath("//*[@class='cart_quantity']/button")).Text);
-                    int productTotalPrice = int.Parse(product.FindElement(By.XPath("//*[@class='cart_total']/p")).Text.Split(" ")[1]);
-                    if (productPrice * productQuantity == productTotalPrice)
-                    {
-                        return productPrice;
-                    }
-                    else
-                    {
-                        return -1;
-                    }
+                    return productPrice * productQuantity;
                 }
             }
-           return 0;
+            return 0;
         }
         public void RemoveProductFromOrder(string productName)
         {
@@ -81,12 +73,12 @@ namespace Automation_Exercise.Pages.CartPage
         public void ContinueToCheckout() => proceedToCheckoutButton.Click();
         public void RemoveAllProductFromOrder()
         {
-            while(productList.Count > 0)
+            while (productList.Count > 0)
             {
-                   WaitAndFindElements(By.XPath("//*[@class='cart_delete']/a")).Click();
+                WaitAndFindElements(By.XPath("//*[@class='cart_delete']/a")).Click();
                 Thread.Sleep(500);
             }
-           
+
         }
         public void ContinueToProductPage() => continueToProductPage.Click();
         public void ContinueOnCart() => continueOnCartButton.Click();

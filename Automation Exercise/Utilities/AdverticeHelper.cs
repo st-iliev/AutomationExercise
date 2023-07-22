@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 using System.Collections.ObjectModel;
 
 namespace Automation_Exercise.Utilities
@@ -13,6 +15,11 @@ namespace Automation_Exercise.Utilities
                 driver.Navigate().GoToUrl($"{driver.Url}#google_vignette");
                 driver.SwitchTo().Window(parentWindowHandle);
             }
+        }
+        public static void CloseAdvertice(IWebDriver driver)
+        {
+            driver.SwitchTo().Frame(1);
+            driver.FindElement(By.ClassName("ns-e6gd2-e-6 close-text")).Click();
         }
     }
 }

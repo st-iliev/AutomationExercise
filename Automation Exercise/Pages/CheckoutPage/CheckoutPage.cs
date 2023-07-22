@@ -59,7 +59,7 @@ namespace Automation_Exercise.Pages.CheckoutPage
         {
             foreach (var product in orderProducts)
             {
-                string name = product.FindElement(By.XPath("//*[@class='cart_description']/h4/a")).Text;
+                string name = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
                 if (productName == name)
                 {
                     return true;

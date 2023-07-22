@@ -7,6 +7,39 @@ namespace Automation_Exercise.Test_Scripts
     public class LoginPageTest : BaseTest
     {
         [Test, Order(1)]
+        public void VerifySuccessfulSubscribe()
+        {
+            loginPage.Open();
+            loginPage.AssertCorrectPageIsLoaded();
+            loginPage.AssertCorrectLoginFormTitleIsDisplayed();
+            ScrollToBottom(driver);
+            homePage.Subscrible(Constants.email);
+            homePage.ClickOnSubscribeButton();
+            homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
+        }
+        [Test, Order(2)]
+        [TestCase("")]
+        [TestCase("invalidEmail")]
+        [TestCase("invalidEmail@")]
+        public void VerifySubscribeWithInvalidEmail(string email)
+        {
+            loginPage.Open();
+            loginPage.AssertCorrectPageIsLoaded();
+            loginPage.AssertCorrectLoginFormTitleIsDisplayed();
+            ScrollToBottom(driver);
+            homePage.Subscrible(email);
+            homePage.ClickOnSubscribeButton();
+            switch (email)
+            {
+                case null:
+                    homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
+                case "invalidEmail":
+                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+                case "invalidEmail@":
+                    homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+            };
+        }
+        [Test, Order(3)]
         [TestCase(Constants.email, "")]
         [TestCase("", Constants.password)]
         [TestCase("", "")]
@@ -27,7 +60,7 @@ namespace Automation_Exercise.Test_Scripts
                     break;
             };
         }
-        [Test, Order(2)]
+        [Test, Order(4)]
         [TestCase(Constants.email, "qatest")]
         [TestCase("incorrectEmail", Constants.password)]
         [TestCase("incorrectEmail@", Constants.password)]
@@ -52,7 +85,7 @@ namespace Automation_Exercise.Test_Scripts
             };
             
         }
-        [Test, Order(3)]
+        [Test, Order(5)]
         [TestCase(Constants.name, "")]
         [TestCase("", Constants.email)]
         [TestCase("", "")]
@@ -74,7 +107,7 @@ namespace Automation_Exercise.Test_Scripts
             };
         }
         
-        [Test, Order(4)]
+        [Test, Order(6)]
         public void VerifyUserLoginWithValidData()
         {
             loginPage.Open();

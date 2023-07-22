@@ -87,7 +87,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
-            ScrollDown(driver,650);
+            ScrollDown(driver,1500);
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
         [Test, Order(6)]
@@ -203,9 +203,27 @@ namespace Automation_Exercise.Test_Scripts
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
-            ScrollDown(driver, 250);
+            ScrollDown(driver, 600);
             homePage.SelectCategoryAndSubCategory(categoryName, subCategoryName);
             homePage.AssertCorrectProductSubCategoryTitleIsDisplayed(categoryName, subCategoryName);
+        }
+        [Test]
+        public void VerifyScrollDownFuncionallity()
+        {
+            homePage.Open();
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.AssertWebBannerIsDisplayed();
+            ScrollToBottom(driver);
+            homePage.AssertCopyRightTextIsDisplayed();
+        }
+        [Test]
+        public void VerifyScrollUpFuncionallity()
+        {
+            homePage.Open();
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.AssertWebBannerIsDisplayed();
+            ScrollToBottom(driver);
+            homePage.AssertCorrectCarouselTextsAreDisplayed();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace Automation_Exercise.Pages.ProductPage
         {
             Assert.True(successfulAddedIcon.Displayed);
         }
-        public void AssertCorrectSuccessfulTextIsDisplayed()
+        public void AssertProductAddedSuccessfulTextIsDisplayed()
         {
             Assert.AreEqual(SuccessfulMessages.productAddSuccessful, productAddedSuccessfulMsg.Text);
         }

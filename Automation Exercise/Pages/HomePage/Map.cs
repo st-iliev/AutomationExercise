@@ -58,5 +58,6 @@ namespace Automation_Exercise.Pages.HomePage
         public IWebElement brandsAllenSollyJunior => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Allen Solly Junior')]"));
         public IWebElement brandsKookieKids => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Kookie Kids')]"));
         public IWebElement brandsBiba => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Biba')]"));
+        public IWebElement copyRightText => driver.FindElement(By.XPath("//*[@class='pull-left']"));
     }
 }

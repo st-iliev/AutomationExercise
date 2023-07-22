@@ -9,6 +9,45 @@ namespace Automation_Exercise.Test_Scripts
     {
         private AccountInfo accountInfo;
         [Test, Order(1)]
+        public void VerifySuccessfulSubscribe()
+        {
+            loginPage.Open();
+            loginPage.AssertCorrectPageIsLoaded();
+            loginPage.AssertCorrectSignupFormTitleIsDisplayed();
+            loginPage.FillSingupForm(Constants.name, Constants.email);
+            loginPage.ClickOnSignupButton();
+            signupPage.AssertCorrectPageIsLoaded();
+            ScrollToBottom(driver);
+            homePage.Subscrible(Constants.email);
+            homePage.ClickOnSubscribeButton();
+            homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
+        }
+        [Test, Order(2)]
+        [TestCase("")]
+        [TestCase("invalidEmail")]
+        [TestCase("invalidEmail@")]
+        public void VerifySubscribeWithInvalidEmail(string email)
+        {
+            loginPage.Open();
+            loginPage.AssertCorrectPageIsLoaded();
+            loginPage.AssertCorrectSignupFormTitleIsDisplayed();
+            loginPage.FillSingupForm(Constants.name, Constants.email);
+            loginPage.ClickOnSignupButton();
+            signupPage.AssertCorrectPageIsLoaded();
+            ScrollToBottom(driver);
+            homePage.Subscrible(email);
+            homePage.ClickOnSubscribeButton();
+            switch (email)
+            {
+                case "":
+                    homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
+                case "invalidEmail":
+                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+                case "invalidEmail@":
+                    homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+            };
+        }
+        [Test, Order(3)]
         public void VerifyRegisterNewUserWithOnlyRequiredFieldsFilled()
         {
 
@@ -20,7 +59,7 @@ namespace Automation_Exercise.Test_Scripts
             signupPage.AssertCorrectPageIsLoaded();
             accountInfo = new AccountInfo()
             {
-                Title = "Mr",
+                Title = Constants.title,
                 Password = Constants.password,
                 FirstName = Constants.firstName,
                 LastName = Constants.lastName,
@@ -46,16 +85,16 @@ namespace Automation_Exercise.Test_Scripts
             deleteAccountPage.ClickOnContinue();
             homePage.AssertUserIsLogout();
         }
-        [Test, Order(2)]
-        [TestCase(null, null, null, null, null, null, null, null)]
-        [TestCase(Constants.password, null, null, null, null, null, null, null)]
-        [TestCase(Constants.password, Constants.firstName, null, null, null, null, null, null)]
-        [TestCase(Constants.password, Constants.firstName, Constants.lastName, null, null, null, null, null)]
-        [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, null, null, null, null)]
-        [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, Constants.state, null, null, null)]
-        [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, Constants.state, Constants.city, null, null)]
-        [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, Constants.state, Constants.city, Constants.zipCode, null)]
-        public void VerifyErrorMessageDisplayedOnRequiredFields(string password, string firsName, string lastName, string address1, string state, string city, string zipeCode, string mobileNumber)
+        [Test, Order(4)]
+        [TestCase("", "", "", "", "", "", "", "", "")]
+        [TestCase(Constants.password, "", "", "", "", "", "", "", "")]
+        [TestCase(Constants.password, Constants.firstName, "", "", "", "", "", "", "")]
+        [TestCase(Constants.password, Constants.firstName, Constants.lastName, "", "", "", "", "", "")]
+        [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, Constants.country, "", "", "", "")]
+        [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, Constants.country, Constants.state, "", "", "")]
+        [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, Constants.country, Constants.state, Constants.city, "", "")]
+        [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, Constants.country,Constants.state, Constants.city, Constants.zipCode, "")]
+        public void VerifyErrorMessageDisplayedOnRequiredFields(string password, string firsName, string lastName, string address1, string country,string state, string city, string zipeCode, string mobileNumber)
         {
 
             loginPage.Open();
@@ -70,6 +109,7 @@ namespace Automation_Exercise.Test_Scripts
                 FirstName = firsName,
                 LastName = lastName,
                 Address1 = address1,
+                Country = country,
                 State = state,
                 City = city,
                 ZipCode = zipeCode,
@@ -78,41 +118,41 @@ namespace Automation_Exercise.Test_Scripts
             signupPage.FillSignupForm(accountInfo);
             ScrollToBottom(driver);
             signupPage.ClickOnCreateAccount();
-            if (accountInfo.Password != null)
+            if (accountInfo.Password != "")
             {
             signupPage.AssertValidationMessageIsDisplayed(signupPage.passwordField);
             }
-            if (accountInfo.FirstName != null)
+            if (accountInfo.FirstName != "")
             {
                 signupPage.AssertValidationMessageIsDisplayed(signupPage.firstNameField);
             }
-            if (accountInfo.LastName != null)
+            if (accountInfo.LastName != "")
             {
                 signupPage.AssertValidationMessageIsDisplayed(signupPage.lastNameField);
             }
-            if (accountInfo.Address1 != null)
+            if (accountInfo.Address1 != "")
             {
                 signupPage.AssertValidationMessageIsDisplayed(signupPage.addressField);
             }
-            if (accountInfo.State != null)
+            if (accountInfo.State != "")
             {
                 signupPage.AssertValidationMessageIsDisplayed(signupPage.stateField);
             }
-            if (accountInfo.City != null)
+            if (accountInfo.City != "")
             {
                 signupPage.AssertValidationMessageIsDisplayed(signupPage.cityField);
             }
-            if (accountInfo.ZipCode != null)
+            if (accountInfo.ZipCode != "")
             {
                 signupPage.AssertValidationMessageIsDisplayed(signupPage.zipCodeField);
             }
-            if (accountInfo.MobileNumber != null)
+            if (accountInfo.MobileNumber != "")
             {
                 signupPage.AssertValidationMessageIsDisplayed(signupPage.mobileNumberField);
             }
 
         }
-        [Test, Order(3)]
+        [Test, Order(5)]
         public void VerifyRegisterNewUserWithAllFields()
         {
             homePage.Open();

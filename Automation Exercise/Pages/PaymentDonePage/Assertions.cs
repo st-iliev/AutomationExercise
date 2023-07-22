@@ -18,11 +18,12 @@ namespace Automation_Exercise.Pages.PaymentDonePage
         }
         public void AssertFileDownloadSuccessful()
         {
-            Assert.IsTrue(File.Exists(Constants.downloadedFilePath), "Downloaded file does exist.");
+            Thread.Sleep(500);
+            Assert.True(File.Exists(Constants.downloadedFilePath), "Downloaded file does exist.");
         }
-        public void AssrtFileContentIsCorrectly(int orderTotalAmount)
+        public void AssertFileContentIsCorrectly()
         {
-            Assert.AreEqual(string.Format(Constants.expectedFileText,Constants.firstName,Constants.lastName, orderTotalAmount),ReadingDownloadedFile(Constants.downloadedFilePath));
+            Assert.AreEqual(string.Format(Constants.expectedFileText,Constants.firstName,Constants.lastName, GetTotalAmount()),ReadingDownloadedFile(Constants.downloadedFilePath));
         }
     }
 }

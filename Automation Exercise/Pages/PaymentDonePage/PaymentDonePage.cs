@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
 using File = System.IO.File;
 
 namespace Automation_Exercise.Pages.PaymentDonePage
@@ -11,14 +12,16 @@ namespace Automation_Exercise.Pages.PaymentDonePage
         }
         public override string PageURL => "https://www.automationexercise.com/payment_done/";
         public string GeneratePageUrl(int totalAmount) => $"https://www.automationexercise.com/payment_done/{totalAmount}";
+        private string CutUrl => driver.Url.Split("#")[0].ToString();
+        private string GetTotalAmount() => CutUrl.Split(new string[] { "e/" }, StringSplitOptions.None)[1].ToString();
         public void DownloadInvoice() => downloadInvoiceButton.Click();
         public void ContinueOrder() => continueButton.Click(); 
         public string ReadingDownloadedFile(string filePath) => File.ReadAllText(filePath);
-        public void DeleteDownloadedFile(string filePath)
+        public void DeleteDownloadedFile()
         {
-             if (File.Exists(filePath))
+             if (File.Exists(Constants.downloadedFilePath))
             {
-                File.Delete(filePath);
+                File.Delete(Constants.downloadedFilePath);
             }
 
         }

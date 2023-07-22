@@ -14,6 +14,7 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifySubmitContactFormWithEmptyEmailAddressOrInvalidEmailAddress(string email)
         {
             contactUsPage.Open();
+            contactUsPage.AssertCorrectPageIsLoaded();
             form = new ContactUsForm()
             {
                 Name = Constants.name,
@@ -42,6 +43,7 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifySubmitContactFormWithValidData()
         {
             contactUsPage.Open();
+            contactUsPage.AssertCorrectPageIsLoaded();
             form = new ContactUsForm()
             {
                 Name = Constants.name,
@@ -57,6 +59,37 @@ namespace Automation_Exercise.Test_Scripts
             contactUsPage.ClickOnHomeButton();
             AdverticeHelper.CheckForAdvertice(driver);
             homePage.AssertCorrectPageIsLoaded();
+        }
+        [Test]
+        public void VerifySuccessfulSubscribe()
+        {
+            contactUsPage.Open();
+            contactUsPage.AssertCorrectPageIsLoaded();
+            ScrollToBottom(driver);
+            homePage.Subscrible(Constants.email);
+            homePage.ClickOnSubscribeButton();
+            homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
+        }
+        [Test]
+        [TestCase("")]
+        [TestCase("invalidEmail")]
+        [TestCase("invalidEmail@")]
+        public void VerifySubscribeWithInvalidEmail(string email)
+        {
+            contactUsPage.Open();
+            contactUsPage.AssertCorrectPageIsLoaded();
+            ScrollToBottom(driver);
+            homePage.Subscrible(email);
+            homePage.ClickOnSubscribeButton();
+            switch (email)
+            {
+                case null:
+                    homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
+                case "invalidEmail":
+                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+                case "invalidEmail@":
+                    homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+            };
         }
     }
 }

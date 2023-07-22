@@ -146,5 +146,9 @@ namespace Automation_Exercise.Pages.HomePage
         {
             Assert.True(DisplayedProductsAreFromSelectedSubCategory(subcategory));
         }
+        public void AssertCopyRightTextIsDisplayed()
+        {
+            Assert.True(copyRightText.Displayed);
+        }
     }
 }

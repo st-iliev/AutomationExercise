@@ -53,6 +53,12 @@ namespace Automation_Exercise.Test_Scripts
             contactUsPage = new ContactUsPage(driver);
 
         }
+        protected static void ScrollToTop(IWebDriver driver)
+        {
+            IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
+            jsExecutor.ExecuteScript("window.scrollTo(0, -document.body.scrollHeight)");
+            
+        }
         protected static void ScrollToBottom(IWebDriver driver)
         {
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
@@ -62,6 +68,11 @@ namespace Automation_Exercise.Test_Scripts
         {
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             jsExecutor.ExecuteScript($"window.scrollBy(0, {pixels});");
+        }
+        protected static void BackToPreviusPage(IWebDriver driver)
+        {
+            driver.Navigate().Back();
+            driver.Navigate().Back();
         }
         [OneTimeTearDown]
         public void Dispose()

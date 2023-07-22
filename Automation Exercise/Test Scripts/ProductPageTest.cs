@@ -18,7 +18,7 @@ namespace Automation_Exercise.Test_Scripts
             productPage.SearchForProduct(productName);
             productPage.AssertSearchedProductIsDisplaed(productName);        
         }
-        [Test, Order(1)]
+        [Test, Order(2)]
         [TestCase("Shoes")]
         [TestCase("Smoking")]
         [TestCase("Hat")]
@@ -30,7 +30,7 @@ namespace Automation_Exercise.Test_Scripts
             productPage.SearchForProduct(productName);
             productPage.AssertNonProductsAreDisplayed();
         }
-        [Test, Order(2)]
+        [Test, Order(3)]
         [TestCase(Brands.Polo)]
         [TestCase(Brands.AllenSollyJunior)]
         [TestCase(Brands.HandM)]
@@ -44,10 +44,10 @@ namespace Automation_Exercise.Test_Scripts
             productPage.Open();
             productPage.AssertCorrectPageIsLoaded();
             productPage.AssertSaleBannerIsDisplayed();
-            ScrollDown(driver, 650);
+            ScrollDown(driver, 1900);
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
-        [Test, Order(3)]
+        [Test, Order(4)]
         [TestCase("WOMEN")]
         [TestCase("MEN")]
         [TestCase("KIDS")]
@@ -57,7 +57,7 @@ namespace Automation_Exercise.Test_Scripts
             productPage.Open();
             productPage.AssertCorrectPageIsLoaded();
             productPage.AssertSaleBannerIsDisplayed();
-            ScrollDown(driver, 250);
+            ScrollDown(driver, 500);
             homePage.SelectCategoryAndSubCategory(categoryName, null);
             switch (categoryName)
             {
@@ -74,7 +74,62 @@ namespace Automation_Exercise.Test_Scripts
                     Assert.Fail("Wrong category name");
                     break;
             }
-
+        }
+        [Test, Order(5)]
+        public void VerifySuccessfulSubscribe()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            productPage.AssertSaleBannerIsDisplayed();
+            ScrollToBottom(driver);
+            homePage.Subscrible(Constants.email);
+            homePage.ClickOnSubscribeButton();
+            homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
+        }
+        [Test, Order(6)]
+        [TestCase("")]
+        [TestCase("invalidEmail")]
+        [TestCase("invalidEmail@")]
+        public void VerifySubscribeWithInvalidEmail(string email)
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            productPage.AssertSaleBannerIsDisplayed();
+            ScrollToBottom(driver);
+            homePage.Subscrible(email);
+            homePage.ClickOnSubscribeButton();
+            switch (email)
+            {
+                case null:
+                    homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
+                case "invalidEmail":
+                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+                case "invalidEmail@":
+                    homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+            };
+        }
+        [Test, Order(7)]
+        public void VerifyAddProductToCart()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            productPage.AssertSaleBannerIsDisplayed();
+            ScrollToBottom(driver);
+            productPage.AddProductToCart("GRAPHIC DESIGN MEN T SHIRT - BLUE");
+            productPage.AssertAddedIconIsDisplayed();
+            productPage.AssertProductAddedSuccessfulTextIsDisplayed();
+        }
+        [Test, Order(8)]
+        public void VerifySearchProductAndAddedToCart()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            productPage.AssertSaleBannerIsDisplayed();
+            productPage.SearchForProduct("Premium Polo T-Shirts");
+            ScrollDown(driver, 500);
+            productPage.AddProductToCart("Premium Polo T-Shirts");
+            productPage.AssertAddedIconIsDisplayed();
+            productPage.AssertProductAddedSuccessfulTextIsDisplayed();
         }
     }
 }

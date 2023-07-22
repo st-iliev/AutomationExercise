@@ -2,6 +2,8 @@
 
 namespace Automation_Exercise.Test_Scripts
 {
+    [TestFixture]
+    [Order(9)]
     public class CheckoutPageTest : BaseTest
     {
         [Test,Order(1)]
