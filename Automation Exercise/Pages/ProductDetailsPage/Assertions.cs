@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
 
 namespace Automation_Exercise.Pages.ProductDetailsPage
 {
@@ -20,21 +21,46 @@ namespace Automation_Exercise.Pages.ProductDetailsPage
         {
             Assert.AreEqual(nameOfProduct, productName.Text);
         }
-        public void AssertCorrectProductAvailability()
+        public void AssertProductIsAvailable()
         {
-            Assert.AreEqual("In Stock", avaliableInfo.Text);
+            Assert.AreEqual("Availability: In Stock", avaliableInfo.Text);
         }
         public void AssertCorrectProductCondition(string condition)
         {
-            Assert.AreEqual(condition, conditionInfo.Text);
+            Assert.AreEqual($"Condition: {condition}", conditionInfo.Text);
         }
         public void AssertCorrectProductBrandName(Brands brandName)
         {
-            Assert.AreEqual(brandName.ToString(), brandInfo.Text);
+            Assert.AreEqual($"Brand: {brandName}", brandInfo.Text);
         }
-        public void AssertCorrectProductPrice(int expected, int actual)
+        public void AssertCorrectProductPrice(int expected)
         {
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(expected, GetProductPrice());
+        }
+        public void AssertErrorEmptyFieldMessageIsDisplayed(IWebElement field)
+        {
+            Assert.AreEqual(ErrorMessages.emptyField, ValidationMessage(field));
+        }
+        public void AssertErrorInvalidEmailAddressMessageIsDisplayed(IWebElement field, string email)
+        {
+            Assert.AreEqual(string.Format(ErrorMessages.incorrectEmailAddress, email), ValidationMessage(field));
+        }
+        public void AssertErrorIncompleteEmailAddressMessageIsDisplayed(IWebElement field, string email)
+        {
+            Assert.AreEqual(string.Format(ErrorMessages.incompleteEmailAddress, email), ValidationMessage(field));
+        }
+        public void AssertAddedIconIsDisplayed()
+        {
+            Assert.True(successfulAddedIcon.Displayed);
+        }
+        public void AssertProductAddedSuccessfulTextIsDisplayed()
+        {
+            Assert.AreEqual(SuccessfulMessages.productAddSuccessful, productAddedSuccessfulMsg.Text);
+        }
+        public void AssertSuccessfulSubmiteReviewMessageIsDisplayed()
+        {
+            Assert.True(successfulReviewSubmit.Displayed);
+            Assert.AreEqual(SuccessfulMessages.successfulSubmiteReviewMsg, successfulReviewSubmit.Text);
         }
     }
 }

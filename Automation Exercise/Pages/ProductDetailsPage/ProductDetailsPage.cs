@@ -6,17 +6,17 @@ public partial class ProductDetailsPage : BasePage
 {
     public ProductDetailsPage(IWebDriver driver) : base(driver)
     {
-       
+
     }
     public override string PageURL => "https://www.automationexercise.com/product_details/";
     public string GeneratePageDetailsUrl(int productId) => $"https://www.automationexercise.com/product_details/{productId}";
     public void AddProductToCart() => addToCartButton.Click();
-    
-    public void FillReviewForm(string name , string email , string message)
+
+    public void FillReviewForm(ReviewForm form)
     {
-        nameField.SendKeys(name);
-        emailAddressField.SendKeys(email);
-        reviewField.SendKeys(message);
+        nameField.SendKeys(form.Name);
+        emailAddressField.SendKeys(form.Email);
+        reviewField.SendKeys(form.ReviewText);
     }
     public void SubmitReview() => submitButton.Click();
     public void SetProductQuantity(int quantity)
@@ -25,5 +25,5 @@ public partial class ProductDetailsPage : BasePage
         productQuantity.SendKeys(quantity.ToString());
     }
     public int GetProductPrice() => int.Parse(productPrice.Text.Split(" ")[1]);
-
+    public void OpenCart() => viewCart.Click();
 }

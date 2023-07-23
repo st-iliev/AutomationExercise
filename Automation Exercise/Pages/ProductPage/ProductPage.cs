@@ -93,14 +93,17 @@ namespace Automation_Exercise.Pages.ProductPage
             }
 
         }
-        public void ViewProduct(string productName)
+        public void ClickOnViewProduct(string productName)
         {
-            foreach (var product in productsName)
+
+            foreach (var product in allProducts)
             {
-                if (product.ToString() == productName)
+                string name = product.FindElement(By.XPath(".//p")).Text;
+                if (name == productName)
                 {
-                    int productId = int.Parse(product.GetDomProperty("data-product-id"));
-                    viewProducts[productId].Click();
+                    productId = int.Parse(product.FindElement(By.XPath(".//a")).GetDomAttribute("data-product-id"));
+                    viewProducts[productId - 1].Click();
+                    break;
                 }
             }
         }

@@ -131,5 +131,6 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AssertAddedIconIsDisplayed();
             productPage.AssertProductAddedSuccessfulTextIsDisplayed();
         }
+       
     }
 }

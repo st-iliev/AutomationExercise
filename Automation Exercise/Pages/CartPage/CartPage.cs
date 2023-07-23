@@ -1,5 +1,4 @@
-﻿using Automation_Exercise.Pages.ProductPage;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 
 namespace Automation_Exercise.Pages.CartPage
 {
@@ -23,7 +22,20 @@ namespace Automation_Exercise.Pages.CartPage
             }
             return -2;
         }
-        public List<string> GetNameOfAllAddedProducts()
+        private int GetProductQuantity(string productName)
+        {
+            foreach (var product in productList)
+            {
+                string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
+                if (productName == nameOfProduct)
+                {
+
+                    return int.Parse(product.FindElement(By.XPath("//*[@class='cart_quantity']/button")).Text);
+                }
+            }
+            return 0;
+        }
+        private List<string> GetNameOfAllAddedProducts()
         {
             List<string> names = new List<string>();
             foreach (var product in productList)
@@ -65,10 +77,10 @@ namespace Automation_Exercise.Pages.CartPage
                 string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
                 if (productName == nameOfProduct)
                 {
-                    return true;
+                    return false;
                 }
             }
-            return false;
+            return true;
         }
         public void ContinueToCheckout() => proceedToCheckoutButton.Click();
         public void RemoveAllProductFromOrder()
@@ -84,13 +96,18 @@ namespace Automation_Exercise.Pages.CartPage
         public void ContinueOnCart() => continueOnCartButton.Click();
         public bool CheckProductIsAddedToCart(string productName)
         {
-            foreach (var product in productList)
+            //foreach (var product in productList)
+            //{
+            //    string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
+            //    if (productName == nameOfProduct)
+            //    {
+            //        return true;
+            //    }
+            //}
+            //return false;
+            if (GetNameOfAllAddedProducts().Contains(productName))
             {
-                string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
-                if (productName == nameOfProduct)
-                {
-                    return true;
-                }
+                return true;
             }
             return false;
         }

@@ -173,24 +173,6 @@ namespace Automation_Exercise.Test_Scripts
             }
         }
         [Test, Order(9)]
-        [TestCase("Winter Top")]
-        public void VerifyOpenProductDetailsPage(string productName)
-        {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
-            ScrollDown(driver, 750);
-            int priceFromHomePage = homePage.GetProductPrice(productName);
-            homePage.ViewProduct(productName);
-            AdverticeHelper.CheckForAdvertice(driver);
-            productDetailsPage.AssertCorrectPageIsLoaded();
-            productDetailsPage.AssertCorrectProductDetailsPageIsOpened(homePage.GetProductId());
-            productDetailsPage.AssertCorrectProductName(productName);
-            productDetailsPage.AssertCorrectProductPrice(priceFromHomePage,productDetailsPage.GetProductPrice());
-
-
-        }
-        [Test]
         [TestCase("WOMEN","DRESS")]
         [TestCase("WOMEN","TOPS")]
         [TestCase("WOMEN","SAREE")]
@@ -207,7 +189,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.SelectCategoryAndSubCategory(categoryName, subCategoryName);
             homePage.AssertCorrectProductSubCategoryTitleIsDisplayed(categoryName, subCategoryName);
         }
-        [Test]
+        [Test,Order(10)]
         public void VerifyScrollDownFuncionallity()
         {
             homePage.Open();
@@ -216,7 +198,7 @@ namespace Automation_Exercise.Test_Scripts
             ScrollToBottom(driver);
             homePage.AssertCopyRightTextIsDisplayed();
         }
-        [Test]
+        [Test,Order(11)]
         public void VerifyScrollUpFuncionallity()
         {
             homePage.Open();

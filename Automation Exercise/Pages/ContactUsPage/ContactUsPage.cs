@@ -19,8 +19,5 @@ namespace Automation_Exercise.Pages.ContactUsPage
         }
         public void ClickOnHomeButton() => homeButton.Click();
         public void SubmiteForm() => submitButton.Click();
-        public string ValidationMessage(IWebElement field) => field.GetAttribute("validationMessage");
-
-
     }
 }

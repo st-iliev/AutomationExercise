@@ -22,5 +22,6 @@ namespace Automation_Exercise.Pages
         {
             return waitDriver.Until(ExpectedConditions.ElementIsVisible(locator));
         }
+        protected string ValidationMessage(IWebElement field) => field.GetAttribute("validationMessage");
     }
 }

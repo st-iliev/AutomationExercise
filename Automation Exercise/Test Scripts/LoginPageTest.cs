@@ -105,8 +105,7 @@ namespace Automation_Exercise.Test_Scripts
                     loginPage.AssertErrorEmptyFieldMessageIsDisplayed(loginPage.signupNameField);
                     break;
             };
-        }
-        
+        }  
         [Test, Order(6)]
         public void VerifyUserLoginWithValidData()
         {

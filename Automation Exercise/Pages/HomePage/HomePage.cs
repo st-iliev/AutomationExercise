@@ -95,7 +95,7 @@ namespace Automation_Exercise.Pages.HomePage
             }
 
         }
-        public void ViewProduct(string productName)
+        public void ClickOnViewProduct(string productName)
         {
             foreach (var product in allProducts)
             {

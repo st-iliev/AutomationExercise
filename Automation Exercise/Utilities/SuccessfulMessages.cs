@@ -12,5 +12,6 @@
         public const string productAddSuccessful = "Your product has been added to cart.";
         public const string loginToContinueToCheckout = "Register / Login account to proceed on checkout.";
         public const string subscribedSuccessfulMessage = "You have been successfully subscribed!";
+        public const string successfulSubmiteReviewMsg = "Thank you for your review.";
     }
 }

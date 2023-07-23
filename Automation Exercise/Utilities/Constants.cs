@@ -34,5 +34,7 @@ namespace Automation_Exercise.Utilities
         public const string carouselFirstText = "AutomationExercise";
         public const string carouselSecondText = "Full-Fledged practice website for Automation Engineers";
         public const string carouselThirdText = "All QA engineers can use this website for automation practice and API testing either they are at beginner or advance level. This is for everybody to help them brush up their automation skills.";
+        public const string productReviewText = "I highly recommend this product to anyone in need. It's a valuable addition to any setup. Thank you for creating such a fantastic product!";
+       
     }
 }

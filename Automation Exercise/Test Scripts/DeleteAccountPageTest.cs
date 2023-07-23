@@ -22,8 +22,9 @@ namespace Automation_Exercise.Test_Scripts
             deleteAccountPage.AssertCorrectAccountDeletedSuccessfullMessageIsDisplayed();
             deleteAccountPage.AssertCorrectSecondAccountDeletedSuccessfullMessageIsDisplayed();
             deleteAccountPage.ClickOnContinue();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertUserIsLogout();
+            loginPage.Open();
+            loginPage.FillLoginForm(Constants.email, Constants.password);
+            loginPage.AssertIncorrectInputDataMessageIsDisplayed();
         }
     }
 }
