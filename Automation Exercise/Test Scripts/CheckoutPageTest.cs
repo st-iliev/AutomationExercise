@@ -22,8 +22,8 @@ namespace Automation_Exercise.Test_Scripts
             checkoutPage.AssertDeliveryAddressFormIsFilledCorrectly();
         }
         [Test,Order(2)]
-        public void VerifyAddedProductIsInYourOrder()
-        {      
+        public void VerifyAddedProductIsInOrder()
+        {
             productPage.Open();
             ScrollDown(driver, 500);
             productPage.AddProductToCart("Men Tshirt");
@@ -38,15 +38,13 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(3)]
         public void VerifySuccessfullyFinishedOrder()
         {
-            cartPage.Open();
-            cartPage.RemoveAllProductFromOrder();
             productPage.Open();
             ScrollDown(driver, 500);
             productPage.AddProductToCart("Sleeveless Dress");
             productPage.OpenCart();
             cartPage.ContinueToCheckout();
             checkoutPage.AssertCorrectPageIsLoaded();
-            ScrollDown(driver, 500);
+            ScrollDown(driver, 750);
             checkoutPage.AssertProductIsInOrder("Sleeveless Dress");
             checkoutPage.AssertCorrectTotalPriceOfProductIsCalculation("Sleeveless Dress");
             checkoutPage.AssertCorrectTotalPriceOfOrderIsCalculation();

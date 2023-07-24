@@ -35,7 +35,7 @@ namespace Automation_Exercise.Pages.CartPage
             }
             return 0;
         }
-        private List<string> GetNameOfAllAddedProducts()
+        public List<string> GetNameOfAllAddedProducts()
         {
             List<string> names = new List<string>();
             foreach (var product in productList)
@@ -96,20 +96,16 @@ namespace Automation_Exercise.Pages.CartPage
         public void ContinueOnCart() => continueOnCartButton.Click();
         public bool CheckProductIsAddedToCart(string productName)
         {
-            //foreach (var product in productList)
-            //{
-            //    string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
-            //    if (productName == nameOfProduct)
-            //    {
-            //        return true;
-            //    }
-            //}
-            //return false;
-            if (GetNameOfAllAddedProducts().Contains(productName))
+            foreach (var product in productList)
             {
-                return true;
+                string nameOfProduct = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
+                if (productName == nameOfProduct)
+                {
+                    return true;
+                }
             }
             return false;
+
         }
 
     }

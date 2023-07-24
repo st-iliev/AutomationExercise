@@ -1,5 +1,4 @@
 ﻿using Automation_Exercise.Pages.ProductDetailsPage;
-using Automation_Exercise.Pages.ProductPage;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
@@ -8,6 +7,46 @@ namespace Automation_Exercise.Test_Scripts
     {
         private ReviewForm form;
         [Test, Order(1)]
+        public void VerifySuccessfulSubscribe()
+        {
+            homePage.Open();
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.AssertWebBannerIsDisplayed();
+            ScrollDown(driver, 600);
+            homePage.ClickOnViewProduct("Blue Top");
+            AdverticeHelper.CheckForAdvertice(driver);
+            productDetailsPage.AssertCorrectPageIsLoaded();
+            ScrollToBottom(driver);
+            homePage.Subscrible(Constants.email);
+            homePage.ClickOnSubscribeButton();
+            homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
+        }
+        [Test, Order(2)]
+        [TestCase("")]
+        [TestCase("invalidEmail")]
+        [TestCase("invalidEmail@")]
+        public void VerifySubscribeWithInvalidEmail(string email)
+        {
+            homePage.Open();
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.AssertWebBannerIsDisplayed();
+            ScrollDown(driver, 600);
+            homePage.ClickOnViewProduct("Blue Top");
+            AdverticeHelper.CheckForAdvertice(driver);
+            ScrollToBottom(driver);
+            homePage.Subscrible(email);
+            homePage.ClickOnSubscribeButton();
+            switch (email)
+            {
+                case null:
+                    homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
+                case "invalidEmail":
+                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+                case "invalidEmail@":
+                    homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+            };
+        }
+        [Test, Order(3)]
         [TestCase("Sleeveless Dress")]
         [TestCase("Men Tshirt")]
         [TestCase("Blue Top")]
@@ -22,7 +61,7 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.AssertCorrectPageIsLoaded();
             productDetailsPage.AssertCorrectProductName(productName);
         }
-        [Test, Order(2)]
+        [Test, Order(4)]
         [TestCase("Sleeveless Dress")]
         [TestCase("Men Tshirt")]
         [TestCase("Blue Top")]
@@ -37,7 +76,7 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.AssertCorrectPageIsLoaded();
             productDetailsPage.AssertCorrectProductName(productName);
         }
-        [Test, Order(3)]
+        [Test, Order(5)]
         [TestCase("Stylish Dress")]
         public void VerifyProductDetailsAreCorrect(string productName)
         {
@@ -56,7 +95,7 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.AssertCorrectProductCondition("New");
             productDetailsPage.AssertProductIsAvailable();
         }
-        [Test, Order(4)]
+        [Test, Order(6)]
         public void VerifySubmitVeviewForProductWithValidData()
         {
             homePage.Open();
@@ -78,7 +117,7 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.SubmitReview();
             productDetailsPage.AssertSuccessfulSubmiteReviewMessageIsDisplayed();
         }
-        [Test, Order(5)]
+        [Test, Order(7)]
         [TestCase("", "", "")]
         [TestCase("Jordan", "", "")]
         [TestCase("George", "email", "")]
@@ -121,7 +160,7 @@ namespace Automation_Exercise.Test_Scripts
                 productDetailsPage.AssertErrorEmptyFieldMessageIsDisplayed(productDetailsPage.reviewField);
             }
         }
-        [Test, Order(6)]
+        [Test, Order(8)]
         [TestCase("Sleeveless Dress")]
         public void VerifyAddProductFromDetailsPrage(string productName)
         {
@@ -144,7 +183,7 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.AssertProductIsAddedToCart(productName);
             cartPage.RemoveProductFromOrder(productName);
         }
-        [Test, Order(7)]
+        [Test, Order(9)]
         [TestCase("Blue Top", 3)]
         public void VerifyChangeQuantityAndAddProductFromDetailsPrage(string productName, int quantity)
         {
@@ -165,7 +204,7 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.AssertProductAddedSuccessfulTextIsDisplayed();
             productDetailsPage.OpenCart();
             cartPage.AssertCorrectPageIsLoaded();
-            cartPage.AssertProductIsAddedToCart(productName);
+            cartPage.AssertProductIsAddedToCart(productName); //TODO
             cartPage.AssertCorrectProductQuantity(productName, quantity);
             cartPage.AssertTotalPriceOfProductIsCorrect(productName);
         }

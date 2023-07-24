@@ -7,10 +7,10 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement bigSaleBanner => driver.FindElement(By.XPath("//*[@id='sale_image']"));
         public IWebElement searchField => driver.FindElement(By.XPath("//*[@id='search_product']"));
         public IWebElement searchButton => driver.FindElement(By.XPath("//*[@id='submit_search']"));
-        public IList<IWebElement> allProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='features_items']/*[@class='col-sm-4']"));
-        public IList<IWebElement> productsName => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
-        public IList<IWebElement> addProductButton => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']//a[contains(@data-product-id,'')]"));
-        public IList<IWebElement> viewProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='choose']"));
+        public IList<IWebElement> allProducts => driver.FindElements(By.XPath("//*[@class='features_items']/*[@class='col-sm-4']"));
+        public IList<IWebElement> productsName => driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
+        public IList<IWebElement> addProductButton => driver.FindElements(By.XPath("//*[@class='productinfo text-center']//a[contains(@data-product-id,'')]"));
+        public IList<IWebElement> viewProducts => driver.FindElements(By.XPath("//*[@class='choose']"));
         public IWebElement categoryProducts => driver.FindElement(By.XPath("//h2[@class='title text-center']"));
         public IWebElement womenCategory => driver.FindElement(By.XPath("//*[contains(@href, '#Women')]"));
         public IWebElement womenDress => driver.FindElement(By.XPath("//*[contains(@href, '/category_products/1')]"));

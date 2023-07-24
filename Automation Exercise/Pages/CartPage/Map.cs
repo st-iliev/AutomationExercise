@@ -4,7 +4,7 @@ namespace Automation_Exercise.Pages.CartPage
 {
     partial class CartPage
     {
-        public IList<IWebElement> productList => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@id='cart_info_table']/tbody/tr"));
+        public IList<IWebElement> productList => driver.FindElements(By.XPath("//*[@id='cart_info_table']/tbody"));
         public IWebElement proceedToCheckoutButton => driver.FindElement(By.XPath("//a[@class='btn btn-default check_out']"));
         public IWebElement continueOnCardButton => driver.FindElement(By.XPath("//button[@class='btn btn-success close-checkout-modal btn-block']"));
         public IWebElement loginRegister => driver.FindElement(By.XPath("//p[contains(@href,'/login']"));

@@ -11,6 +11,15 @@ namespace Automation_Exercise.Pages.CheckoutPage
         {
         }
         public override string PageURL => "https://www.automationexercise.com/checkout";
+        public List<string> GetNameOfAllAddedProducts()
+        {
+            List<string> names = new List<string>();
+            foreach (var product in orderProducts)
+            {
+                names.Add(product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text);
+            }
+            return names;
+        }
         public int CalculateTotalPriceForProduct(string productName)
         {
             foreach (var product in orderProducts)

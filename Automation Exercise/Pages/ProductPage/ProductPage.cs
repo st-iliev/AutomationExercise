@@ -1,6 +1,5 @@
 ﻿using Automation_Exercise.Utilities;
 using OpenQA.Selenium;
-using OpenQA.Selenium.Internal;
 
 namespace Automation_Exercise.Pages.ProductPage
 {
@@ -95,14 +94,13 @@ namespace Automation_Exercise.Pages.ProductPage
         }
         public void ClickOnViewProduct(string productName)
         {
-
             foreach (var product in allProducts)
             {
                 string name = product.FindElement(By.XPath(".//p")).Text;
                 if (name == productName)
                 {
-                    productId = int.Parse(product.FindElement(By.XPath(".//a")).GetDomAttribute("data-product-id"));
-                    viewProducts[productId - 1].Click();
+                    string id = product.FindElement(By.XPath(".//a")).GetAttribute("data-product-id");
+                    product.FindElement(By.XPath($"//*[@href='/product_details/{id}']")).Click();
                     break;
                 }
             }

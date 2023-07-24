@@ -131,6 +131,19 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AssertAddedIconIsDisplayed();
             productPage.AssertProductAddedSuccessfulTextIsDisplayed();
         }
-       
+        [Test, Order(9)]
+        public void VerifySearchProductAndOpenProductDetailsPage()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            productPage.AssertSaleBannerIsDisplayed();
+            productPage.SearchForProduct("Premium Polo T-Shirts");
+            ScrollDown(driver, 500);
+            productPage.ClickOnViewProduct("Premium Polo T-Shirts");
+            AdverticeHelper.CheckForAdvertice(driver);
+            productDetailsPage.AssertCorrectPageIsLoaded();
+            productDetailsPage.AssertCorrectProductName("Premium Polo T-Shirts");
+        }
+
     }
 }
