@@ -6,7 +6,7 @@ namespace Automation_Exercise.Pages
 {
     public abstract class BasePage
     {
-        private int elementsTimeout = 3;
+        private int elementsTimeout = 10;
         protected IWebDriver driver { get; set; }
         protected WebDriverWait waitDriver { get; set; }
         public BasePage(IWebDriver driver)

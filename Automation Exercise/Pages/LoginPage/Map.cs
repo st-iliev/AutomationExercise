@@ -12,7 +12,7 @@ namespace Automation_Exercise.Pages.LoginPage
         public IWebElement signupNameField => driver.FindElement(By.XPath("//input[@data-qa='signup-name']"));
         public IWebElement signupEmailField => driver.FindElement(By.XPath("//input[@data-qa='signup-email']"));
         public IWebElement signupButton => driver.FindElement(By.XPath("//button[@data-qa='signup-button']"));
-        public IWebElement incorrectDataMessage => driver.FindElement(By.XPath("//form[@action='/login']/p"));
+        public IWebElement incorrectDataMessage => WaitAndFindElements(By.XPath("//form[@action='/login']/p"));
         public IWebElement emailAddressAlreadyExistMsg => driver.FindElement(By.XPath("//form[@action='/signup']/p"));
     }
 }

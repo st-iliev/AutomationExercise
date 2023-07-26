@@ -64,17 +64,7 @@ namespace Automation_Exercise.Pages.CheckoutPage
         public int OrderTotalAmount() => int.Parse(orderTotalAmount.Text.Split(null)[1]);
         public void WriteCommentMessage(string commentMessage) => commentArea.SendKeys(commentMessage);
         public void PlaceOrder() => placeOrderButton.Click();
-        private bool CheckIfProductIsAdded(string productName)
-        {
-            foreach (var product in orderProducts)
-            {
-                string name = product.FindElement(By.XPath("//*[@class='cart_description']//a")).Text;
-                if (productName == name)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
+        private bool CheckIfProductIsAdded(string productName) => orderProductsName.Any(product => product.Text == productName);
+       
     }
 }

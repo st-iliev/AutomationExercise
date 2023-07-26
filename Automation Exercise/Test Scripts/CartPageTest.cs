@@ -64,15 +64,11 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.AssertCorrectPageIsLoaded();
             cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
         }
-       
+
         [Test, Order(6)]
         public void VerifyLoginUserCanAddProductToCart()
         {
-            cartPage.Open();
-            cartPage.AssertCorrectPageIsLoaded();
-            cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
-            cartPage.ContinueToProductPage();
-            AdverticeHelper.CheckForAdvertice(driver);
+            productPage.Open();
             productPage.AssertCorrectPageIsLoaded();
             ScrollDown(driver, 250);
             productPage.AddProductToCart("Blue Top");
@@ -103,7 +99,7 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.RemoveProductFromOrder("Blue Top");
             cartPage.CheckProductRemoval("Blue Top");
         }
-        
+
         [Test, Order(9)]
         public void VerifyTotalPriceOfAllAddedProductsAreCorrect()
         {

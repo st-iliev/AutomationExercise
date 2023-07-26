@@ -24,6 +24,7 @@ namespace Automation_Exercise.Test_Scripts
             deleteAccountPage.ClickOnContinue();
             loginPage.Open();
             loginPage.FillLoginForm(Constants.email, Constants.password);
+            loginPage.ClickOnLoginButton();
             loginPage.AssertIncorrectInputDataMessageIsDisplayed();
         }
     }

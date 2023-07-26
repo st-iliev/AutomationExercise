@@ -21,8 +21,9 @@ namespace Automation_Exercise.Pages.CheckoutPage
         public IWebElement billingCityNameStateZipCode => driver.FindElement(By.XPath("//*[@id='address_invoice']/li[6]"));
         public IWebElement billingCountryInfo => driver.FindElement(By.XPath("//*[@id='address_invoice']/li[7]"));
         public IWebElement billingPhoneNumberInfo => driver.FindElement(By.XPath("//*[@id='address_invoice']/li[8]"));
-        public IList<IWebElement> orderProducts => driver.FindElements(By.XPath("//*[@id='cart_info']//tbody/tr"));
+        public IList<IWebElement> orderProducts => driver.FindElements(By.XPath("//*[@id='cart_info']//tbody"));
         public IWebElement orderTotalAmount => orderProducts[orderProducts.Count - 1].FindElement(By.XPath("//*[@class='cart_total_price']"));
+        public IList<IWebElement> orderProductsName => driver.FindElements(By.XPath("//*[@class='cart_description']/h4"));
         public IWebElement commentArea => driver.FindElement(By.XPath("//textarea[@class='form-control']"));
         public IWebElement placeOrderButton => driver.FindElement(By.XPath("//*[@href='/payment']"));
     }

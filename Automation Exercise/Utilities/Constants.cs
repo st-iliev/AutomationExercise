@@ -1,7 +1,4 @@
-﻿using Automation_Exercise.Pages;
-using Automation_Exercise.Pages.ProductPage;
-
-namespace Automation_Exercise.Utilities
+﻿namespace Automation_Exercise.Utilities
 {
     public static class Constants
     {

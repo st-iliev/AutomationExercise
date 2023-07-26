@@ -6,24 +6,13 @@ namespace Automation_Exercise.Test_Scripts
     [Order(9)]
     public class CheckoutPageTest : BaseTest
     {
+      
         [Test,Order(1)]
-        public void VerifyInformationAboutDeliveryAndBillingAdressesAreDisplayedCorrect()
+        public void VerifyAddedProductIsInOrder()
         {
             loginPage.Open();
             loginPage.FillLoginForm(Constants.email, Constants.password);
             loginPage.loginButton.Click();
-            productPage.Open();
-            ScrollDown(driver, 500);
-            productPage.AddProductToCart("Blue Top");
-            productPage.OpenCart();
-            cartPage.ContinueToCheckout();
-            checkoutPage.AssertCorrectPageIsLoaded();
-            checkoutPage.AssertBillingAddressFormIsFilledCorrectly();
-            checkoutPage.AssertDeliveryAddressFormIsFilledCorrectly();
-        }
-        [Test,Order(2)]
-        public void VerifyAddedProductIsInOrder()
-        {
             productPage.Open();
             ScrollDown(driver, 500);
             productPage.AddProductToCart("Men Tshirt");
@@ -35,7 +24,7 @@ namespace Automation_Exercise.Test_Scripts
             checkoutPage.AssertCorrectTotalPriceOfProductIsCalculation("Men Tshirt");
             checkoutPage.AssertCorrectTotalPriceOfOrderIsCalculation();     
         }
-        [Test, Order(3)]
+        [Test, Order(2)]
         public void VerifySuccessfullyFinishedOrder()
         {
             productPage.Open();
@@ -53,6 +42,18 @@ namespace Automation_Exercise.Test_Scripts
             checkoutPage.PlaceOrder();
             AdverticeHelper.CheckForAdvertice(driver);
             paymentPage.AssertCorrectPageIsLoaded();
+        }
+        [Test, Order(3)]
+        public void VerifyInformationAboutDeliveryAndBillingAdressesAreDisplayedCorrect()
+        {
+            productPage.Open();
+            ScrollDown(driver, 500);
+            productPage.AddProductToCart("Blue Top");
+            productPage.OpenCart();
+            cartPage.ContinueToCheckout();
+            checkoutPage.AssertCorrectPageIsLoaded();
+            checkoutPage.AssertBillingAddressFormIsFilledCorrectly();
+            checkoutPage.AssertDeliveryAddressFormIsFilledCorrectly();
         }
 
     }
