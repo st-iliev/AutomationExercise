@@ -84,8 +84,11 @@ namespace Automation_Exercise.Test_Scripts
         }
         protected static void BackToPreviusPage(IWebDriver driver)
         {
+            if (driver.Url.EndsWith("#google_vignette"))
+            {
             driver.Navigate().Back();
             driver.Navigate().Back();
+            }
         }
         [TearDown]
         public void TrearDown()
