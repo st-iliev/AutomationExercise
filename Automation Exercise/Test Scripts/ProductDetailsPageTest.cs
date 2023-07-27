@@ -3,6 +3,8 @@ using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {
+    [TestFixture]
+    [Order(6)]
     public class ProductDetailsPageTest : BaseTest
     {
         private ReviewForm form;

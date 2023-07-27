@@ -3,7 +3,7 @@
 namespace Automation_Exercise.Test_Scripts
 {
     [TestFixture]
-    [Order(8)]
+    [Order(9)]
     public class ProductPageTest : BaseTest
     {
         [Test, Order(1)]

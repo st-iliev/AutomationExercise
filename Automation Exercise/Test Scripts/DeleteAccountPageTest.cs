@@ -3,7 +3,7 @@
 namespace Automation_Exercise.Test_Scripts
 {
     [TestFixture]
-    [Order(10)]
+    [Order(11)]
     public class DeleteAccountPageTest : BaseTest
     {
         [Test]

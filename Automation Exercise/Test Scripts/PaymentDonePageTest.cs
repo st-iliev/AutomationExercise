@@ -4,7 +4,7 @@ using Automation_Exercise.Utilities;
 namespace Automation_Exercise.Test_Scripts
 {
     [TestFixture]
-    [Order(7)]
+    [Order(8)]
     internal class PaymentDonePageTest : BaseTest
     {
         private CardInfo cardInfo;
@@ -35,11 +35,11 @@ namespace Automation_Exercise.Test_Scripts
             paymentPage.ClickOnPayOrder();
             paymentDonePage.AssertCorrectOrderTitleIsDisplayed();
             paymentDonePage.AssertOrderConfirmedMessageIsDisplayedCorrectly();
+            paymentDonePage.DeleteDownloadedFile();
             paymentDonePage.DownloadInvoice();
             AdverticeHelper.CheckForAdvertice(driver);
             paymentDonePage.AssertFileDownloadSuccessful();
             paymentDonePage.AssertFileContentIsCorrectly();
-            paymentDonePage.DeleteDownloadedFile();
             BackToPreviusPage(driver);
             paymentDonePage.ContinueOrder();
             homePage.AssertCorrectPageIsLoaded();

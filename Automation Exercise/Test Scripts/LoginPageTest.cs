@@ -116,6 +116,7 @@ namespace Automation_Exercise.Test_Scripts
             loginPage.ClickOnLoginButton();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertUserIsLogin();
+            homePage.Logout();
         }
     }
 }

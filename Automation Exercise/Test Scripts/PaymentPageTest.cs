@@ -4,7 +4,7 @@ using Automation_Exercise.Utilities;
 namespace Automation_Exercise.Test_Scripts
 {
     [TestFixture]
-    [Order(6)]
+    [Order(7)]
     public class PaymentPageTest : BaseTest
     {
         private CardInfo cardInfo;
