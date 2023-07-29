@@ -7,9 +7,13 @@ namespace Automation_Exercise.Test_Scripts
     [Order(4)]
     public class SignupPageTest : BaseTest
     {
-        private AccountInfo accountInfo;
-        [Test, Order(1)]
-        public void VerifySuccessfulSubscribe()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            suiteTest = extent.CreateTest("Signup Page Tests");
+        }
+        [SetUp]
+        public void Preconditions()
         {
             loginPage.Open();
             loginPage.AssertCorrectPageIsLoaded();
@@ -17,6 +21,12 @@ namespace Automation_Exercise.Test_Scripts
             loginPage.FillSingupForm(Constants.name, Constants.email);
             loginPage.ClickOnSignupButton();
             signupPage.AssertCorrectPageIsLoaded();
+        }
+        private AccountInfo accountInfo;
+        [Test, Order(1)]
+        public void VerifySuccessfulSubscribe()
+        {
+            test = suiteTest.CreateNode("Test Successful Subscribe With Valid Credentials");
             ScrollToBottom(driver);
             homePage.Subscrible(Constants.email);
             homePage.ClickOnSubscribeButton();
@@ -28,12 +38,8 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("invalidEmail@")]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectSignupFormTitleIsDisplayed();
-            loginPage.FillSingupForm(Constants.name, Constants.email);
-            loginPage.ClickOnSignupButton();
-            signupPage.AssertCorrectPageIsLoaded();
+            test = suiteTest.CreateNode("Test Subscribe With Invalid Credentials");
+
             ScrollToBottom(driver);
             homePage.Subscrible(email);
             homePage.ClickOnSubscribeButton();
@@ -50,13 +56,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(3)]
         public void VerifyRegisterNewUserWithOnlyRequiredFieldsFilled()
         {
-
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectSignupFormTitleIsDisplayed();
-            loginPage.FillSingupForm(Constants.name, Constants.email);
-            loginPage.ClickOnSignupButton();
-            signupPage.AssertCorrectPageIsLoaded();
+            test = suiteTest.CreateNode("Test Register User With Required Credentials");
             accountInfo = new AccountInfo()
             {
                 Title = Constants.title,
@@ -96,13 +96,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase(Constants.password, Constants.firstName, Constants.lastName, Constants.firstAddress, Constants.country,Constants.state, Constants.city, Constants.zipCode, "")]
         public void VerifyErrorMessageDisplayedOnRequiredFields(string password, string firsName, string lastName, string address1, string country,string state, string city, string zipeCode, string mobileNumber)
         {
-
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectSignupFormTitleIsDisplayed();
-            loginPage.FillSingupForm(Constants.name, Constants.email);
-            loginPage.ClickOnSignupButton();
-            signupPage.AssertCorrectPageIsLoaded();
+            test = suiteTest.CreateNode("Test Error Message Displayed On Required Credentials");
             accountInfo = new AccountInfo()
             {
                 Password = password,
@@ -155,13 +149,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(5)]
         public void VerifyRegisterNewUserWithAllFields()
         {
-            homePage.Open();
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectSignupFormTitleIsDisplayed();
-            loginPage.FillSingupForm(Constants.name, Constants.email);
-            loginPage.ClickOnSignupButton();
-            signupPage.AssertCorrectPageIsLoaded();
+            test = suiteTest.CreateNode("Test Register User With All Credentials");
             accountInfo = new AccountInfo()
             {
                 Title = Constants.title,
@@ -194,7 +182,6 @@ namespace Automation_Exercise.Test_Scripts
             AdverticeHelper.CheckForAdvertice(driver);
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertUserIsLogin();
-        }
-       
+        }   
     }
 }

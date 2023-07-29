@@ -6,9 +6,15 @@ namespace Automation_Exercise.Test_Scripts
     [Order(11)]
     public class DeleteAccountPageTest : BaseTest
     {
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            suiteTest = extent.CreateTest("Delete Account Page Tests");
+        }
         [Test]
         public void VerifyDeleteUserAccount()
         {
+            test = suiteTest.CreateNode("Test Delete user account.");
             loginPage.Open();
             loginPage.AssertCorrectPageIsLoaded();
             loginPage.AssertCorrectLoginFormTitleIsDisplayed();

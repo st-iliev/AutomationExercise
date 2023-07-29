@@ -6,15 +6,26 @@ namespace Automation_Exercise.Test_Scripts
     [Order(9)]
     public class ProductPageTest : BaseTest
     {
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            suiteTest = extent.CreateTest("Product Page Tests");
+        }
+        [SetUp]
+        public void Precondition()
+        {
+            productPage.Open();
+            productPage.AssertCorrectPageIsLoaded();
+            productPage.AssertSaleBannerIsDisplayed();
+        }
         [Test, Order(1)]
         [TestCase("Premium Polo T-Shirts")]
         [TestCase("Soft Stretch Jeans")]
         [TestCase("Colour Blocked Shirt – Sky Blue")]
         public void VerifySearchForExistingProduct(string productName)
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Search For Existing Product");
             productPage.SearchForProduct(productName);
             productPage.AssertSearchedProductIsDisplaed(productName);        
         }
@@ -24,9 +35,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("Hat")]
         public void VerifySearchForNonExistingProduct(string productName)
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Search For NonExisting Product");
             productPage.SearchForProduct(productName);
             productPage.AssertNonProductsAreDisplayed();
         }
@@ -41,9 +50,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase(Brands.Madame)]
         public void VerifyNumberOfBrandProductIsSameAsBrandProductCount(Brands brandName)
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Number Of BrandProduct Is Same As BrandProduct Count");
             ScrollDown(driver, 1900);
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
@@ -54,9 +61,7 @@ namespace Automation_Exercise.Test_Scripts
 
         public void VerifyCategoryAndSubcategoryAreLoaded(string categoryName)
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test All Category And Subcategory Are Loaded");
             ScrollDown(driver, 500);
             homePage.SelectCategoryAndSubCategory(categoryName, null);
             switch (categoryName)
@@ -78,9 +83,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(5)]
         public void VerifySuccessfulSubscribe()
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Search For Existing Product");
             ScrollToBottom(driver);
             homePage.Subscrible(Constants.email);
             homePage.ClickOnSubscribeButton();
@@ -92,9 +95,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("invalidEmail@")]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Subscribe With Invalid Credential");
             ScrollToBottom(driver);
             homePage.Subscrible(email);
             homePage.ClickOnSubscribeButton();
@@ -111,9 +112,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(7)]
         public void VerifyAddProductToCart()
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Add Product To Cart");
             ScrollToBottom(driver);
             productPage.AddProductToCart("GRAPHIC DESIGN MEN T SHIRT - BLUE");
             productPage.AssertAddedIconIsDisplayed();
@@ -122,9 +121,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(8)]
         public void VerifySearchProductAndAddedToCart()
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Add Searched Product To Cart");
             productPage.SearchForProduct("Premium Polo T-Shirts");
             ScrollDown(driver, 500);
             productPage.AddProductToCart("Premium Polo T-Shirts");
@@ -134,15 +131,26 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(9)]
         public void VerifySearchProductAndOpenProductDetailsPage()
         {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Open the ProductDetailsPage of the searched product");
             productPage.SearchForProduct("Premium Polo T-Shirts");
             ScrollDown(driver, 500);
             productPage.ClickOnViewProduct("Premium Polo T-Shirts");
             AdverticeHelper.CheckForAdvertice(driver);
             productDetailsPage.AssertCorrectPageIsLoaded();
             productDetailsPage.AssertCorrectProductName("Premium Polo T-Shirts");
+        }
+        [Test, Order(10)]
+        [TestCase("Sleeveless Dress")]
+        [TestCase("Men Tshirt")]
+        [TestCase("Blue Top")]
+        public void VerifyOpenProductDeatailsPage(string productName)
+        {
+            test = suiteTest.CreateNode("Test Open the ProductDetailsPage of the product");
+            ScrollDown(driver, 600);
+            productPage.ClickOnViewProduct(productName);
+            AdverticeHelper.CheckForAdvertice(driver);
+            productDetailsPage.AssertCorrectPageIsLoaded();
+            productDetailsPage.AssertCorrectProductName(productName);
         }
 
     }

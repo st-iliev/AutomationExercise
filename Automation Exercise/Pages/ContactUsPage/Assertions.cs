@@ -11,7 +11,7 @@ namespace Automation_Exercise.Pages.ContactUsPage
         }
         public void AssertContactUsFormTitleIsDisplayedCorectly()
         {
-            Assert.AreEqual("GET IN TOUCH", contactUsFormTitle.Text);
+            Assert.AreEqual("CONTACT US", contactUsFormTitle.Text);
         }
         public void AssertContactFormFieldsAreDisplayed()
         {

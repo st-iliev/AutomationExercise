@@ -7,15 +7,21 @@ namespace Automation_Exercise.Test_Scripts
     [Order(7)]
     public class PaymentPageTest : BaseTest
     {
-        private CardInfo cardInfo;
-        [Test, Order(1)]
-        public void VerifyPayForOrderWithValidData()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
+            suiteTest = extent.CreateTest("Payment Page Tests");
             loginPage.Open();
             loginPage.AssertCorrectPageIsLoaded();
             loginPage.AssertCorrectLoginFormTitleIsDisplayed();
             loginPage.FillLoginForm(Constants.email, Constants.password);
             loginPage.ClickOnLoginButton();
+        }
+        private CardInfo cardInfo;
+        [Test, Order(1)]
+        public void VerifySuccessfulPaymentWithValidData()
+        {
+            test = suiteTest.CreateNode("Test Payment With Valid Credentials");
             paymentPage.Open();
             paymentPage.AssertCorrectPageIsLoaded();
             paymentPage.AssertCorrectPaymentTitleIsDisplayed();
@@ -40,8 +46,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("name", "number" , "cvc" , "month", "")]
         public void VerifyPaymentFormHaveValidationFromEmptyField(string nameOfCard,string cardNumber,string cvc,string month,string year)
         {
-
-          
+            test = suiteTest.CreateNode("Test Payment With Valid Credentials");
             paymentPage.Open();
             paymentPage.AssertCorrectPageIsLoaded();
             paymentPage.AssertCorrectPaymentTitleIsDisplayed();

@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Utilities;
+using NUnit.Framework;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -6,12 +7,23 @@ namespace Automation_Exercise.Test_Scripts
     [Order(1)]
     public class HomePageTests : BaseTest
     {
-        [Test,Order(1)]
-        public void VerifyNavigationLinksArePresentAndFunctioningCorrectly()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            suiteTest = extent.CreateTest("Home Page Tests");
+        }
+        [SetUp] 
+        public void Preconditions() 
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
+        }
+
+        [Test,Order(1)]
+        public void VerifyNavigationLinksArePresentAndFunctioningCorrectly()
+        {
+            test = suiteTest.CreateNode("Test All navigation links are displayed and works correct");
             homePage.AssertNavigationLinksArePresent();
         }
         [Test, Order(2)]
@@ -23,6 +35,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("left")]
         public void VerifyClickingOnArrowsSwitchCarouselContentImageAndActiveIndicator(string side)
         {
+            test = suiteTest.CreateNode("Test Using side arrows works correctly");
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
             homePage.ClickOnArrow(side);
@@ -36,9 +49,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("Third")]
         public void VerifyClickingOnIndicatorsSwitchCarouselContentImageAndActiveIndicator(string indicator)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Using indicators works correctly");
             homePage.ClickOnIndicators(indicator);
             homePage.AssertCorrectCarouselTextsAreDisplayed();
             homePage.AssertImageSwitched();
@@ -51,20 +62,21 @@ namespace Automation_Exercise.Test_Scripts
         
         public void VerifyCategoryAndSubcategoryAreLoaded(string categoryName)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
-            ScrollDown(driver, 250);
+            test = suiteTest.CreateNode("Test All category and subcategory are displayed");
+            ScrollDown(driver, 660);
             homePage.SelectCategoryAndSubCategory(categoryName, null);
             switch (categoryName)
             {
                 case "WOMEN":
+                    homePage.ClickOnElement(homePage.womenCategory);
                     homePage.AssertWomenCategoryAndSubCategoriesAreDisplayed();
                     break;
                 case "MEN":
+                    homePage.ClickOnElement(homePage.menCategory);
                     homePage.AssertMenCategoryAndSubCategoriesAreDisplayed();
                     break;
                 case "KIDS":
+                    homePage.ClickOnElement(homePage.kidsCategory);
                     homePage.AssertKidsCategoryAndSubCategoriesAreDisplayed();
                     break;
                 default:
@@ -84,18 +96,14 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase(Brands.Madame)]
         public void VerifyNumberOfBrandProductIsSameAsBrandProductCount(Brands brandName)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Number of BrandProducts is same as BrandProducts count");
             ScrollDown(driver,1500);
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
         [Test, Order(6)]
         public void VerifySuccessfulSubscribe()
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Subscribe With Valid Credential");
             ScrollToBottom(driver);
             homePage.Subscrible(Constants.email);
             homePage.ClickOnSubscribeButton();
@@ -107,9 +115,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("invalidEmail@")]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Subscribe With Invalid Credential");
             ScrollToBottom(driver);
             homePage.Subscrible(email);
             homePage.ClickOnSubscribeButton();
@@ -133,9 +139,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("Contact us")]
         public void VerifyNavigationLinksNavigateToCorrectPage(string pageName)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test All navigation links navigate user to correct pages");
             switch (pageName)
             {
                 case "Products":
@@ -182,9 +186,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("KIDS","TOPS & SHIRTS")]
         public void VerifyCorrectProductFromSubCategoryAreLoaded(string categoryName , string subCategoryName)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Subscribe With Valid Credential");
             ScrollDown(driver, 600);
             homePage.SelectCategoryAndSubCategory(categoryName, subCategoryName);
             homePage.AssertCorrectProductSubCategoryTitleIsDisplayed(categoryName, subCategoryName);
@@ -192,20 +194,32 @@ namespace Automation_Exercise.Test_Scripts
         [Test,Order(10)]
         public void VerifyScrollDownFuncionallity()
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Scrolldown fuctionallity of page");
             ScrollToBottom(driver);
             homePage.AssertCopyRightTextIsDisplayed();
         }
         [Test,Order(11)]
         public void VerifyScrollUpFuncionallity()
         {
+            test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
             ScrollToBottom(driver);
             homePage.AssertCorrectCarouselTextsAreDisplayed();
+        }
+        [Test, Order(12)]
+        [TestCase("Sleeveless Dress")]
+        [TestCase("Men Tshirt")]
+        [TestCase("Blue Top")]
+        public void VerifyOpenProductDetailsPage(string productName)
+        {
+            test = suiteTest.CreateNode("Test Open detailspage of product");
+            ScrollDown(driver, 600);
+            homePage.ClickOnViewProduct(productName);
+            AdverticeHelper.CheckForAdvertice(driver);
+            productDetailsPage.AssertCorrectPageIsLoaded();
+            productDetailsPage.AssertCorrectProductName(productName);
         }
     }
 }

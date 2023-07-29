@@ -10,8 +10,8 @@ using Automation_Exercise.Pages.PaymentPage;
 using Automation_Exercise.Pages.ProductDetailsPage;
 using Automation_Exercise.Pages.ProductPage;
 using Automation_Exercise.Pages.SignupPage;
-using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 
@@ -32,15 +32,16 @@ namespace Automation_Exercise.Test_Scripts
         protected AccountCreatedPage accountCreatedPage;
         protected DeleteAccountPage deleteAccountPage;
         protected ContactUsPage contactUsPage;
-        private ExtentReports extent;
-        private ExtentTest test;
+        protected static ExtentReports extent;
+        protected ExtentTest suiteTest;
+        protected ExtentTest test;
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
             //DriverHelper.Start(BrowserType.Chrome);
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--lang=en-US");
-            options.AddArgument("--headless");
+           //options.AddArgument("--headless");
             driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
             homePage = new HomePage(driver);
@@ -55,17 +56,13 @@ namespace Automation_Exercise.Test_Scripts
             accountCreatedPage = new AccountCreatedPage(driver);
             deleteAccountPage = new DeleteAccountPage(driver);
             contactUsPage = new ContactUsPage(driver);
-            var htmlReporter = new ExtentHtmlReporter(@"E:\QA\QA Automation\Projects\Report.html");
-            extent = new ExtentReports();
-            extent.AttachReporter(htmlReporter);
-            
+            if (extent == null)
+            {
+                var htmlReporter = new ExtentHtmlReporter(@"E:\QA\QA Automation\Projects\AutomationExercise\Automation Exercise\TestResults.html");
+                extent = new ExtentReports();
+                extent.AttachReporter(htmlReporter);
+            }
         }
-        [SetUp]
-        public void SetUp()
-        {
-            test = extent.CreateTest(TestContext.CurrentContext.Test.Name);
-        }
-
         protected static void ScrollToTop(IWebDriver driver)
         {
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
@@ -90,29 +87,10 @@ namespace Automation_Exercise.Test_Scripts
             driver.Navigate().Back();
             }
         }
-        [TearDown]
-        public void TrearDown()
-        {
-            var status = TestContext.CurrentContext.Result.Outcome.Status;
-
-            switch (status)
-            {
-                case NUnit.Framework.Interfaces.TestStatus.Failed:
-                    test.Log(Status.Fail, "Test Failed");
-                    test.Fail(TestContext.CurrentContext.Result.Message);
-                    break;
-                case NUnit.Framework.Interfaces.TestStatus.Passed:
-                    test.Log(Status.Pass, "Test Passed");
-                    break;
-                case NUnit.Framework.Interfaces.TestStatus.Skipped:
-                    test.Log(Status.Skip, "Test Skipped");
-                    break;
-            }
-        }
+       
         [OneTimeTearDown]
         public void Dispose()
         {
-           
             extent.Flush();
             driver.Dispose();
         }

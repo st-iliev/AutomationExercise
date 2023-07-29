@@ -7,13 +7,23 @@ namespace Automation_Exercise.Test_Scripts
     [Order(6)]
     public class ProductDetailsPageTest : BaseTest
     {
-        private ReviewForm form;
-        [Test, Order(1)]
-        public void VerifySuccessfulSubscribe()
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            suiteTest = extent.CreateTest("Product Details Page Tests");
+        }
+        [SetUp]
+        public void Preconditions()
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
+        }
+        private ReviewForm form;
+        [Test, Order(1)]
+        public void VerifySuccessfulSubscribe()
+        {
+            test = suiteTest.CreateNode("Test Sucessful Subscribe With Valid Credential");
             ScrollDown(driver, 600);
             homePage.ClickOnViewProduct("Blue Top");
             AdverticeHelper.CheckForAdvertice(driver);
@@ -29,9 +39,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("invalidEmail@")]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Subscribe With Invalid Credential");
             ScrollDown(driver, 600);
             homePage.ClickOnViewProduct("Blue Top");
             AdverticeHelper.CheckForAdvertice(driver);
@@ -49,42 +57,10 @@ namespace Automation_Exercise.Test_Scripts
             };
         }
         [Test, Order(3)]
-        [TestCase("Sleeveless Dress")]
-        [TestCase("Men Tshirt")]
-        [TestCase("Blue Top")]
-        public void VerifyOpenProductDetailsPageFromHomePage(string productName)
-        {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
-            ScrollDown(driver, 600);
-            homePage.ClickOnViewProduct(productName);
-            AdverticeHelper.CheckForAdvertice(driver);
-            productDetailsPage.AssertCorrectPageIsLoaded();
-            productDetailsPage.AssertCorrectProductName(productName);
-        }
-        [Test, Order(4)]
-        [TestCase("Sleeveless Dress")]
-        [TestCase("Men Tshirt")]
-        [TestCase("Blue Top")]
-        public void VerifyOpenProductDeatailsPageFromProductPage(string productName)
-        {
-            productPage.Open();
-            productPage.AssertCorrectPageIsLoaded();
-            productPage.AssertSaleBannerIsDisplayed();
-            ScrollDown(driver, 600);
-            productPage.ClickOnViewProduct(productName);
-            AdverticeHelper.CheckForAdvertice(driver);
-            productDetailsPage.AssertCorrectPageIsLoaded();
-            productDetailsPage.AssertCorrectProductName(productName);
-        }
-        [Test, Order(5)]
         [TestCase("Stylish Dress")]
         public void VerifyProductDetailsAreCorrect(string productName)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Product Details Are Correct");
             ScrollDown(driver, 1100);
             int productPrice = homePage.GetProductPrice(productName);
             homePage.ClickOnViewProduct(productName);
@@ -97,12 +73,10 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.AssertCorrectProductCondition("New");
             productDetailsPage.AssertProductIsAvailable();
         }
-        [Test, Order(6)]
-        public void VerifySubmitVeviewForProductWithValidData()
+        [Test, Order(4)]
+        public void VerifySubmitReviewForProductWithValidData()
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Submit Review For Product With Valaid Credentials");
             ScrollDown(driver, 750);
             homePage.ClickOnViewProduct("Blue Top");
             AdverticeHelper.CheckForAdvertice(driver);
@@ -119,7 +93,7 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.SubmitReview();
             productDetailsPage.AssertSuccessfulSubmiteReviewMessageIsDisplayed();
         }
-        [Test, Order(7)]
+        [Test, Order(5)]
         [TestCase("", "", "")]
         [TestCase("Jordan", "", "")]
         [TestCase("George", "email", "")]
@@ -127,9 +101,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("John", "email@zzz", "")]
         public void VerifySubmitVeviewForProductWithValidData(string name, string email, string reviewText)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Submit Review For Product With Invalaid Credentials");
             ScrollDown(driver, 750);
             homePage.ClickOnViewProduct("Blue Top");
             AdverticeHelper.CheckForAdvertice(driver);
@@ -162,13 +134,11 @@ namespace Automation_Exercise.Test_Scripts
                 productDetailsPage.AssertErrorEmptyFieldMessageIsDisplayed(productDetailsPage.reviewField);
             }
         }
-        [Test, Order(8)]
+        [Test, Order(6)]
         [TestCase("Sleeveless Dress")]
-        public void VerifyAddProductFromDetailsPrage(string productName)
+        public void VerifyAddProductFromDetailsPage(string productName)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Successful Add Product From ProductDetailsPage");
             ScrollDown(driver, 600);
             int productPrice = homePage.GetProductPrice(productName);
             homePage.ClickOnViewProduct(productName);
@@ -185,13 +155,11 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.AssertProductIsAddedToCart(productName);
             cartPage.RemoveProductFromOrder(productName);
         }
-        [Test, Order(9)]
+        [Test, Order(7)]
         [TestCase("Blue Top", 3)]
         public void VerifyChangeQuantityAndAddProductFromDetailsPrage(string productName, int quantity)
         {
-            homePage.Open();
-            homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            test = suiteTest.CreateNode("Test Successful Change Quantity of Product And Add To Product To Cart From ProductDeatailsPage ");
             ScrollDown(driver, 600);
             int productPrice = homePage.GetProductPrice(productName);
             homePage.ClickOnViewProduct(productName);
@@ -206,7 +174,7 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.AssertProductAddedSuccessfulTextIsDisplayed();
             productDetailsPage.OpenCart();
             cartPage.AssertCorrectPageIsLoaded();
-            cartPage.AssertProductIsAddedToCart(productName); //TODO
+            cartPage.AssertProductIsAddedToCart(productName);
             cartPage.AssertCorrectProductQuantity(productName, quantity);
             cartPage.AssertTotalPriceOfProductIsCorrect(productName);
         }

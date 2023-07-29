@@ -7,15 +7,21 @@ namespace Automation_Exercise.Test_Scripts
     [Order(8)]
     internal class PaymentDonePageTest : BaseTest
     {
-        private CardInfo cardInfo;
-        [Test, Order(1)]
-        public void VerifyDownloadAndCheckContentOfInvoiceFile()
+        [OneTimeSetUp]
+        public void Setup()
         {
+            suiteTest = extent.CreateTest("PaymentDone Page Tests");
             loginPage.Open();
             loginPage.AssertCorrectPageIsLoaded();
             loginPage.AssertCorrectLoginFormTitleIsDisplayed();
             loginPage.FillLoginForm(Constants.email, Constants.password);
             loginPage.ClickOnLoginButton();
+        }
+        private CardInfo cardInfo;
+        [Test, Order(1)]
+        public void VerifyDownloadAndCheckContentOfInvoiceFile()
+        {
+            test = suiteTest.CreateNode("Test Download and check content of invoice file.");
             productPage.Open();
             ScrollDown(driver, 500);
             productPage.AddProductToCart("Blue Top");
@@ -47,6 +53,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(2)]
         public void VerifyCompleteOrderWihtoutAddedProduct()
         {
+            test = suiteTest.CreateNode("Test Complete order without added product.");
             paymentPage.Open();
             paymentPage.AssertCorrectPageIsLoaded();
             paymentPage.AssertCorrectPaymentTitleIsDisplayed();

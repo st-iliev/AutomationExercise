@@ -7,27 +7,39 @@ namespace Automation_Exercise.Test_Scripts
     [Order(2)]
     public class ContactUsPageTest : BaseTest
     {
+
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
+        {
+            suiteTest = extent.CreateTest("ContactUs Page Tests");
+        }
+        [SetUp]
+        public void Preconditions()
+        {
+            contactUsPage.Open();
+            contactUsPage.AssertCorrectPageIsLoaded();
+            contactUsPage.AssertContactUsFormTitleIsDisplayedCorectly();
+            contactUsPage.AssertContactFormFieldsAreDisplayed();
+        }
         private ContactUsForm form;
         [TestCase("invalidEmail")]
         [TestCase("invalidEmail@")]
         [TestCase(" ")]
-        public void VerifySubmitContactFormWithEmptyEmailAddressOrInvalidEmailAddress(string email)
+        public void VerifySubmitContactFormWithInvalidEmailAddress(string email)
         {
-            contactUsPage.Open();
-            contactUsPage.AssertCorrectPageIsLoaded();
+            test = suiteTest.CreateNode("Test Submit contact form with invalid credentials.");
             form = new ContactUsForm()
             {
                 Name = Constants.name,
                 Email = email,
                 Subject = Constants.contactUsSubject,
                 Message = Constants.contactUsMessage,
-               // ChoosenFile = Constants.choosenFilePath
+                // ChoosenFile = Constants.choosenFilePath
             };
             contactUsPage.FillContactUsForm(form);
             contactUsPage.SubmiteForm();
             switch (email)
             {
-
                 case "invalidEmail":
                     contactUsPage.AssertErrorInvalidEmailAddressMessageIsDisplayed(contactUsPage.emailField, email);
                     break;
@@ -42,8 +54,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test]
         public void VerifySubmitContactFormWithValidData()
         {
-            contactUsPage.Open();
-            contactUsPage.AssertCorrectPageIsLoaded();
+            test = suiteTest.CreateNode("Test Submit contact form with valid credentials.");
             form = new ContactUsForm()
             {
                 Name = Constants.name,
@@ -63,8 +74,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test]
         public void VerifySuccessfulSubscribe()
         {
-            contactUsPage.Open();
-            contactUsPage.AssertCorrectPageIsLoaded();
+            test = suiteTest.CreateNode("Test Subscribe with valid credential.");
             ScrollToBottom(driver);
             homePage.Subscrible(Constants.email);
             homePage.ClickOnSubscribeButton();
@@ -76,8 +86,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("invalidEmail@")]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
-            contactUsPage.Open();
-            contactUsPage.AssertCorrectPageIsLoaded();
+            test = suiteTest.CreateNode("Test subscribe with invalid credentials.");
             ScrollToBottom(driver);
             homePage.Subscrible(email);
             homePage.ClickOnSubscribeButton();

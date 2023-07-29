@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Utilities;
+using AventStack.ExtentReports;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -6,12 +7,23 @@ namespace Automation_Exercise.Test_Scripts
     [Order(5)]
     public class LoginPageTest : BaseTest
     {
-        [Test, Order(1)]
-        public void VerifySuccessfulSubscribe()
+        [OneTimeSetUp] 
+        public void OneTimeSetUp() 
         {
+            suiteTest = extent.CreateTest("Login Page Tests");
+        }
+        [SetUp] 
+        public void Setup() 
+        {
+           
             loginPage.Open();
             loginPage.AssertCorrectPageIsLoaded();
             loginPage.AssertCorrectLoginFormTitleIsDisplayed();
+        }
+        [Test, Order(1)]
+        public void VerifySuccessfulSubscribe()
+        {
+            test = suiteTest.CreateNode("Test Successful Subscribe With Valid Credentials");
             ScrollToBottom(driver);
             homePage.Subscrible(Constants.email);
             homePage.ClickOnSubscribeButton();
@@ -23,9 +35,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("invalidEmail@")]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectLoginFormTitleIsDisplayed();
+            test = suiteTest.CreateNode("Test Subscribe With InValid Credentials");
             ScrollToBottom(driver);
             homePage.Subscrible(email);
             homePage.ClickOnSubscribeButton();
@@ -45,9 +55,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("", "")]
         public void VerifyUserLoginWithoutEmailOrPassword(string email, string password)
         {
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectLoginFormTitleIsDisplayed();
+            test = suiteTest.CreateNode("Test User Login Without Credentials");
             loginPage.FillLoginForm(email, password);
             loginPage.ClickOnLoginButton();
             switch (password)
@@ -66,9 +74,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("incorrectEmail@", Constants.password)]
         public void VerifyLoginWithInvalidEmailOrPassword(string email, string password)
         {
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectLoginFormTitleIsDisplayed();
+            test = suiteTest.CreateNode("Test User Login With Invalid Credentials");
             loginPage.FillLoginForm(email, password);
             loginPage.ClickOnLoginButton();
             switch (email)
@@ -91,9 +97,7 @@ namespace Automation_Exercise.Test_Scripts
         [TestCase("", "")]
         public void VerifySignupUserWithoutNameOrEmail(string name, string email)
         {
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectSignupFormTitleIsDisplayed();
+            test = suiteTest.CreateNode("Test User Signup Without Credentials");
             loginPage.FillSingupForm(name, email);
             loginPage.ClickOnSignupButton();
             switch (email)
@@ -109,9 +113,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(6)]
         public void VerifyUserLoginWithValidData()
         {
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectLoginFormTitleIsDisplayed();
+            test = suiteTest.CreateNode("Test User Login With Valid Credentials");
             loginPage.FillLoginForm(Constants.email, Constants.password);
             loginPage.ClickOnLoginButton();
             homePage.AssertCorrectPageIsLoaded();

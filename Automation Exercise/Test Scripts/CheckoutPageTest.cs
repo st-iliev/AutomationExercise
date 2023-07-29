@@ -6,13 +6,19 @@ namespace Automation_Exercise.Test_Scripts
     [Order(10)]
     public class CheckoutPageTest : BaseTest
     {
+        [OneTimeSetUp]
+        public void Preconditions()
+        {
+            suiteTest = extent.CreateTest("Checkout Page Tests");
+            loginPage.Open();
+            loginPage.FillLoginForm(Constants.email, Constants.password);
+            loginPage.loginButton.Click();
+        }
       
         [Test,Order(1)]
         public void VerifyAddedProductIsInOrder()
         {
-            loginPage.Open();
-            loginPage.FillLoginForm(Constants.email, Constants.password);
-            loginPage.loginButton.Click();
+            test = suiteTest.CreateNode("Test Added product is in order.");
             productPage.Open();
             ScrollDown(driver, 500);
             productPage.AddProductToCart("Men Tshirt");
@@ -27,6 +33,7 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(2)]
         public void VerifySuccessfullyFinishedOrder()
         {
+            test = suiteTest.CreateNode("Test User finish order.");
             productPage.Open();
             ScrollDown(driver, 500);
             productPage.AddProductToCart("Sleeveless Dress");
@@ -44,8 +51,9 @@ namespace Automation_Exercise.Test_Scripts
             paymentPage.AssertCorrectPageIsLoaded();
         }
         [Test, Order(3)]
-        public void VerifyInformationAboutDeliveryAndBillingAdressesAreDisplayedCorrect()
+        public void VerifyInformationAboutDeliveryAndBillingAddressesAreDisplayedCorrect()
         {
+            test = suiteTest.CreateNode("Test Information about delivery and billing adresses are displayed correctly ");
             productPage.Open();
             ScrollDown(driver, 500);
             productPage.AddProductToCart("Blue Top");
