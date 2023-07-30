@@ -14,6 +14,7 @@ using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using NUnit.Framework.Interfaces;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -41,7 +42,7 @@ namespace Automation_Exercise.Test_Scripts
             //DriverHelper.Start(BrowserType.Chrome);
             ChromeOptions options = new ChromeOptions();
             options.AddArguments("--lang=en-US");
-           //options.AddArgument("--headless");
+            //options.AddArgument("--headless");
             driver = new ChromeDriver(options);
             driver.Manage().Window.Maximize();
             homePage = new HomePage(driver);
@@ -58,7 +59,7 @@ namespace Automation_Exercise.Test_Scripts
             contactUsPage = new ContactUsPage(driver);
             if (extent == null)
             {
-                var htmlReporter = new ExtentHtmlReporter(@"E:\QA\QA Automation\Projects\AutomationExercise\Automation Exercise\TestResults.html");
+                var htmlReporter = new ExtentHtmlReporter(@"..\..\..\Test Results\TestResults.html");
                 extent = new ExtentReports();
                 extent.AttachReporter(htmlReporter);
             }
@@ -87,10 +88,33 @@ namespace Automation_Exercise.Test_Scripts
             driver.Navigate().Back();
             }
         }
-       
+        [TearDown]
+        public void AfterTest()
+        {
+            // Get the test result and update the test status
+            var message = TestContext.CurrentContext.Result.Message;
+            var status = TestContext.CurrentContext.Result.Outcome.Status;
+            if (status == TestStatus.Failed)
+            {
+                test.Fail($"Test has failed {message}");
+            }
+            else if (status == TestStatus.Passed)
+            {
+                test.Pass($"Test has  passed {message}");
+            }
+            else if (status == TestStatus.Skipped)
+            {
+                test.Skip($"Test skipped {message}");
+            }
+
+            // End the test
+            extent.Flush();
+        }
         [OneTimeTearDown]
         public void Dispose()
         {
+            //TestEnd();
+            //ExtentReporting.EndReport();
             extent.Flush();
             driver.Dispose();
         }
