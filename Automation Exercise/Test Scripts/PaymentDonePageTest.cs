@@ -44,7 +44,7 @@ namespace Automation_Exercise.Test_Scripts
             paymentDonePage.DeleteDownloadedFile();
             paymentDonePage.DownloadInvoice();
             AdverticeHelper.CheckForAdvertice(driver);
-            paymentDonePage.AssertFileDownloadSuccessful();
+            paymentDonePage.AssertFileDownloadSuccessful(); //Change it to your browser download location.
             paymentDonePage.AssertFileContentIsCorrectly();
             BackToPreviusPage(driver);
             paymentDonePage.ContinueOrder();

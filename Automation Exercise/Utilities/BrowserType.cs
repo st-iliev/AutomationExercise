@@ -4,9 +4,6 @@
     {
         Chrome,
         Firefox,
-        Edge,
-        Safari,
-        Opera,
-        Brave      
+        Edge
     }
 }

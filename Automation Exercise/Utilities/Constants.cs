@@ -2,7 +2,7 @@
 {
     public static class Constants
     {
-        public const string downloadedFilePath = @"C:\Users\User\Downloads\invoice.txt";
+        public const string downloadedFilePath = @"C:\Users\User\Downloads\invoice.txt"; // For different browsers this path will be different.
         public const string choosenFilePath = @"C:\Downloads\validation.jpg";
         public const string expectedFileText = "Hi {0} {1}, Your total purchase amount is {2}. Thank you"; // {0} is firstName, {1} is lastName and {2} is order amount.     
         public const string title = "Mr";

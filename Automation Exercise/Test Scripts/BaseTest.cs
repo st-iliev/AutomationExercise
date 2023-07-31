@@ -15,6 +15,7 @@ using AventStack.ExtentReports;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using NUnit.Framework.Interfaces;
+using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -39,11 +40,9 @@ namespace Automation_Exercise.Test_Scripts
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            //DriverHelper.Start(BrowserType.Chrome);
-            ChromeOptions options = new ChromeOptions();
-            options.AddArguments("--lang=en-US");
-            //options.AddArgument("--headless");
-            driver = new ChromeDriver(options);
+            BrowserType browserType = BrowserType.Edge; // Change this to the desired browser
+
+            driver = DriverHelper.Start(browserType);
             driver.Manage().Window.Maximize();
             homePage = new HomePage(driver);
             productPage = new ProductPage(driver);
@@ -77,11 +76,13 @@ namespace Automation_Exercise.Test_Scripts
         }
         protected static void ScrollDown(IWebDriver driver, int pixels)
         {
+            //Scrolling down because to avoid ads.
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             jsExecutor.ExecuteScript($"window.scrollBy(0, {pixels});");
         }
         protected static void BackToPreviusPage(IWebDriver driver)
         {
+            //Using this method because in some cases every time ads are different.
             if (driver.Url.EndsWith("#google_vignette"))
             {
             driver.Navigate().Back();
@@ -113,9 +114,7 @@ namespace Automation_Exercise.Test_Scripts
         [OneTimeTearDown]
         public void Dispose()
         {
-            //TestEnd();
-            //ExtentReporting.EndReport();
-            extent.Flush();
+            extent.Flush(); //End report
             driver.Dispose();
         }
     }
