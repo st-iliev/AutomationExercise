@@ -1,4 +1,4 @@
-﻿using Automation_Exercise.Pages.ProductDetailsPage;
+﻿using Automation_Exercise.src.UI.Pages.ProductDetailsPage;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts

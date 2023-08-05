@@ -42,7 +42,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             BrowserType browserType = BrowserType.Edge; // Change this to the desired browser
 
-            driver = DriverHelper.Start(browserType);
+            driver = DriverHelper.Start(browserType); //To use headless mode uncomment it in this method.
             driver.Manage().Window.Maximize();
             homePage = new HomePage(driver);
             productPage = new ProductPage(driver);
