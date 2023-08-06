@@ -1,55 +1,75 @@
-﻿using System;
-using System.Net.Http;
-using System.Net.Http.Json;
-using System.Threading.Tasks;
+﻿using Automation_Exercise.src.API.Model;
+using Automation_Exercise.src.API.Utilities;
 using Newtonsoft.Json;
-using Refit;
+using RestSharp;
 
 public class ApiClient
 {
-    private readonly HttpClient httpClient;
+    private readonly RestClient restClient;
 
-    public ApiClient(string baseApiUrl)
+    public ApiClient()
     {
-        httpClient = new HttpClient { BaseAddress = new Uri(baseApiUrl) };
+        restClient = new RestClient(ConfigurationHelper.BaseUrl);
     }
 
-    public async Task<ApiResponse<TResponse>> SendAsync<TRequest, TResponse>(ApiRequest<TRequest> request)
+    private ApiResponse<TResponse> SendRequest<TRequest, TResponse>(ApiRequest<TRequest> request)
     {
-        try
+        var restRequest = new RestRequest(request.Endpoint, request.Method);
+        if (request.Method == Method.Post && request.Data == null)
         {
-            HttpResponseMessage response;
-
-            switch (request.Method.Method.ToUpper())
-            {
-                case "GET":
-                    response = await httpClient.GetAsync(request.Url);
-                    break;
-                case "POST":
-                    response = await httpClient.PostAsJsonAsync(request.Url, request.Data);
-                    break;
-                // Implement handling for other HTTP methods (PUT, DELETE) as needed
-                default:
-                    throw new ArgumentException($"Unsupported HTTP method: {request.Method}");
-            }
-
-            var apiResponse = new ApiResponse<TResponse>
-            {
-                StatusCode = response.StatusCode
-            };
-
-            if (response.IsSuccessStatusCode)
-            {
-                apiResponse.Data = await response.Content.ReadAsAsync<TResponse>();
-            }
-
-            return apiResponse;
+            restRequest.AddJsonBody("");
         }
-        catch (Exception ex)
+        else if (request.Method != Method.Get)
         {
-            // Handle any exceptions that may occur during the API request
-            // You can log the exception or perform any other actions based on your needs
-            throw;
+            var jsonRequestData = JsonConvert.SerializeObject(request.Data);
+            restRequest.AddParameter("application/json", jsonRequestData, ParameterType.RequestBody);
         }
+
+        var response = restClient.Execute<TResponse>(restRequest);
+        return new ApiResponse<TResponse>
+        {
+            StatusCode = (int)response.StatusCode,
+            Data = response.Data,
+            Message = response.Content
+        };
+    }
+
+    public ApiResponse<TResponse> Get<TResponse>(string endpoint)
+    {
+        var request = new ApiRequest<object>
+        {
+            Endpoint = endpoint,
+            Method = Method.Get
+        };
+        return SendRequest<object, TResponse>(request);
+    }
+    public ApiResponse<TResponse> Post<TRequest, TResponse>(string endpoint, TRequest data)
+    {
+        var request = new ApiRequest<TRequest>
+        {
+            Endpoint = endpoint,
+            Method = Method.Post,
+            Data = data
+        };
+        return SendRequest<TRequest, TResponse>(request);
+    }
+    public ApiResponse<TResponse> Put<TRequest, TResponse>(string endpoint, TRequest data)
+    {
+        var request = new ApiRequest<TRequest>
+        {
+            Endpoint = endpoint,
+            Method = Method.Put,
+            Data = data
+        };
+        return SendRequest<TRequest, TResponse>(request);
+    }
+    public ApiResponse<TResponse> Delete<TResponse>(string endpoint)
+    {
+        var request = new ApiRequest<object>
+        {
+            Endpoint = endpoint,
+            Method = Method.Delete
+        };
+        return SendRequest<object, TResponse>(request);
     }
 }

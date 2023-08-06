@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Automation_Exercise.src.API.Responses
+﻿namespace Automation_Exercise.src.API.Responses
 {
-    internal class ProductResponse
+    public class ProductResponse
     {
+        public int ResponseCode { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

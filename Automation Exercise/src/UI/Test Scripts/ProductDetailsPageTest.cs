@@ -1,4 +1,4 @@
-﻿using Automation_Exercise.src.UI.Pages.ProductDetailsPage;
+﻿using Automation_Exercise.Pages.ProductDetailsPage;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
@@ -7,6 +7,7 @@ namespace Automation_Exercise.Test_Scripts
     [Order(6)]
     public class ProductDetailsPageTest : BaseTest
     {
+        private ReviewForm form;
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -18,8 +19,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
-        }
-        private ReviewForm form;
+        }      
         [Test, Order(1)]
         public void VerifySuccessfulSubscribe()
         {

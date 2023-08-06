@@ -1,4 +1,4 @@
-﻿using Automation_Exercise.src.UI.Pages.PaymentPage;
+﻿using Automation_Exercise.Pages.PaymentPage;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts

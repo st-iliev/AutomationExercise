@@ -29,7 +29,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="src\API\Tests\" />
     <Folder Include="src\API\Requests\" />
     <Folder Include="src\Common\Utilities\" />
   </ItemGroup>

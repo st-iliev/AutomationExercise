@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Newtonsoft.Json;
 
 namespace Automation_Exercise.src.API.Model
 {
-    internal class ApiResponse
+    public class ApiResponse<TResponse>
     {
+        public int StatusCode { get; set; }
+        public TResponse Data { get; set; }
+        public string? Message { get; set; }  
     }
 }

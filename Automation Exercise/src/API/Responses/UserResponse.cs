@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Automation_Exercise.src.API.Responses
 {
-    internal class UserResponse
+    public class UserResponse
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
     }
 }

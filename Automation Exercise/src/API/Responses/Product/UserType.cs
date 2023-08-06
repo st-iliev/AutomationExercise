@@ -2,5 +2,6 @@
 {
     public class UserType
     {
+        public string UserTypeValue { get; set; }
     }
 }

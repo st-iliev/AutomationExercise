@@ -1,5 +1,4 @@
 ﻿using Automation_Exercise.Utilities;
-using NUnit.Framework;
 
 namespace Automation_Exercise.Test_Scripts
 {

@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using RestSharp;
 
 namespace Automation_Exercise.src.API.Model
 {
-    internal class ApiRequest
+    public class ApiRequest<TRequest>
     {
+        public string Endpoint { get; set; }
+        public Method Method { get; set; }
+        public TRequest Data { get; set; }
     }
 }
