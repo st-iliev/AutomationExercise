@@ -14,18 +14,9 @@ public class ApiClient
 
     private ApiResponse<TResponse> SendRequest<TRequest, TResponse>(ApiRequest<TRequest> request)
     {
-        var restRequest = new RestRequest(request.Endpoint, request.Method);
-        if (request.Method == Method.Post && request.Data == null)
-        {
-            restRequest.AddJsonBody("");
-        }
-        else if (request.Method != Method.Get)
-        {
-            var jsonRequestData = JsonConvert.SerializeObject(request.Data);
-            restRequest.AddParameter("application/json", jsonRequestData, ParameterType.RequestBody);
-        }
-
+        var restRequest = CreateRestRequest(request);
         var response = restClient.Execute<TResponse>(restRequest);
+
         return new ApiResponse<TResponse>
         {
             StatusCode = (int)response.StatusCode,
@@ -33,7 +24,28 @@ public class ApiClient
             Message = response.Content
         };
     }
+    private RestRequest CreateRestRequest<TRequest>(ApiRequest<TRequest> apiRequest)
+    {
+        var restRequest = new RestRequest(apiRequest.Endpoint, apiRequest.Method);
 
+        if (apiRequest.Method != Method.Get)
+        {
+            if (apiRequest.Data != null)
+            {
+                restRequest.AddJsonBody((object)apiRequest.Data);
+            }
+
+            if (apiRequest.Parameters != null)
+            {
+                foreach (var parameter in apiRequest.Parameters)
+                {
+                    restRequest.AddParameter(parameter.Name, parameter.Value, ParameterType.RequestBody);
+                }
+            }
+        }
+
+        return restRequest;
+    }
     public ApiResponse<TResponse> Get<TResponse>(string endpoint)
     {
         var request = new ApiRequest<object>
@@ -43,16 +55,24 @@ public class ApiClient
         };
         return SendRequest<object, TResponse>(request);
     }
-    public ApiResponse<TResponse> Post<TRequest, TResponse>(string endpoint, TRequest data)
+
+    public ApiResponse<TResponse> Post<TRequest, TResponse>(string endpoint, TRequest data, List<ApiParameter> parameters = null)
     {
-        var request = new ApiRequest<TRequest>
+        var request = new ApiRequest<object>
         {
             Endpoint = endpoint,
             Method = Method.Post,
-            Data = data
+            Data = data,
         };
-        return SendRequest<TRequest, TResponse>(request);
+        if (parameters != null && parameters.Count > 0)
+        {
+            var jsonParameters = JsonConvert.SerializeObject(parameters);
+            request.Data = jsonParameters;
+        }
+
+        return SendRequest<object, TResponse>(request);
     }
+
     public ApiResponse<TResponse> Put<TRequest, TResponse>(string endpoint, TRequest data)
     {
         var request = new ApiRequest<TRequest>
@@ -63,6 +83,7 @@ public class ApiClient
         };
         return SendRequest<TRequest, TResponse>(request);
     }
+
     public ApiResponse<TResponse> Delete<TResponse>(string endpoint)
     {
         var request = new ApiRequest<object>
@@ -72,4 +93,5 @@ public class ApiClient
         };
         return SendRequest<object, TResponse>(request);
     }
+   
 }

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-
-namespace Automation_Exercise.src.API.Model
+﻿namespace Automation_Exercise.src.API.Model
 {
     public class ApiResponse<TResponse>
     {

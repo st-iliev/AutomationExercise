@@ -5,17 +5,19 @@ namespace Automation_Exercise.src.API.Tests
     public class ProductTests
     {
         private ApiClient apiClient;
+        private string endpoint;
 
         [SetUp]
         public void TestSetup()
         {
             apiClient = new ApiClient();
+            endpoint = "/api/productsList";
         }
         [Test]
         public void Get_AllProduct()
         {
             // Act
-            var response = apiClient.Get<ProductResponse>("/api/productsList");
+            var response = apiClient.Get<ProductResponse>(endpoint);
 
             // Assert
             Assert.NotNull(response);
@@ -27,7 +29,7 @@ namespace Automation_Exercise.src.API.Tests
         public void Post_AllProduct()
         {
             // Act
-            var response = apiClient.Post<object, ProductResponse>("/api/productsList",null);
+            var response = apiClient.Post<object, ProductResponse>(endpoint, null);
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
