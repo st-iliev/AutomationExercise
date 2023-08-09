@@ -6,6 +6,7 @@ namespace Automation_Exercise.src.API.Tests
     {
         private ApiClient apiClient;
         private string endpoint;
+        private Dictionary<string, string> parameters;
 
         [SetUp]
         public void TestSetup()
@@ -29,7 +30,7 @@ namespace Automation_Exercise.src.API.Tests
         public void Post_AllProduct()
         {
             // Act
-            var response = apiClient.Post<object, ProductResponse>(endpoint, null);
+            var response = apiClient.Post<object, ProductResponse>(endpoint, null, parameters);
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);

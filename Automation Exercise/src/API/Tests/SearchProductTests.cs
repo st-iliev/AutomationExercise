@@ -9,6 +9,7 @@ namespace Automation_Exercise.src.API.Tests
     {
         private ApiClient apiClient;
         private string endpoint;
+        private Dictionary<string, string> parameters;
 
         [OneTimeSetUp]
         public void TestSetup()
@@ -16,14 +17,14 @@ namespace Automation_Exercise.src.API.Tests
             apiClient = new ApiClient();
             endpoint = "/api/searchProduct";
         }
-        [TestCase("search_product","Dress")]
-        public void Post_SearchExistsProduct(string parameter,string value)
+        [TestCase("search_product", "Dress")]
+        public void Post_SearchExistsProduct(string parameter, string value)
         {
             // Arrange
-            var parameters = new List<ApiParameter>
+            var parameters = new Dictionary<string, string>
             {
-                new ApiParameter { Name = parameter, Value = "Dress" }
-             };
+                {parameter,value }
+            };
             // Act
             var response = apiClient.Post<SearchRequest, ProductResponse>(
                endpoint, null, parameters);
@@ -41,7 +42,7 @@ namespace Automation_Exercise.src.API.Tests
         public void Post_SearchProductWithoutParameter()
         {
             // Act
-            var response = apiClient.Post<object, BrandResponse>(endpoint, null);
+            var response = apiClient.Post<object, BrandResponse>(endpoint, null, parameters);
 
             // Assert
             Assert.NotNull(response);

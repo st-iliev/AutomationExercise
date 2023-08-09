@@ -6,6 +6,7 @@ namespace Automation_Exercise.src.API.Tests
     {
         private ApiClient apiClient;
         private string endpoint;
+        private Dictionary<string, string> parameters;
 
         [SetUp]
         public void TestSetup()
@@ -34,7 +35,7 @@ namespace Automation_Exercise.src.API.Tests
         public void Post_AllBrands()
         {
             // Act
-            var response = apiClient.Post<object,BrandResponse>(endpoint, null);
+            var response = apiClient.Post<object,BrandResponse>(endpoint, null, parameters);
 
             // Assert
             Assert.NotNull(response);

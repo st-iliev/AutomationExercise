@@ -34,13 +34,12 @@ public class ApiClient
             {
                 restRequest.AddJsonBody((object)apiRequest.Data);
             }
-
-            if (apiRequest.Parameters != null)
+        }
+        if (apiRequest.Parameter != null)
+        {
+            foreach (var parameter in apiRequest.Parameter)
             {
-                foreach (var parameter in apiRequest.Parameters)
-                {
-                    restRequest.AddParameter(parameter.Name, parameter.Value, ParameterType.RequestBody);
-                }
+                restRequest.AddParameter(parameter.Key, parameter.Value);
             }
         }
 
@@ -55,22 +54,16 @@ public class ApiClient
         };
         return SendRequest<object, TResponse>(request);
     }
-
-    public ApiResponse<TResponse> Post<TRequest, TResponse>(string endpoint, TRequest data, List<ApiParameter> parameters = null)
+    public ApiResponse<TResponse> Post<TRequest, TResponse>(string endpoint, TRequest data, Dictionary<string, string> parameters = null)
     {
-        var request = new ApiRequest<object>
+        var request = new ApiRequest<TRequest>
         {
             Endpoint = endpoint,
             Method = Method.Post,
             Data = data,
+            Parameter = parameters
         };
-        if (parameters != null && parameters.Count > 0)
-        {
-            var jsonParameters = JsonConvert.SerializeObject(parameters);
-            request.Data = jsonParameters;
-        }
-
-        return SendRequest<object, TResponse>(request);
+        return SendRequest<TRequest, TResponse>(request);
     }
 
     public ApiResponse<TResponse> Put<TRequest, TResponse>(string endpoint, TRequest data)
@@ -84,12 +77,13 @@ public class ApiClient
         return SendRequest<TRequest, TResponse>(request);
     }
 
-    public ApiResponse<TResponse> Delete<TResponse>(string endpoint)
+    public ApiResponse<TResponse> Delete<TResponse>(string endpoint,Dictionary<string, string> parameters = null)
     {
         var request = new ApiRequest<object>
         {
             Endpoint = endpoint,
-            Method = Method.Delete
+            Method = Method.Delete,
+            Parameter = parameters
         };
         return SendRequest<object, TResponse>(request);
     }

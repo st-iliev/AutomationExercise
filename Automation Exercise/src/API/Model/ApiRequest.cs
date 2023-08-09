@@ -7,6 +7,6 @@ namespace Automation_Exercise.src.API.Model
         public string Endpoint { get; set; }
         public Method Method { get; set; }
         public TRequest Data { get; set; }
-        public List<ApiParameter> Parameters { get; set; }
+        public Dictionary<string,string> Parameter { get; set; }
     }
 }
