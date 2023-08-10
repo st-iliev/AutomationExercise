@@ -1,10 +1,4 @@
-﻿using Automation_Exercise.src.API.Requests;
-using Automation_Exercise.src.API.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Automation_Exercise.src.API.Responses;
 
 namespace Automation_Exercise.src.API.Tests
 {
@@ -25,11 +19,11 @@ namespace Automation_Exercise.src.API.Tests
             // Arrange
             var parameters = new Dictionary<string, string>
             {
-                {"email","justfortest777@abv.bg" },
-                {"password", "testqa1" }
+                {"email","justfortest777@abv.bg"},
+                {"password","testqa1"}
             };
             // Act
-            var response = apiClient.Delete<UserResponse>(
+            var response = apiClient.Delete<string>(
                endpoint,parameters);
 
             // Assert

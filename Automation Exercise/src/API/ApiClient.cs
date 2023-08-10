@@ -45,12 +45,13 @@ public class ApiClient
 
         return restRequest;
     }
-    public ApiResponse<TResponse> Get<TResponse>(string endpoint)
+    public ApiResponse<TResponse> Get<TResponse>(string endpoint, Dictionary<string, string> parameters = null)
     {
         var request = new ApiRequest<object>
         {
             Endpoint = endpoint,
-            Method = Method.Get
+            Method = Method.Get,
+            Parameter = parameters
         };
         return SendRequest<object, TResponse>(request);
     }
