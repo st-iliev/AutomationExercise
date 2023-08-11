@@ -26,7 +26,7 @@ namespace Automation_Exercise.src.API.Tests
             account = new CreateAccountRequest();
             endpoint = "/api/createAccount";
         }
-        [Test]
+        [Test,Order(1)]
         public void Post_RegisterNewUser()
         {
             //Arrange
@@ -59,7 +59,7 @@ namespace Automation_Exercise.src.API.Tests
             Assert.AreEqual(200, response.StatusCode);
             Assert.AreEqual("{\"responseCode\": 201, \"message\": \"User created!\"}", response.Message);
         }
-        [Test]
+        [Test,Order(2)]
         public void Post_RegisterExistsUser()
         {
             //Arrange

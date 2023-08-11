@@ -17,25 +17,24 @@ namespace Automation_Exercise.src.API.Tests
             apiClient = new ApiClient();
             endpoint = "/api/searchProduct";
         }
-        [TestCase("search_product", "Dress")]
-        public void Post_SearchExistsProduct(string parameter, string value)
+        [Test]
+        public void Post_SearchExistsProduct()
         {
             // Arrange
             var parameters = new Dictionary<string, string>
             {
-                {parameter,value }
+                {"search_product", "Dress" }
             };
             // Act
             var response = apiClient.Post<SearchRequest, ProductResponse>(
                endpoint, null, parameters);
-
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
             Assert.That(response.Data.Products.Count, Is.GreaterThan(0));
             foreach (var product in response.Data.Products)
             {
-                Assert.That(product.Category.Category.Contains(value));
+                Assert.That(product.Category.Category.Contains("Dress"));
             }
         }
         [Test]

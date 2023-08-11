@@ -1,10 +1,7 @@
-﻿using Automation_Exercise.src.API.Requests;
+﻿using Automation_Exercise.src.API.Model;
+using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Refit;
 
 namespace Automation_Exercise.src.API.Tests
 {
@@ -24,19 +21,19 @@ namespace Automation_Exercise.src.API.Tests
         public void Get_UserAccountByEmail()
         {
             // Arrange
-            var parameters = new Dictionary<string, string>
+            parameters = new Dictionary<string, string>
             {
                 {"email","justfortest777@abv.bg"}
             };
             // Act
-            var response = apiClient.Get<User>(
+            var response = apiClient.Get<UserResponse>(
                endpoint,parameters);
 
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.NotNull(response.Data.Id);
-            Assert.AreEqual("Mat", response.Data.Name);
+            Assert.NotNull(response.Data.User.Id);
+            Assert.AreEqual("justfortest777@abv.bg", response.Data.User.Email);
         }
     }
 }

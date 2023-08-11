@@ -24,7 +24,7 @@ namespace Automation_Exercise.src.API.Tests
         public void Post_LoginWithValidCredentials()
         {
             // Arrange
-            var parameters = new Dictionary<string, string>
+            parameters = new Dictionary<string, string>
             {
                 {"email","justfortest777@abv.bg" },
                 {"password", "testqa1" }
@@ -42,7 +42,7 @@ namespace Automation_Exercise.src.API.Tests
         public void Post_LoginWithMissingCredentials()
         {
             // Arrange
-            var parameters = new Dictionary<string, string>
+            parameters = new Dictionary<string, string>
             {
               {"password", "testqa1" }
             };
@@ -56,22 +56,22 @@ namespace Automation_Exercise.src.API.Tests
             Assert.AreEqual("{\"responseCode\": 400, \"message\": \"Bad request, email or password parameter is missing in POST request.\"}", response.Message);
         }
         [Test]
-        public void Delete_LoginWithInvalidCredentials()
+        public void Post_LoginWithInvalidCredentials()
         {
             // Arrange
-            var parameters = new Dictionary<string, string>
+            parameters = new Dictionary<string, string>
             {
                {"email","here@gmail.com" },
-                {"password", "testqa1" }
+               {"password", "testqa1" }
             };
             // Act
-            var response = apiClient.Delete<UserResponse>(
-               endpoint,parameters);
+            var response = apiClient.Post<LoginRequest,UserResponse>(
+               endpoint,null,parameters);
 
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 405, \"message\": \"This request method is not supported.\"}", response.Message);
+            Assert.AreEqual("{\"responseCode\": 404, \"message\": \"User not found!\"}", response.Message);
         }
         
     }
