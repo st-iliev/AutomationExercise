@@ -1,7 +1,6 @@
-﻿
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 
-namespace Automation_Exercise.src.API.Requests
+namespace Automation_Exercise.src.API.Responses.User
 {
     public class User
     {
@@ -40,6 +39,6 @@ namespace Automation_Exercise.src.API.Requests
         public string City { get; set; }
         [JsonProperty("mobile_numbe")]
         public string Mobile_Number { get; set; }
-       
+
     }
 }

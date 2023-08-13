@@ -1,44 +1,39 @@
-﻿using Automation_Exercise.src.API.Model;
-using Automation_Exercise.src.API.Requests;
-using Automation_Exercise.src.API.Responses;
-using RestSharp;
+﻿using Automation_Exercise.src.API.Responses;
 
 namespace Automation_Exercise.src.API.Tests
 {
+    [TestFixture, Order(8)]
     public class DeleteAccountTests
     {
-        private RestClient _client;
+        private ApiClient apiClient;
+        private string endpoint;
+        private Dictionary<string, string> parameters;
 
         [SetUp]
-        public void Setup()
+        public void TestSetup()
         {
-            // Set up the base URL for the API
-            _client = new RestClient("https://www.automationexercise.com");
+            apiClient = new ApiClient();
+            endpoint = "/api/deleteAccount";
         }
-
         [Test]
-        public void TestDeleteAccount()
+        public void Delete_DeleteAccount()
         {
-            var request = new RestRequest("/api/deleteAccount", Method.Delete);
-            request.AddHeader("Content-Type", "application/x-www-form-urlencoded");
 
-            var bodyParameters = new Dictionary<string, string>
-{
-    { "email", "justfortest777@abv.bg" },
-    { "password", "testqa1" }
-};
-
-            foreach (var param in bodyParameters)
+            // Arrange
+            parameters = new Dictionary<string, string>
             {
-                request.AddParameter(param.Key, param.Value);
-            }
+                {"email","justfortest777@abv.bg" },
+                {"password", "testqa1" }
+            };
+            // Act
+            var response = apiClient.Delete<DeleteAccountResponse>(
+               endpoint,parameters);
 
-            var response = _client.Execute(request);
-
-            Assert.AreEqual(200, (int)response.StatusCode);
-            Assert.AreEqual("asdasd", response.Content.ToString());
-            // You can add more assertions based on the expected response from the API
+            // Assert
+            Assert.NotNull(response);
+            Assert.AreEqual(200, response.StatusCode);
         }
+
 
     }
 }

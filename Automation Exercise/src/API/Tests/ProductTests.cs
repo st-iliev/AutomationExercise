@@ -1,7 +1,9 @@
 ﻿using Automation_Exercise.src.API.Responses;
+using System.Net;
+
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture]
+    [TestFixture,Order(2)]
     public class ProductTests
     {
         private ApiClient apiClient;
@@ -34,8 +36,8 @@ namespace Automation_Exercise.src.API.Tests
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 405, \"message\": \"This request method is not supported.\"}", response.Message);
-            
+            Assert.AreEqual(HttpStatusCode.MethodNotAllowed, response.Data.ResponseCode);
+            Assert.AreEqual("This request method is not supported.", response.Data.Message);
         }
     }
 }

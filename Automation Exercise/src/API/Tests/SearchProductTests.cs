@@ -2,9 +2,11 @@
 using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
 using Automation_Exercise.src.API.Responses.Brand;
+using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
+    [TestFixture,Order(1)]
     public class SearchProductTests
     {
         private ApiClient apiClient;
@@ -46,7 +48,8 @@ namespace Automation_Exercise.src.API.Tests
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 400, \"message\": \"Bad request, search_product parameter is missing in POST request.\"}", response.Message);
+            Assert.AreEqual(HttpStatusCode.BadRequest, response.Data.ResponseCode);
+            Assert.AreEqual("Bad request, search_product parameter is missing in POST request.", response.Data.Message);
         }
     }
 }

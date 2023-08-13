@@ -1,13 +1,10 @@
 ﻿using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
+    [TestFixture, Order(5)]
     public  class LoginTests
     {
         private ApiClient apiClient;
@@ -30,13 +27,14 @@ namespace Automation_Exercise.src.API.Tests
                 {"password", "testqa1" }
             };
             // Act
-            var response = apiClient.Post<object, UserResponse>(
+            var response = apiClient.Post<LoginRequest, LoginResponse>(
                endpoint, null, parameters);
 
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 200, \"message\": \"User exists!\"}", response.Message);
+            Assert.AreEqual(HttpStatusCode.OK, response.Data.ResponseCode);
+            Assert.AreEqual("User exists!", response.Data.Message);
         }
         [Test]
         public void Post_LoginWithMissingCredentials()
@@ -47,13 +45,14 @@ namespace Automation_Exercise.src.API.Tests
               {"password", "testqa1" }
             };
             // Act
-            var response = apiClient.Post<object, UserResponse>(
+            var response = apiClient.Post<LoginRequest, LoginResponse>(
                endpoint, null, parameters);
 
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 400, \"message\": \"Bad request, email or password parameter is missing in POST request.\"}", response.Message);
+            Assert.AreEqual(HttpStatusCode.BadRequest, response.Data.ResponseCode);
+            Assert.AreEqual("Bad request, email or password parameter is missing in POST request.", response.Data.Message);
         }
         [Test]
         public void Post_LoginWithInvalidCredentials()
@@ -65,13 +64,14 @@ namespace Automation_Exercise.src.API.Tests
                {"password", "testqa1" }
             };
             // Act
-            var response = apiClient.Post<LoginRequest,UserResponse>(
+            var response = apiClient.Post<LoginRequest, LoginResponse>(
                endpoint,null,parameters);
 
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 404, \"message\": \"User not found!\"}", response.Message);
+            Assert.AreEqual(HttpStatusCode.NotFound, response.Data.ResponseCode);
+            Assert.AreEqual("User not found!", response.Data.Message);
         }
         
     }

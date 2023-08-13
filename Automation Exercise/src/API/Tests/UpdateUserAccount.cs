@@ -1,8 +1,10 @@
 ﻿using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
+using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
+    [TestFixture, Order(6)]
     public class UpdateUserAccount
     {
         private ApiClient apiClient;
@@ -41,13 +43,14 @@ namespace Automation_Exercise.src.API.Tests
                 {"mobile_number","+397114779" },
             };
             // Act
-            var response = apiClient.Put<SearchRequest, ProductResponse>(
+            var response = apiClient.Put<CreateAccountRequest, UpdateUserResponse>(
                endpoint, null, parameters);
 
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 200, \"message\": \"User updated!\"}", response.Message);
+            Assert.AreEqual(HttpStatusCode.OK, response.Data.ResponseCode);
+            Assert.AreEqual("User updated!", response.Data.Message);
         }
     }
 }

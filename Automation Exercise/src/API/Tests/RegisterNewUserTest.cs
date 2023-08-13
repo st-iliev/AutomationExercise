@@ -1,18 +1,10 @@
-﻿using Automation_Exercise.src.API.Model;
-using Automation_Exercise.src.API.Requests;
+﻿using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
-using RestSharp;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Reflection.Metadata;
-using System.Text;
-using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Automation_Exercise.src.API.Tests
 {
+    [TestFixture, Order(4)]
     public class RegisterNewUserTest
     {
         private ApiClient apiClient;
@@ -51,13 +43,14 @@ namespace Automation_Exercise.src.API.Tests
                 {"mobile_number","+365895874" },
             };
             // Act
-            var response = apiClient.Post<SearchRequest, ProductResponse>(
+            var response = apiClient.Post<CreateAccountRequest, CreateUserResponse>(
                endpoint, null, parameters);
 
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 201, \"message\": \"User created!\"}", response.Message);
+            Assert.AreEqual(HttpStatusCode.Created, response.Data.ResponseCode);
+            Assert.AreEqual("User created!", response.Data.Message);
         }
         [Test,Order(2)]
         public void Post_RegisterExistsUser()
@@ -80,13 +73,14 @@ namespace Automation_Exercise.src.API.Tests
 
             };
             // Act
-            var response = apiClient.Post<SearchRequest, ProductResponse>(
+            var response = apiClient.Post<CreateAccountRequest, CreateUserResponse>(
                endpoint, null, parameters);
 
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
-            Assert.AreEqual("{\"responseCode\": 400, \"message\": \"Email already exists!\"}", response.Message);
+            Assert.AreEqual(HttpStatusCode.BadRequest, response.Data.ResponseCode);
+            Assert.AreEqual("Email already exists!", response.Data.Message);
         }
     }
 }

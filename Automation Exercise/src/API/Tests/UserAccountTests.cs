@@ -1,10 +1,9 @@
-﻿using Automation_Exercise.src.API.Model;
-using Automation_Exercise.src.API.Requests;
-using Automation_Exercise.src.API.Responses;
-using Refit;
+﻿using Automation_Exercise.src.API.Responses.User;
+using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
+    [TestFixture, Order(7)]
     public class UserAccountTests
     {
         private ApiClient apiClient;
@@ -32,6 +31,7 @@ namespace Automation_Exercise.src.API.Tests
             // Assert
             Assert.NotNull(response);
             Assert.AreEqual(200, response.StatusCode);
+            Assert.AreEqual(HttpStatusCode.OK, response.Data.ResponseCode);
             Assert.NotNull(response.Data.User.Id);
             Assert.AreEqual("justfortest777@abv.bg", response.Data.User.Email);
         }
