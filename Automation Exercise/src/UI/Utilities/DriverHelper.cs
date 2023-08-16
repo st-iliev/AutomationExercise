@@ -2,7 +2,6 @@
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
-using OpenQA.Selenium.Safari;
 
 
 namespace Automation_Exercise.Utilities
@@ -18,7 +17,7 @@ namespace Automation_Exercise.Utilities
                 case BrowserType.Chrome:
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArguments("--lang=en-US");
-                    //chromeOptions.AddArgument("--headless");
+                    chromeOptions.AddArgument("--headless");
                     return driver = new ChromeDriver(chromeOptions);
                 case BrowserType.Firefox:
                     var mozillaOptions = new FirefoxOptions();

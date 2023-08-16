@@ -1,24 +1,27 @@
-﻿using Automation_Exercise.src.API.Responses.Brand;
-using System.Net;
+﻿using System.Net;
+using Automation_Exercise.src.API.Responses.Brand;
+using Automation_Exercise.src.API.Utilities;
+using AventStack.ExtentReports.Model;
+using NUnit.Framework.Internal;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(3)]
-    public class BrandTests
+    [TestFixture, Order(14)]
+    public class BrandTests : ExtentReport
     {
-        private ApiClient apiClient;
         private string endpoint;
         private Dictionary<string, string> parameters;
-
-        [SetUp]
-        public void TestSetup()
+        [OneTimeSetUp] 
+        public void OneTIme() 
         {
+            suiteTest = extent.CreateTest("Brand Test");
             apiClient = new ApiClient();
             endpoint = "/api/brandsList";
         }
         [Test]
         public void Get_AllBrands()
         {
+            test = suiteTest.CreateNode("Test Get All Brands.");
             // Act
             var response = apiClient.Get<BrandResponse>(endpoint);
 
@@ -36,8 +39,9 @@ namespace Automation_Exercise.src.API.Tests
         [Test]
         public void Post_AllBrands()
         {
+           test = suiteTest.CreateNode("Test Post All Brands.");
             // Act
-            var response = apiClient.Post<object,BrandResponse>(endpoint, null, parameters);
+            var response = apiClient.Post<object, BrandResponse>(endpoint, null, parameters);
 
             // Assert
             Assert.NotNull(response);
@@ -49,6 +53,7 @@ namespace Automation_Exercise.src.API.Tests
         [Test]
         public void Put_AllBrands()
         {
+            test = suiteTest.CreateNode("Test Put All Brands.");
             // Act
             var response = apiClient.Put<object, BrandResponse>(endpoint, null);
 
@@ -58,5 +63,6 @@ namespace Automation_Exercise.src.API.Tests
             Assert.AreEqual(HttpStatusCode.MethodNotAllowed, response.Data.ResponseCode);
             Assert.AreEqual("This request method is not supported.", response.Data.Message);
         }
+        
     }
 }

@@ -1,30 +1,31 @@
 ﻿using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
+using Automation_Exercise.src.API.Utilities;
 using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(5)]
-    public  class LoginTests
+    [TestFixture, Order(16)]
+    public  class LoginTests : ExtentReport
     {
-        private ApiClient apiClient;
         private string endpoint;
         private Dictionary<string, string> parameters;
-
-        [SetUp]
-        public void TestSetup()
+        [OneTimeSetUp]
+        public void OneTIme()
         {
+            suiteTest = extent.CreateTest("Login Test");
             apiClient = new ApiClient();
             endpoint = "/api/verifyLogin";
         }
         [Test]
         public void Post_LoginWithValidCredentials()
         {
+            test = suiteTest.CreateNode("Test Post Login With Valid Credentials.");
             // Arrange
             parameters = new Dictionary<string, string>
             {
-                {"email","justfortest777@abv.bg" },
-                {"password", "testqa1" }
+                {"email",ConfigurationHelper.Email },
+                {"password", ConfigurationHelper.Password }
             };
             // Act
             var response = apiClient.Post<LoginRequest, LoginResponse>(
@@ -39,10 +40,11 @@ namespace Automation_Exercise.src.API.Tests
         [Test]
         public void Post_LoginWithMissingCredentials()
         {
+            test = suiteTest.CreateNode("Test Post Login With Missing Credentials.");
             // Arrange
             parameters = new Dictionary<string, string>
             {
-              {"password", "testqa1" }
+              {"password", ConfigurationHelper.Password }
             };
             // Act
             var response = apiClient.Post<LoginRequest, LoginResponse>(
@@ -57,11 +59,12 @@ namespace Automation_Exercise.src.API.Tests
         [Test]
         public void Post_LoginWithInvalidCredentials()
         {
+            test = suiteTest.CreateNode("Test Post Login With Invalid Credentials.");
             // Arrange
             parameters = new Dictionary<string, string>
             {
                {"email","here@gmail.com" },
-               {"password", "testqa1" }
+               {"password", ConfigurationHelper.Password }
             };
             // Act
             var response = apiClient.Post<LoginRequest, LoginResponse>(

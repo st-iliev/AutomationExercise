@@ -23,6 +23,7 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyNavigationLinksArePresentAndFunctioningCorrectly()
         {
             test = suiteTest.CreateNode("Test All navigation links are displayed and works correct");
+            test.AssignCategory("UI Tests");
             homePage.AssertNavigationLinksArePresent();
         }
         [Test, Order(2)]
@@ -35,6 +36,7 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyClickingOnArrowsSwitchCarouselContentImageAndActiveIndicator(string side)
         {
             test = suiteTest.CreateNode("Test Using side arrows works correctly");
+            test.AssignCategory("UI Tests");
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
             homePage.ClickOnArrow(side);
@@ -49,6 +51,7 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyClickingOnIndicatorsSwitchCarouselContentImageAndActiveIndicator(string indicator)
         {
             test = suiteTest.CreateNode("Test Using indicators works correctly");
+            test.AssignCategory("UI Tests");
             homePage.ClickOnIndicators(indicator);
             homePage.AssertCorrectCarouselTextsAreDisplayed();
             homePage.AssertImageSwitched();
@@ -96,7 +99,7 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyNumberOfBrandProductIsSameAsBrandProductCount(Brands brandName)
         {
             test = suiteTest.CreateNode("Test Number of BrandProducts is same as BrandProducts count");
-            ScrollDown(driver,1500);
+            ScrollDown(driver,1200);
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
         [Test, Order(6)]

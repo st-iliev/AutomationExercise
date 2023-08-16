@@ -2,20 +2,20 @@
 using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
 using Automation_Exercise.src.API.Responses.Brand;
+using Automation_Exercise.src.API.Utilities;
 using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture,Order(1)]
-    public class SearchProductTests
+    [TestFixture, Order(12)]
+    public class SearchProductTests : ExtentReport
     {
-        private ApiClient apiClient;
         private string endpoint;
         private Dictionary<string, string> parameters;
-
         [OneTimeSetUp]
-        public void TestSetup()
+        public void OneTime()
         {
+            suiteTest = extent.CreateTest("Search Product Test");
             apiClient = new ApiClient();
             endpoint = "/api/searchProduct";
         }
@@ -23,6 +23,7 @@ namespace Automation_Exercise.src.API.Tests
         public void Post_SearchExistsProduct()
         {
             // Arrange
+            test = suiteTest.CreateNode("Test Search Exists Product.");
             var parameters = new Dictionary<string, string>
             {
                 {"search_product", "Dress" }
@@ -43,6 +44,7 @@ namespace Automation_Exercise.src.API.Tests
         public void Post_SearchProductWithoutParameter()
         {
             // Act
+            test = suiteTest.CreateNode("Test Search Product Without Parameter.");
             var response = apiClient.Post<object, BrandResponse>(endpoint, null, parameters);
 
             // Assert

@@ -1,32 +1,34 @@
 ﻿using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
+using Automation_Exercise.src.API.Utilities;
 using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(4)]
-    public class RegisterNewUserTest
+    [TestFixture, Order(15)]
+    public class RegisterNewUserTest : ExtentReport
     {
-        private ApiClient apiClient;
         private string endpoint;
         private CreateAccountRequest account;
-
-        [SetUp]
-        public void TestSetup()
+        [OneTimeSetUp]
+        public void OneTime()
         {
+            suiteTest = extent.CreateTest("Register New User Test");
             apiClient = new ApiClient();
             account = new CreateAccountRequest();
             endpoint = "/api/createAccount";
         }
+     
         [Test,Order(1)]
         public void Post_RegisterNewUser()
         {
+            test = suiteTest.CreateNode("Test Post Register New User.");
             //Arrange
             var parameters = new Dictionary<string, string>
             {
                 {"name","Mat" },
-                {"email","justfortest777@abv.bg" },
-                {"password","testqa1" },
+                {"email",ConfigurationHelper.Email },
+                {"password",ConfigurationHelper.Password },
                 {"title","Mr" },
                 {"birth_date","10" },
                 {"birth_month","may" },
@@ -55,12 +57,13 @@ namespace Automation_Exercise.src.API.Tests
         [Test,Order(2)]
         public void Post_RegisterExistsUser()
         {
+            test = suiteTest.CreateNode("Test Register Exists User.");
             //Arrange
             var parameters = new Dictionary<string, string>
             {
                 {"name","Mat" },
-                {"email","justfortest777@abv.bg" },
-                {"password","testqa1" },
+                {"email",ConfigurationHelper.Email },
+                {"password",ConfigurationHelper.Password },
                 {"firstname","Matthew" },
                 {"lastname","Tudor" },
                 {"company","Space Z" },

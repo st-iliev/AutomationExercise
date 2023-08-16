@@ -1,24 +1,25 @@
 ﻿using Automation_Exercise.src.API.Responses;
+using Automation_Exercise.src.API.Utilities;
 using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture,Order(2)]
-    public class ProductTests
+    [TestFixture ,Order(13)]
+    public class ProductTests : ExtentReport
     {
-        private ApiClient apiClient;
         private string endpoint;
         private Dictionary<string, string> parameters;
-
-        [SetUp]
-        public void TestSetup()
+        [OneTimeSetUp]
+        public void OneTIme()
         {
+            suiteTest = extent.CreateTest("Product Test");
             apiClient = new ApiClient();
             endpoint = "/api/productsList";
         }
         [Test]
         public void Get_AllProduct()
         {
+            test = suiteTest.CreateNode("Test Get All Products.");
             // Act
             var response = apiClient.Get<ProductResponse>(endpoint);
 
@@ -31,6 +32,7 @@ namespace Automation_Exercise.src.API.Tests
         [Test]
         public void Post_AllProduct()
         {
+            test = suiteTest.CreateNode("Test Post All Products.");
             // Act
             var response = apiClient.Post<object, ProductResponse>(endpoint, null, parameters);
             // Assert

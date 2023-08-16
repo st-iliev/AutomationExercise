@@ -10,12 +10,11 @@ using Automation_Exercise.Pages.PaymentPage;
 using Automation_Exercise.Pages.ProductDetailsPage;
 using Automation_Exercise.Pages.ProductPage;
 using Automation_Exercise.Pages.SignupPage;
+using Automation_Exercise.Utilities;
 using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
 using NUnit.Framework.Interfaces;
-using Automation_Exercise.Utilities;
+using OpenQA.Selenium;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -40,7 +39,7 @@ namespace Automation_Exercise.Test_Scripts
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            BrowserType browserType = BrowserType.Edge; // Change this to the desired browser
+            BrowserType browserType = BrowserType.Chrome; // Change this to the desired browser
 
             driver = DriverHelper.Start(browserType); //To use headless mode uncomment it in this method.
             driver.Manage().Window.Maximize();
@@ -58,7 +57,7 @@ namespace Automation_Exercise.Test_Scripts
             contactUsPage = new ContactUsPage(driver);
             if (extent == null)
             {
-                var htmlReporter = new ExtentHtmlReporter(@"..\..\..\Test Results\TestResults.html");
+                var htmlReporter = new ExtentHtmlReporter(@"..\..\..\src\Common\Test Results\UI\results.html");
                 extent = new ExtentReports();
                 extent.AttachReporter(htmlReporter);
             }
@@ -76,7 +75,7 @@ namespace Automation_Exercise.Test_Scripts
         }
         protected static void ScrollDown(IWebDriver driver, int pixels)
         {
-            //Scrolling down because to avoid ads.
+            //Scrolling down  to avoid ads.
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             jsExecutor.ExecuteScript($"window.scrollBy(0, {pixels});");
         }
@@ -101,14 +100,12 @@ namespace Automation_Exercise.Test_Scripts
             }
             else if (status == TestStatus.Passed)
             {
-                test.Pass($"Test has  passed {message}");
+                test.Pass($"Test has passed {message}");
             }
             else if (status == TestStatus.Skipped)
             {
                 test.Skip($"Test skipped {message}");
             }
-
-            // End the test
             extent.Flush();
         }
         [OneTimeTearDown]

@@ -1,28 +1,30 @@
 ﻿using Automation_Exercise.src.API.Responses.User;
+using Automation_Exercise.src.API.Utilities;
 using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(7)]
-    public class UserAccountTests
+    [TestFixture, Order(18)]
+    public class UserAccountTests : ExtentReport
     {
-        private ApiClient apiClient;
         private string endpoint;
         private Dictionary<string, string> parameters;
 
-        [SetUp]
-        public void TestSetup()
+        [OneTimeSetUp]
+        public void OneTime()
         {
+            suiteTest = extent.CreateTest("User Account Test");
             apiClient = new ApiClient();
             endpoint = "/api/getUserDetailByEmail";
         }
         [Test]
         public void Get_UserAccountByEmail()
         {
+            test = suiteTest.CreateNode("Test Get User Account By Email.");
             // Arrange
             parameters = new Dictionary<string, string>
             {
-                {"email","justfortest777@abv.bg"}
+                {"email",ConfigurationHelper.Email}
             };
             // Act
             var response = apiClient.Get<UserResponse>(

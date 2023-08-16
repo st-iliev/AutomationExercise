@@ -1,21 +1,19 @@
 ﻿using Automation_Exercise.src.API.Model;
 using Automation_Exercise.src.API.Utilities;
-using MongoDB.Bson;
-using Newtonsoft.Json;
 using RestSharp;
 
 public class ApiClient
 {
-    private readonly RestClient restClient;
+    private RestClient restClient;
     public ApiClient()
     {
-        restClient = new RestClient(ConfigurationHelper.BaseUrl);
+        restClient = new RestClient(ConfigurationHelper.BaseUrl); 
     }
+
     private ApiResponse<TResponse> SendRequest<TRequest, TResponse>(ApiRequest<TRequest> request)
     {
         var restRequest = CreateRestRequest(request);
         var response = restClient.Execute<TResponse>(restRequest);
-
         return new ApiResponse<TResponse>
         {
             StatusCode = (int)response.StatusCode,
@@ -26,7 +24,6 @@ public class ApiClient
     private RestRequest CreateRestRequest<TRequest>(ApiRequest<TRequest> apiRequest)
     {
         var restRequest = new RestRequest(apiRequest.Endpoint, apiRequest.Method);
-       
         if (apiRequest.Method != Method.Get)
         {
             if (apiRequest.Data != null)
@@ -100,6 +97,5 @@ public class ApiClient
             Parameter = parameters
         };
         return SendRequest<object, TResponse>(request);
-    }
-
+    } 
 }

@@ -1,19 +1,19 @@
 ﻿using Automation_Exercise.src.API.Requests;
 using Automation_Exercise.src.API.Responses;
+using Automation_Exercise.src.API.Utilities;
 using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(6)]
-    public class UpdateUserAccount
+    [TestFixture, Order(17)]
+    public class UpdateUserAccount : ExtentReport
     {
-        private ApiClient apiClient;
         private string endpoint;
         private CreateAccountRequest account;
-
-        [SetUp]
-        public void TestSetup()
+        [OneTimeSetUp]
+        public void OneTime()
         {
+            suiteTest = extent.CreateTest("Update User Account Test");
             apiClient = new ApiClient();
             account = new CreateAccountRequest();
             endpoint = "/api/updateAccount";
@@ -21,18 +21,19 @@ namespace Automation_Exercise.src.API.Tests
         [Test]
         public void Put_UpdateUserAccount()
         {
+            test = suiteTest.CreateNode("Test Put Update User Account.");
             //Arrange
             var parameters = new Dictionary<string, string>
             {
-                {"name","Jo" },
-                {"email","justfortest777@abv.bg" },
-                {"password","testqa1" },
+                {"name","Mat" },
+                {"email",ConfigurationHelper.Email },
+                {"password",ConfigurationHelper.Password },
                 {"title","Mr" },
                 {"birth_date","14" },
                 {"birth_month","novembur" },
                 {"birth_year","1995" },
                 {"firstname","John" },
-                {"lastname","Fibber" },
+                {"lastname","Tudor" },
                 {"company","Space Y" },
                 {"address1","bul.Freedom" },
                 {"address2","str.Doom" },
