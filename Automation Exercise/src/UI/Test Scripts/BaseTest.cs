@@ -15,6 +15,7 @@ using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using AventStack.ExtentReports.Reporter.Configuration;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -57,7 +58,11 @@ namespace Automation_Exercise.Test_Scripts
             contactUsPage = new ContactUsPage(driver);
             if (extent == null)
             {
-                var htmlReporter = new ExtentHtmlReporter(@"..\..\..\src\Common\Test Results\UI\results.html");
+                var htmlReporter = new ExtentHtmlReporter(@"..\..\..\Test Results\UI\results.html");
+                htmlReporter.Config.DocumentTitle = "Test Automation Report";
+                htmlReporter.Config.Encoding = "UTF-8";
+                htmlReporter.Config.Theme = Theme.Dark;
+                htmlReporter.Config.EnableTimeline = true;
                 extent = new ExtentReports();
                 extent.AttachReporter(htmlReporter);
             }
@@ -88,6 +93,19 @@ namespace Automation_Exercise.Test_Scripts
             driver.Navigate().Back();
             }
         }
+        private string CaptureScreenshot()
+        {
+            var random = new Random();
+            int randomNumber = random.Next(1, 999999);
+            string screenshotFileName = $"{TestContext.CurrentContext.Test.Name}-{randomNumber}.png";
+            string screenshotFilePath = $@"..\..\..\Test Results\UI\{screenshotFileName}";
+
+            // Capture the screenshot and save it to the specified file path
+            Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();
+            screenshot.SaveAsFile(screenshotFilePath, ScreenshotImageFormat.Png);
+
+            return screenshotFileName;
+        }
         [TearDown]
         public void AfterTest()
         {
@@ -96,15 +114,19 @@ namespace Automation_Exercise.Test_Scripts
             var status = TestContext.CurrentContext.Result.Outcome.Status;
             if (status == TestStatus.Failed)
             {
-                test.Fail($"Test has failed {message}");
+                string formattedErrorMessage = $"Test failed.<br>{message}";
+
+                // Capture a screenshot and attach it to the test report
+                var screenshotName = CaptureScreenshot();
+                test.Fail(formattedErrorMessage + $"<br>Screenshot: {screenshotName}");
             }
             else if (status == TestStatus.Passed)
             {
-                test.Pass($"Test has passed {message}");
+                test.Pass($"Test has passed.<br>{message}");
             }
             else if (status == TestStatus.Skipped)
             {
-                test.Skip($"Test skipped {message}");
+                test.Skip($"Test skipped.<br>{message}");
             }
             extent.Flush();
         }

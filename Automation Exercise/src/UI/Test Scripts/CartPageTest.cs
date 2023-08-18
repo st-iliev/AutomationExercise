@@ -11,8 +11,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             suiteTest = extent.CreateTest("Cart Page Tests");
         }
-        [SetUp]
-        public void LoginUser()
+        private void LoginUser()
         {
             loginPage.Open();
             loginPage.FillLoginForm(Constants.email, Constants.password);
@@ -107,7 +106,7 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyLoginUserCartIsEmpty()
         {
             test = suiteTest.CreateNode("Test Cart of login user is empty.");
-            test.AssignCategory("UI Tests");
+            LoginUser();
             cartPage.Open();
             cartPage.AssertCorrectPageIsLoaded();
             cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
@@ -141,7 +140,7 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.ContinueToCheckout();
             checkoutPage.AssertCorrectPageIsLoaded();
         }
-        [Test,Order(10)]
+        [Test, Order(10)]
         public void VerifyLoginUserTotalPriceOfAddedProductIsCorrect()
         {
             test = suiteTest.CreateNode("Test Total price of added products is correct of login user.");
