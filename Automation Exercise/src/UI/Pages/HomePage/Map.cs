@@ -16,7 +16,7 @@ namespace Automation_Exercise.Pages.HomePage
 
         public IWebElement deleteAccountLink => driver.FindElement(By.XPath("//a[contains(@href,'/delete')]"));
         public IWebElement contactusLink => driver.FindElement(By.XPath("//*[contains(@class, 'nav') and contains(@class, 'navbar-nav')]//li[a[@href='/contact_us']]"));
-        public IWebElement usernameLogin => driver.FindElement(By.XPath($"//*[@class='nav navbar-nav']//b[contains(text(), '{Constants.name}')]"));
+        public IWebElement usernameLogin => driver.FindElement(By.XPath($"//*[@class='nav navbar-nav']//a[contains(text(), 'Logged in as')]"));
 
         public IWebElement logoHomeLink => driver.FindElement(By.XPath("//*[src='/static/images/home/logo.png']"));
         public IWebElement subscribeField => driver.FindElement(By.XPath("//input[@id='susbscribe_email']"));

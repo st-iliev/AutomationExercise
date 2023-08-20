@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Pages.ProductDetailsPage;
+using Automation_Exercise.src.UI.TestData;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
@@ -34,10 +35,8 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
         }
         [Test, Order(2)]
-        [TestCase("")]
-        [TestCase("invalidEmail")]
-        [TestCase("invalidEmail@")]
-        public void VerifySubscribeWithInvalidEmail(string email)
+        [TestCaseSource(typeof(SubscribeTestCases), nameof(SubscribeTestCases.InvalidSubscribeCases))]
+        public void VerifySubscribeWithInvalidEmailFromProductDetailsPage(string email)
         {
             test = suiteTest.CreateNode("Test Subscribe With Invalid Credential");
             ScrollDown(driver, 600);
@@ -57,17 +56,16 @@ namespace Automation_Exercise.Test_Scripts
             };
         }
         [Test, Order(3)]
-        [TestCase("Stylish Dress")]
-        public void VerifyProductDetailsAreCorrect(string productName)
+        public void VerifyProductDetailsAreCorrect()
         {
             test = suiteTest.CreateNode("Test Product Details Are Correct");
             ScrollDown(driver, 1100);
-            int productPrice = homePage.GetProductPrice(productName);
-            homePage.ClickOnViewProduct(productName);
+            int productPrice = homePage.GetProductPrice("Stylish Dress");
+            homePage.ClickOnViewProduct("Stylish Dress");
             AdverticeHelper.CheckForAdvertice(driver);
             productDetailsPage.AssertCorrectPageIsLoaded();
             productDetailsPage.AssertProductPictureIsDisplayed();
-            productDetailsPage.AssertCorrectProductName(productName);
+            productDetailsPage.AssertCorrectProductName("Stylish Dress");
             productDetailsPage.AssertCorrectProductPrice(productPrice);
             productDetailsPage.AssertCorrectProductBrandName(Brands.Madame);
             productDetailsPage.AssertCorrectProductCondition("New");
@@ -94,12 +92,8 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.AssertSuccessfulSubmiteReviewMessageIsDisplayed();
         }
         [Test, Order(5)]
-        [TestCase("", "", "")]
-        [TestCase("Jordan", "", "")]
-        [TestCase("George", "email", "")]
-        [TestCase("John", "email@", "")]
-        [TestCase("John", "email@zzz", "")]
-        public void VerifySubmitVeviewForProductWithValidData(string name, string email, string reviewText)
+        [TestCaseSource(typeof(ProductDetailsTestCases), nameof(ProductDetailsTestCases.ReviewCases))]
+        public void VerifySubmitReviewForProductWithInalidData(string name, string email, string reviewText)
         {
             test = suiteTest.CreateNode("Test Submit Review For Product With Invalaid Credentials");
             ScrollDown(driver, 750);

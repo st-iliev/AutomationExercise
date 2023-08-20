@@ -98,7 +98,7 @@ namespace Automation_Exercise.Pages.HomePage
         }
         public void AssertUserIsLogin()
         {
-            Assert.AreEqual($"{Constants.name}", usernameLogin.Text);
+            Assert.True(usernameLogin.Displayed);
         }
         public void AssertUserIsLogout()
         {

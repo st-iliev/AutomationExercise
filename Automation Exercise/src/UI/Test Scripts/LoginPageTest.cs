@@ -1,4 +1,5 @@
-﻿using Automation_Exercise.Utilities;
+﻿using Automation_Exercise.src.UI.TestData;
+using Automation_Exercise.Utilities;
 using AventStack.ExtentReports;
 
 namespace Automation_Exercise.Test_Scripts
@@ -21,7 +22,7 @@ namespace Automation_Exercise.Test_Scripts
             loginPage.AssertCorrectLoginFormTitleIsDisplayed();
         }
         [Test, Order(1)]
-        public void VerifySuccessfulSubscribe()
+        public void VerifySuccessfulSubscribeFromLoginPage()
         {
             test = suiteTest.CreateNode("Test Successful Subscribe With Valid Credentials");
             ScrollToBottom(driver);
@@ -30,10 +31,8 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
         }
         [Test, Order(2)]
-        [TestCase("")]
-        [TestCase("invalidEmail")]
-        [TestCase("invalidEmail@")]
-        public void VerifySubscribeWithInvalidEmail(string email)
+        [TestCaseSource(typeof(SubscribeTestCases), nameof(SubscribeTestCases.InvalidSubscribeCases))]
+        public void VerifySubscribeWithInvalidEmailFromLoginPage(string email)
         {
             test = suiteTest.CreateNode("Test Subscribe With InValid Credentials");
             ScrollToBottom(driver);
@@ -50,9 +49,7 @@ namespace Automation_Exercise.Test_Scripts
             };
         }
         [Test, Order(3)]
-        [TestCase(Constants.email, "")]
-        [TestCase("", Constants.password)]
-        [TestCase("", "")]
+        [TestCaseSource(typeof(LoginTestCases), nameof(LoginTestCases.LoginWithoutEmailOrPassowrdCases))]
         public void VerifyUserLoginWithoutEmailOrPassword(string email, string password)
         {
             test = suiteTest.CreateNode("Test User Login Without Credentials");
@@ -69,9 +66,7 @@ namespace Automation_Exercise.Test_Scripts
             };
         }
         [Test, Order(4)]
-        [TestCase(Constants.email, "qatest")]
-        [TestCase("incorrectEmail", Constants.password)]
-        [TestCase("incorrectEmail@", Constants.password)]
+        [TestCaseSource(typeof(LoginTestCases), nameof(LoginTestCases.LoginWithInvalidEmailOrPassowrd))]
         public void VerifyLoginWithInvalidEmailOrPassword(string email, string password)
         {
             test = suiteTest.CreateNode("Test User Login With Invalid Credentials");
@@ -92,9 +87,7 @@ namespace Automation_Exercise.Test_Scripts
             
         }
         [Test, Order(5)]
-        [TestCase(Constants.name, "")]
-        [TestCase("", Constants.email)]
-        [TestCase("", "")]
+        [TestCaseSource(typeof(SignupTestCases), nameof(SignupTestCases.SignupWithoutNameOrEmailCases))]
         public void VerifySignupUserWithoutNameOrEmail(string name, string email)
         {
             test = suiteTest.CreateNode("Test User Signup Without Credentials");

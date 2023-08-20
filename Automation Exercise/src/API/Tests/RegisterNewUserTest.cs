@@ -5,7 +5,8 @@ using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(15)]
+    [TestFixture]
+    [Order(15)]
     public class RegisterNewUserTest : ExtentReport
     {
         private string endpoint;

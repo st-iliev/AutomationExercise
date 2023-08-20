@@ -41,7 +41,6 @@ namespace Automation_Exercise.Test_Scripts
         public void OneTimeSetUp()
         {
             BrowserType browserType = BrowserType.Chrome; // Change this to the desired browser
-
             driver = DriverHelper.Start(browserType); //To use headless mode uncomment it in this method.
             driver.Manage().Window.Maximize();
             homePage = new HomePage(driver);
@@ -58,7 +57,7 @@ namespace Automation_Exercise.Test_Scripts
             contactUsPage = new ContactUsPage(driver);
             if (extent == null)
             {
-                var htmlReporter = new ExtentHtmlReporter(@"..\..\..\Test Results\UI\results.html");
+                var htmlReporter = new ExtentHtmlReporter(@"..\..\..\src\Common\Test Results\UI\results.html");
                 htmlReporter.Config.DocumentTitle = "Test Automation Report";
                 htmlReporter.Config.Encoding = "UTF-8";
                 htmlReporter.Config.Theme = Theme.Dark;
@@ -98,7 +97,7 @@ namespace Automation_Exercise.Test_Scripts
             var random = new Random();
             int randomNumber = random.Next(1, 999999);
             string screenshotFileName = $"{TestContext.CurrentContext.Test.Name}-{randomNumber}.png";
-            string screenshotFilePath = $@"..\..\..\Test Results\UI\{screenshotFileName}";
+            string screenshotFilePath = $@"..\..\..\src\Common\Test Results\UI\{screenshotFileName}";
 
             // Capture the screenshot and save it to the specified file path
             Screenshot screenshot = ((ITakesScreenshot)driver).GetScreenshot();

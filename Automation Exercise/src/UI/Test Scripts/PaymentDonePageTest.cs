@@ -7,6 +7,7 @@ namespace Automation_Exercise.Test_Scripts
     [Order(8)]
     internal class PaymentDonePageTest : BaseTest
     {
+        private CardInfo cardInfo;
         [OneTimeSetUp]
         public void Setup()
         {
@@ -17,7 +18,6 @@ namespace Automation_Exercise.Test_Scripts
             loginPage.FillLoginForm(Constants.email, Constants.password);
             loginPage.ClickOnLoginButton();
         }
-        private CardInfo cardInfo;
         [Test, Order(1)]
         public void VerifyDownloadAndCheckContentOfInvoiceFile()
         {

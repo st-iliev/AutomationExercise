@@ -4,7 +4,7 @@
     {
         public static string BaseUrl { get; private set; } = "https://automationexercise.com";
         public static string Password { get; private set; } = "testqa1";
-        public static string Email { get; private set; } = "justfortest777@abv.bg";
+        public static string Email { get; private set; } = "qatest@gmail.com";
 
 
         public static void SetBaseUrl(string baseUrl)
@@ -14,6 +14,10 @@
         public static void SetPassword(string password)
         {
             Password = password;
+        }
+        public static void SetEmail(string email)
+        {
+            Email = email;
         }
     }
 }

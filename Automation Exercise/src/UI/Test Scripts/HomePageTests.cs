@@ -1,4 +1,5 @@
-﻿using Automation_Exercise.Utilities;
+﻿using Automation_Exercise.src.UI.TestData;
+using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -11,15 +12,15 @@ namespace Automation_Exercise.Test_Scripts
         {
             suiteTest = extent.CreateTest("Home Page Tests");
         }
-        [SetUp] 
-        public void Preconditions() 
+        [SetUp]
+        public void Preconditions()
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
         }
 
-        [Test,Order(1)]
+        [Test, Order(1)]
         public void VerifyNavigationLinksArePresentAndFunctioningCorrectly()
         {
             test = suiteTest.CreateNode("Test All navigation links are displayed and works correct");
@@ -27,12 +28,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertNavigationLinksArePresent();
         }
         [Test, Order(2)]
-        [TestCase("left")]
-        [TestCase("right")]
-        [TestCase("right")]
-        [TestCase("right")]
-        [TestCase("left")]
-        [TestCase("left")]
+        [TestCaseSource(typeof(HomePageTestCases), nameof(HomePageTestCases.CarouselArrowCases))]
         public void VerifyClickingOnArrowsSwitchCarouselContentImageAndActiveIndicator(string side)
         {
             test = suiteTest.CreateNode("Test Using side arrows works correctly");
@@ -45,9 +41,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertActiveIndicatorSwitched();
         }
         [Test, Order(3)]
-        [TestCase("First")]
-        [TestCase("Second")]
-        [TestCase("Third")]
+        [TestCaseSource(typeof(HomePageTestCases), nameof(HomePageTestCases.CarouselIndicatorsCases))]
         public void VerifyClickingOnIndicatorsSwitchCarouselContentImageAndActiveIndicator(string indicator)
         {
             test = suiteTest.CreateNode("Test Using indicators works correctly");
@@ -58,10 +52,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertActiveIndicatorSwitched();
         }
         [Test, Order(4)]
-        [TestCase("WOMEN")]
-        [TestCase("MEN")]
-        [TestCase("KIDS")]
-        
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.CategoryCases))]
         public void VerifyCategoryAndSubcategoryAreLoaded(string categoryName)
         {
             test = suiteTest.CreateNode("Test All category and subcategory are displayed");
@@ -85,21 +76,14 @@ namespace Automation_Exercise.Test_Scripts
                     Assert.Fail("Wrong category name");
                     break;
             }
-            
+
         }
         [Test, Order(5)]
-        [TestCase(Brands.Polo)]
-        [TestCase(Brands.AllenSollyJunior)]
-        [TestCase(Brands.HandM)]
-        [TestCase(Brands.MastAndHarbour)]
-        [TestCase(Brands.KookieKids)]
-        [TestCase(Brands.Biba)]
-        [TestCase(Brands.Babyhug)]
-        [TestCase(Brands.Madame)]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.BrandCases))]
         public void VerifyNumberOfBrandProductIsSameAsBrandProductCount(Brands brandName)
         {
             test = suiteTest.CreateNode("Test Number of BrandProducts is same as BrandProducts count");
-            ScrollDown(driver,1200);
+            ScrollDown(driver, 1200);
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
         [Test, Order(6)]
@@ -112,9 +96,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
         }
         [Test, Order(7)]
-        [TestCase("")]
-        [TestCase("invalidEmail")]
-        [TestCase("invalidEmail@")]
+        [TestCaseSource(typeof(SubscribeTestCases), nameof(SubscribeTestCases.InvalidSubscribeCases))]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
             test = suiteTest.CreateNode("Test Subscribe With Invalid Credential");
@@ -126,19 +108,12 @@ namespace Automation_Exercise.Test_Scripts
                 case null:
                     homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
                 case "invalidEmail":
-                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField,email); break;
+                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
                 case "invalidEmail@":
                     homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
             };
         }
-        [Test, Order(8)]
-        [TestCase("Products")]
-        [TestCase("Cart")]
-        [TestCase("Login")]
-        [TestCase("Test Cases")]
-        [TestCase("API Testing")]
-        //[TestCase("Video Tutorials")]
-        [TestCase("Contact us")]
+        [TestCaseSource(typeof(HeaderTestCases), nameof(HeaderTestCases.NavigationLinksCases))]
         public void VerifyNavigationLinksNavigateToCorrectPage(string pageName)
         {
             test = suiteTest.CreateNode("Test All navigation links navigate user to correct pages");
@@ -169,7 +144,7 @@ namespace Automation_Exercise.Test_Scripts
                     break;
                 //case "Video Tutorials":
                 //    homePage.ClickOnElement(homePage.videoTutorialsLink);
-                //   YTConsentPageHelper.CheckForYYConsentPage(driver);
+                //    YTConsentPageHelper.CheckForYYConsentPage(driver);
                 //    homePage.AssertVideoTutorialsNavigationLinkOpenCorrectPage();
                 //    break;
                 case "Contact us":
@@ -179,28 +154,22 @@ namespace Automation_Exercise.Test_Scripts
             }
         }
         [Test, Order(9)]
-        [TestCase("WOMEN","DRESS")]
-        [TestCase("WOMEN","TOPS")]
-        [TestCase("WOMEN","SAREE")]
-        [TestCase("MEN","TSHIRTS")]
-        [TestCase("MEN","JEANS")]
-        [TestCase("KIDS","DRESS")]
-        [TestCase("KIDS","TOPS & SHIRTS")]
-        public void VerifyCorrectProductFromSubCategoryAreLoaded(string categoryName , string subCategoryName)
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.CategoryAndSubcategoryCases))]
+        public void VerifyCorrectProductFromSubCategoryAreLoaded(string categoryName, string subCategoryName)
         {
             test = suiteTest.CreateNode("Test Subscribe With Valid Credential");
             ScrollDown(driver, 600);
             homePage.SelectCategoryAndSubCategory(categoryName, subCategoryName);
             homePage.AssertCorrectProductSubCategoryTitleIsDisplayed(categoryName, subCategoryName);
         }
-        [Test,Order(10)]
+        [Test, Order(10)]
         public void VerifyScrollDownFuncionallity()
         {
             test = suiteTest.CreateNode("Test Scrolldown fuctionallity of page");
             ScrollToBottom(driver);
             homePage.AssertCopyRightTextIsDisplayed();
         }
-        [Test,Order(11)]
+        [Test, Order(11)]
         public void VerifyScrollUpFuncionallity()
         {
             test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
@@ -211,9 +180,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectCarouselTextsAreDisplayed();
         }
         [Test, Order(12)]
-        [TestCase("Sleeveless Dress")]
-        [TestCase("Men Tshirt")]
-        [TestCase("Blue Top")]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.ProductCases))]
         public void VerifyOpenProductDetailsPage(string productName)
         {
             test = suiteTest.CreateNode("Test Open detailspage of product");

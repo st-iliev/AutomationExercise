@@ -4,7 +4,8 @@ using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture ,Order(13)]
+    [TestFixture]
+    [Order(13)]
     public class ProductTests : ExtentReport
     {
         private string endpoint;

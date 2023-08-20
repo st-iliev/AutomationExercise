@@ -5,7 +5,8 @@ using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(16)]
+    [TestFixture]
+    [Order(16)]
     public  class LoginTests : ExtentReport
     {
         private string endpoint;

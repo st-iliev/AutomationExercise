@@ -6,7 +6,8 @@ using NUnit.Framework.Internal;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(14)]
+    [TestFixture]
+    [Order(14)]
     public class BrandTests : ExtentReport
     {
         private string endpoint;

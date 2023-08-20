@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Pages.PaymentPage;
+using Automation_Exercise.src.UI.TestData;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
@@ -7,6 +8,7 @@ namespace Automation_Exercise.Test_Scripts
     [Order(7)]
     public class PaymentPageTest : BaseTest
     {
+        private CardInfo cardInfo;
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -17,7 +19,6 @@ namespace Automation_Exercise.Test_Scripts
             loginPage.FillLoginForm(Constants.email, Constants.password);
             loginPage.ClickOnLoginButton();
         }
-        private CardInfo cardInfo;
         [Test, Order(1)]
         public void VerifySuccessfulPaymentWithValidData()
         {
@@ -39,11 +40,7 @@ namespace Automation_Exercise.Test_Scripts
             paymentDonePage.AssertOrderConfirmedMessageIsDisplayedCorrectly();
         }
         [Test,Order(2)]
-        [TestCase("", "" , "" , "", "")]
-        [TestCase("name", "" , "" , "", "")]
-        [TestCase("name", "number" , "" , "", "")]
-        [TestCase("name", "number" , "cvc" , "", "")]
-        [TestCase("name", "number" , "cvc" , "month", "")]
+        [TestCaseSource(typeof(PaymentTestCases), nameof(PaymentTestCases.FormCases))]
         public void VerifyPaymentFormHaveValidationFromEmptyField(string nameOfCard,string cardNumber,string cvc,string month,string year)
         {
             test = suiteTest.CreateNode("Test Payment With Valid Credentials");

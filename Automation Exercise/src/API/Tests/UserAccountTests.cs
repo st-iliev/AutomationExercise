@@ -4,7 +4,8 @@ using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(18)]
+    [TestFixture]
+    [Order(18)]
     public class UserAccountTests : ExtentReport
     {
         private string endpoint;
@@ -35,7 +36,7 @@ namespace Automation_Exercise.src.API.Tests
             Assert.AreEqual(200, response.StatusCode);
             Assert.AreEqual(HttpStatusCode.OK, response.Data.ResponseCode);
             Assert.NotNull(response.Data.User.Id);
-            Assert.AreEqual("justfortest777@abv.bg", response.Data.User.Email);
+            Assert.AreEqual("qatest@gmail.com", response.Data.User.Email);
         }
     }
 }

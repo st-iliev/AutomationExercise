@@ -5,7 +5,8 @@ using System.Net;
 
 namespace Automation_Exercise.src.API.Tests
 {
-    [TestFixture, Order(17)]
+    [TestFixture]
+    [Order(17)]
     public class UpdateUserAccount : ExtentReport
     {
         private string endpoint;

@@ -1,4 +1,5 @@
-﻿using Automation_Exercise.Utilities;
+﻿using Automation_Exercise.src.UI.TestData;
+using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -20,9 +21,7 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AssertSaleBannerIsDisplayed();
         }
         [Test, Order(1)]
-        [TestCase("Premium Polo T-Shirts")]
-        [TestCase("Soft Stretch Jeans")]
-        [TestCase("Colour Blocked Shirt – Sky Blue")]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.SearchProductCases))]
         public void VerifySearchForExistingProduct(string productName)
         {
             test = suiteTest.CreateNode("Test Search For Existing Product");
@@ -30,9 +29,7 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AssertSearchedProductIsDisplaed(productName);        
         }
         [Test, Order(2)]
-        [TestCase("Shoes")]
-        [TestCase("Smoking")]
-        [TestCase("Hat")]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.InvalidProductNameCases))]
         public void VerifySearchForNonExistingProduct(string productName)
         {
             test = suiteTest.CreateNode("Test Search For NonExisting Product");
@@ -40,14 +37,7 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AssertNonProductsAreDisplayed();
         }
         [Test, Order(3)]
-        [TestCase(Brands.Polo)]
-        [TestCase(Brands.AllenSollyJunior)]
-        [TestCase(Brands.HandM)]
-        [TestCase(Brands.MastAndHarbour)]
-        [TestCase(Brands.KookieKids)]
-        [TestCase(Brands.Biba)]
-        [TestCase(Brands.Babyhug)]
-        [TestCase(Brands.Madame)]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.BrandCases))]
         public void VerifyNumberOfBrandProductIsSameAsBrandProductCount(Brands brandName)
         {
             test = suiteTest.CreateNode("Test Number Of BrandProduct Is Same As BrandProduct Count");
@@ -55,10 +45,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertBrandProductCountAndDisplayedBrandProductsAreTheSame(brandName);
         }
         [Test, Order(4)]
-        [TestCase("WOMEN")]
-        [TestCase("MEN")]
-        [TestCase("KIDS")]
-
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.CategoryCases))]
         public void VerifyCategoryAndSubcategoryAreLoaded(string categoryName)
         {
             test = suiteTest.CreateNode("Test All Category And Subcategory Are Loaded");
@@ -90,9 +77,7 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
         }
         [Test, Order(6)]
-        [TestCase("")]
-        [TestCase("invalidEmail")]
-        [TestCase("invalidEmail@")]
+        [TestCaseSource(typeof(SubscribeTestCases), nameof(SubscribeTestCases.InvalidSubscribeCases))]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
             test = suiteTest.CreateNode("Test Subscribe With Invalid Credential");
@@ -129,20 +114,19 @@ namespace Automation_Exercise.Test_Scripts
             productPage.AssertProductAddedSuccessfulTextIsDisplayed();
         }
         [Test, Order(9)]
-        public void VerifySearchProductAndOpenProductDetailsPage()
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.SearchProductCases))]
+        public void VerifySearchProductAndOpenProductDetailsPage(string productName)
         {
             test = suiteTest.CreateNode("Test Open the ProductDetailsPage of the searched product");
-            productPage.SearchForProduct("Premium Polo T-Shirts");
+            productPage.SearchForProduct(productName);
             ScrollDown(driver, 500);
-            productPage.ClickOnViewProduct("Premium Polo T-Shirts");
+            productPage.ClickOnViewProduct(productName);
             AdverticeHelper.CheckForAdvertice(driver);
             productDetailsPage.AssertCorrectPageIsLoaded();
-            productDetailsPage.AssertCorrectProductName("Premium Polo T-Shirts");
+            productDetailsPage.AssertCorrectProductName(productName);
         }
         [Test, Order(10)]
-        [TestCase("Sleeveless Dress")]
-        [TestCase("Men Tshirt")]
-        [TestCase("Blue Top")]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.SearchProductCases))]
         public void VerifyOpenProductDeatailsPage(string productName)
         {
             test = suiteTest.CreateNode("Test Open the ProductDetailsPage of the product");

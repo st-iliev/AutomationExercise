@@ -1,4 +1,5 @@
 ﻿using Automation_Exercise.Pages.ContactUsPage;
+using Automation_Exercise.src.UI.TestData;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
@@ -7,7 +8,7 @@ namespace Automation_Exercise.Test_Scripts
     [Order(2)]
     public class ContactUsPageTest : BaseTest
     {
-
+        private ContactUsForm form;
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
@@ -21,10 +22,8 @@ namespace Automation_Exercise.Test_Scripts
             contactUsPage.AssertContactUsFormTitleIsDisplayedCorectly();
             contactUsPage.AssertContactFormFieldsAreDisplayed();
         }
-        private ContactUsForm form;
-        [TestCase("invalidEmail")]
-        [TestCase("invalidEmail@")]
-        [TestCase(" ")]
+        [Test, Order(1)]
+        [TestCaseSource(typeof(ContactUsTestCases), nameof(ContactUsTestCases.InvalidEmailCases))]
         public void VerifySubmitContactFormWithInvalidEmailAddress(string email)
         {
             test = suiteTest.CreateNode("Test Submit contact form with invalid credentials.");
@@ -51,7 +50,7 @@ namespace Automation_Exercise.Test_Scripts
                     break;
             };
         }
-        [Test]
+        [Test,Order(2)]
         public void VerifySubmitContactFormWithValidData()
         {
             test = suiteTest.CreateNode("Test Submit contact form with valid credentials.");
@@ -71,8 +70,8 @@ namespace Automation_Exercise.Test_Scripts
             AdverticeHelper.CheckForAdvertice(driver);
             homePage.AssertCorrectPageIsLoaded();
         }
-        [Test]
-        public void VerifySuccessfulSubscribe()
+        [Test,Order(3)]
+        public void VerifySuccessfulSubscribeFromContactUsPage()
         {
             test = suiteTest.CreateNode("Test Subscribe with valid credential.");
             ScrollToBottom(driver);
@@ -80,11 +79,9 @@ namespace Automation_Exercise.Test_Scripts
             homePage.ClickOnSubscribeButton();
             homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
         }
-        [Test]
-        [TestCase("")]
-        [TestCase("invalidEmail")]
-        [TestCase("invalidEmail@")]
-        public void VerifySubscribeWithInvalidEmail(string email)
+        [Test,Order(4)]
+        [TestCaseSource(typeof(SubscribeTestCases),nameof(SubscribeTestCases.InvalidSubscribeCases))]
+        public void VerifySubscribeWithInvalidEmailFromContactUsPage(string email)
         {
             test = suiteTest.CreateNode("Test subscribe with invalid credentials.");
             ScrollToBottom(driver);
