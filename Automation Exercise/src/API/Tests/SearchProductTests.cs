@@ -20,7 +20,7 @@ namespace Automation_Exercise.src.API.Tests
             apiClient = new ApiClient();
             endpoint = "/api/searchProduct";
         }
-        [Test]
+        [Test,Order(1)]
         public void Post_SearchExistsProduct()
         {
             // Arrange
@@ -41,7 +41,7 @@ namespace Automation_Exercise.src.API.Tests
                 Assert.That(product.Category.Category.Contains("Dress"));
             }
         }
-        [Test]
+        [Test,Order(2)]
         public void Post_SearchProductWithoutParameter()
         {
             // Act

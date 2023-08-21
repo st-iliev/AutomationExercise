@@ -94,9 +94,7 @@ namespace Automation_Exercise.Test_Scripts
         }
         private string CaptureScreenshot()
         {
-            var random = new Random();
-            int randomNumber = random.Next(1, 999999);
-            string screenshotFileName = $"{TestContext.CurrentContext.Test.Name}-{randomNumber}.png";
+            string screenshotFileName = $"{TestContext.CurrentContext.Test.Name}-{DateTime.Now}.png";
             string screenshotFilePath = $@"..\..\..\src\Common\Test Results\UI\{screenshotFileName}";
 
             // Capture the screenshot and save it to the specified file path
@@ -116,8 +114,9 @@ namespace Automation_Exercise.Test_Scripts
                 string formattedErrorMessage = $"Test failed.<br>{message}";
 
                 // Capture a screenshot and attach it to the test report
-                var screenshotName = CaptureScreenshot();
-                test.Fail(formattedErrorMessage + $"<br>Screenshot: {screenshotName}");
+                MediaEntityModelProvider mediaModel = MediaEntityBuilder.CreateScreenCaptureFromPath(CaptureScreenshot()).Build();
+                test.Fail(formattedErrorMessage, mediaModel);
+
             }
             else if (status == TestStatus.Passed)
             {

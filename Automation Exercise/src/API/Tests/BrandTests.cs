@@ -19,7 +19,7 @@ namespace Automation_Exercise.src.API.Tests
             apiClient = new ApiClient();
             endpoint = "/api/brandsList";
         }
-        [Test]
+        [Test,Order(1)]
         public void Get_AllBrands()
         {
             test = suiteTest.CreateNode("Test Get All Brands.");
@@ -37,7 +37,7 @@ namespace Automation_Exercise.src.API.Tests
                 Assert.IsNotNull(brand.Brand);
             }
         }
-        [Test]
+        [Test,Order(2)]
         public void Post_AllBrands()
         {
            test = suiteTest.CreateNode("Test Post All Brands.");
@@ -51,7 +51,7 @@ namespace Automation_Exercise.src.API.Tests
             Assert.AreEqual("This request method is not supported.", response.Data.Message);
 
         }
-        [Test]
+        [Test,Order(3)]
         public void Put_AllBrands()
         {
             test = suiteTest.CreateNode("Test Put All Brands.");

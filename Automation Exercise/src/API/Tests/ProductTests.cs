@@ -17,7 +17,7 @@ namespace Automation_Exercise.src.API.Tests
             apiClient = new ApiClient();
             endpoint = "/api/productsList";
         }
-        [Test]
+        [Test,Order(1)]
         public void Get_AllProduct()
         {
             test = suiteTest.CreateNode("Test Get All Products.");
@@ -30,7 +30,7 @@ namespace Automation_Exercise.src.API.Tests
             Assert.NotNull(response.Data);
             Assert.That(response.Data.Products.Count,Is.GreaterThan(0));
         }
-        [Test]
+        [Test,Order(2)]
         public void Post_AllProduct()
         {
             test = suiteTest.CreateNode("Test Post All Products.");

@@ -1,5 +1,6 @@
 ﻿using AventStack.ExtentReports;
 using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports.Reporter.Configuration;
 using NUnit.Framework.Interfaces;
 
 namespace Automation_Exercise.src.API.Utilities
@@ -16,6 +17,10 @@ namespace Automation_Exercise.src.API.Utilities
             if (extent == null)
             {
                 var htmlReporter = new ExtentHtmlReporter(@"..\..\..\src\Common\Test Results\API\results.html");
+                htmlReporter.Config.DocumentTitle = "Test Automation Report";
+                htmlReporter.Config.Encoding = "UTF-8";
+                htmlReporter.Config.Theme = Theme.Dark;
+                htmlReporter.Config.EnableTimeline = true;
                 extent = new ExtentReports();
                 extent.AttachReporter(htmlReporter);
             }

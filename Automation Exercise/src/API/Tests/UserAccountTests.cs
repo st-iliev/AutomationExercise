@@ -18,7 +18,7 @@ namespace Automation_Exercise.src.API.Tests
             apiClient = new ApiClient();
             endpoint = "/api/getUserDetailByEmail";
         }
-        [Test]
+        [Test,Order(1)]
         public void Get_UserAccountByEmail()
         {
             test = suiteTest.CreateNode("Test Get User Account By Email.");

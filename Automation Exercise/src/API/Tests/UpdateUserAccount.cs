@@ -19,7 +19,7 @@ namespace Automation_Exercise.src.API.Tests
             account = new CreateAccountRequest();
             endpoint = "/api/updateAccount";
         }
-        [Test]
+        [Test,Order(1)]
         public void Put_UpdateUserAccount()
         {
             test = suiteTest.CreateNode("Test Put Update User Account.");
