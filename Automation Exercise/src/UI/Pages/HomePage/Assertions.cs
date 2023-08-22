@@ -13,6 +13,10 @@ namespace Automation_Exercise.Pages.HomePage
         {
             Assert.True(webBanner.Displayed);
         }
+        public void AssertWebsiteLogoIsDisplayed()
+        {
+            Assert.True(logoHomeLink.Displayed);
+        }
         public void AssertNavigationLinksArePresent()
         {
             Assert.True(homeLink.Displayed);
@@ -149,6 +153,15 @@ namespace Automation_Exercise.Pages.HomePage
         public void AssertCopyRightTextIsDisplayed()
         {
             Assert.True(copyRightText.Displayed);
+            Assert.AreEqual("Copyright © 2021 All rights reserved",copyRightText.Text);
+        }
+        public void AssertNamesOfCurrentRecommendedItems(List<string> previousItems , List<string> currentItems)
+        {
+            Assert.AreNotEqual(previousItems, currentItems);
+        }
+        public void AssertProductOverlayInfoIsDisplayed(string productName)
+        {
+            Assert.True(GetProductOverlayInfo(productName));
         }
     }
 }

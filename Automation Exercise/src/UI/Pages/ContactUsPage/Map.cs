@@ -14,5 +14,7 @@ namespace Automation_Exercise.Pages.ContactUsPage
         public IWebElement submitButton => driver.FindElement(By.XPath("//input[@data-qa='submit-button']"));
         public IWebElement successfulMessage => driver.FindElement(By.XPath("//*[@class='status alert alert-success']"));
         public IWebElement homeButton => driver.FindElement(By.XPath("//a[@class='btn btn-success']"));
+        public IWebElement feedbackTitle => driver.FindElement(By.XPath("//*[@class='contact-info']/h2"));
+        public IWebElement feedbackTextInfo => driver.FindElement(By.XPath("//*[@class='contact-info']/address"));
     }
 }

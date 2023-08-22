@@ -92,6 +92,7 @@ namespace Automation_Exercise.Pages.CartPage
             }
 
         }
+        public void ClickOnHomeButton() => homeButton.Click();
         public void ContinueToProductPage() => continueToProductPage.Click();
         public void ContinueOnCart() => continueOnCartButton.Click();
         public bool CheckProductIsAddedToCart(string productName)

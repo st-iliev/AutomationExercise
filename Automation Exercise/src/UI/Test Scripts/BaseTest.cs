@@ -16,6 +16,7 @@ using AventStack.ExtentReports;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
 using AventStack.ExtentReports.Reporter.Configuration;
+using OpenQA.Selenium.Interactions;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -92,6 +93,7 @@ namespace Automation_Exercise.Test_Scripts
             driver.Navigate().Back();
             }
         }
+      
         private string CaptureScreenshot()
         {
             string screenshotFileName = $"{TestContext.CurrentContext.Test.Name}-{DateTime.Now}.png";

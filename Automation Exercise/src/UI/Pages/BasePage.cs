@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Interactions;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
 
@@ -34,6 +35,12 @@ namespace Automation_Exercise.Pages
             {
                 throw new WebDriverException($"WebDriverException occurred: {ex.Message}, {ex}");
             }
+        }
+        public static void HoverOverElement(IWebDriver driver, IWebElement element)
+        {
+            // Move the mouse cursor to the element without clicking
+            Actions actions = new Actions(driver);
+            actions.MoveToElement(element).Perform();
         }
         protected string ValidationMessage(IWebElement field) => field.GetAttribute("validationMessage");
     }

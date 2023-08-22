@@ -9,15 +9,15 @@ namespace Automation_Exercise.Test_Scripts
     [Order(5)]
     public class LoginPageTest : BaseTest
     {
-        [OneTimeSetUp] 
-        public void OneTimeSetUp() 
+        [OneTimeSetUp]
+        public void OneTimeSetUp()
         {
             suiteTest = extent.CreateTest("Login Page Tests");
         }
-        [SetUp] 
-        public void Setup() 
+        [SetUp]
+        public void Setup()
         {
-           
+
             loginPage.Open();
             loginPage.AssertCorrectPageIsLoaded();
             loginPage.AssertCorrectLoginFormTitleIsDisplayed();
@@ -33,8 +33,8 @@ namespace Automation_Exercise.Test_Scripts
                 homePage.ClickOnSubscribeButton();
                 homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
             });
-            }
-            [Test, Order(2)]
+        }
+        [Test, Order(2)]
         [TestCaseSource(typeof(SubscribeTestCases), nameof(SubscribeTestCases.InvalidSubscribeCases))]
         public void VerifySubscribeWithInvalidEmailFromLoginPage(string email)
         {
@@ -54,8 +54,8 @@ namespace Automation_Exercise.Test_Scripts
                         homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
                 };
             });
-            }
-            [Test, Order(3)]
+        }
+        [Test, Order(3)]
         [TestCaseSource(typeof(LoginTestCases), nameof(LoginTestCases.LoginWithoutEmailOrPassowrdCases))]
         public void VerifyUserLoginWithoutEmailOrPassword(string email, string password)
         {
@@ -97,7 +97,7 @@ namespace Automation_Exercise.Test_Scripts
                         break;
                 };
             });
-            
+
         }
         [Test, Order(5)]
         [TestCaseSource(typeof(SignupTestCases), nameof(SignupTestCases.SignupWithoutNameOrEmailCases))]
@@ -118,8 +118,28 @@ namespace Automation_Exercise.Test_Scripts
                         break;
                 };
             });
-            }
-            [Test, Order(6)]
+        }
+        [Test, Order(6)]
+        public void VerifyScrollDownFuncionallity()
+        {
+            test = suiteTest.CreateNode("Test Scrolldown fuctionallity of page");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollToBottom(driver);
+                homePage.AssertCopyRightTextIsDisplayed();
+            });
+        }
+        [Test, Order(7)]
+        public void VerifyScrollUpFuncionallity()
+        {
+            test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollToBottom(driver);
+                homePage.AssertWebsiteLogoIsDisplayed();
+            });
+        }
+        [Test, Order(8)]
         public void VerifyUserLoginWithValidData()
         {
             test = suiteTest.CreateNode("Test User Login With Valid Credentials");

@@ -1,8 +1,6 @@
 ﻿using Automation_Exercise.Utilities;
-using NUnit.Framework.Constraints;
+using MongoDB.Driver;
 using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V112.Fetch;
-using System.Xml.XPath;
 
 namespace Automation_Exercise.Pages.HomePage
 {
@@ -16,7 +14,26 @@ namespace Automation_Exercise.Pages.HomePage
         private string previusIndicator;
         private string GetCurrectModelImage() => modelImage.ToString();
         private string GetNumberOfActiveIndicator() =>activeIndicator.GetAttribute("data-slide-to");
-
+        private bool GetProductOverlayInfo(string productName)
+        {
+            foreach (var product in overlayAllProducts)
+            {
+                string name = product.FindElement(By.XPath(".//p")).Text;
+                if (name == productName)
+                {
+                  if (product.FindElement(By.XPath(".//p")).Displayed)
+                    {
+                        if (product.FindElement(By.XPath(".//h2")).Displayed)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
+        public void ClickOnScrollUpButton() => scrollUpButton.Click();
         public int GetProductId() => productId;
         public override string PageURL => "https://www.automationexercise.com/";
         public void SelectCategoryAndSubCategory(string categoryName, string subCategory
@@ -60,6 +77,7 @@ namespace Automation_Exercise.Pages.HomePage
                     break;
             }
         }
+
         public void SelectBrands(Brands brandName)
         {
             switch (brandName)
@@ -104,6 +122,19 @@ namespace Automation_Exercise.Pages.HomePage
                 {
                     productId = int.Parse(product.FindElement(By.XPath(".//a")).GetDomAttribute("data-product-id"));
                     viewProducts[productId-1].Click();
+                    break;
+                }
+            }
+        }
+        public void HoverOverProduct(IWebDriver driver,string productName)
+        {
+            foreach (var product in allProducts)
+            {
+                string name = product.FindElement(By.XPath(".//p")).Text;
+                if (name == productName)
+                {
+                    productId = int.Parse(product.FindElement(By.XPath(".//a")).GetDomAttribute("data-product-id"));
+                    HoverOverElement(driver, allProducts[productId - 1]);
                     break;
                 }
             }
@@ -217,5 +248,26 @@ namespace Automation_Exercise.Pages.HomePage
             }
             return result;
         }
+        public void ClickOnRecommendedItemArow(string side)
+        {
+            if (side == "left")
+            {
+                recommendedItemsLeftArrow.Click();
+                return;
+            }
+            else if (side == "right")
+            {
+
+                recommendedItemsRightArrow.Click();
+                return;
+            }
+
+        }
+        public List<string> GetNamesOfCurrentRecommendedItems()
+        {
+            List<string> itemNames = recommendedItemsProductsName.Select(element => element.Text).ToList();
+            return itemNames;
+        }
+
     }
 }

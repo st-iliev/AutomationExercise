@@ -18,24 +18,25 @@ namespace Automation_Exercise.Pages.HomePage
         public IWebElement contactusLink => driver.FindElement(By.XPath("//*[contains(@class, 'nav') and contains(@class, 'navbar-nav')]//li[a[@href='/contact_us']]"));
         public IWebElement usernameLogin => driver.FindElement(By.XPath($"//*[@class='nav navbar-nav']//a[contains(text(), 'Logged in as')]"));
 
-        public IWebElement logoHomeLink => driver.FindElement(By.XPath("//*[src='/static/images/home/logo.png']"));
+        public IWebElement logoHomeLink => driver.FindElement(By.XPath("//*[@class='logo pull-left']//img"));
         public IWebElement subscribeField => driver.FindElement(By.XPath("//input[@id='susbscribe_email']"));
         public IWebElement subscribeButton => driver.FindElement(By.XPath("//button[@id='subscribe']"));
         public IWebElement subscribleSuccessfulMessage => driver.FindElement(By.XPath("//*[@id='success-subscribe']"));
         public IWebElement webBanner => driver.FindElement(By.XPath("//*[@id='slider-carousel']"));
         public IWebElement rightArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-right']"));
-        public IWebElement leftArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-left']")); 
-        public IWebElement carouselFirstText => WaitAndFindElements(By.XPath("//*[@class='item active']//h1")); 
-        public IWebElement carouselSecondText => WaitAndFindElements(By.XPath("//*[@class='item active']//h2")); 
-        public IWebElement carouselThirdText => WaitAndFindElements(By.XPath("//*[@class='item active']//p")); 
+        public IWebElement leftArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-left']"));
+        public IWebElement carouselFirstText => WaitAndFindElements(By.XPath("//*[@class='item active']//h1"));
+        public IWebElement carouselSecondText => WaitAndFindElements(By.XPath("//*[@class='item active']//h2"));
+        public IWebElement carouselThirdText => WaitAndFindElements(By.XPath("//*[@class='item active']//p"));
 
-        public IWebElement modelImage => driver.FindElement(By.XPath("//*[@class='col-sm-6']/img")); 
+        public IWebElement modelImage => driver.FindElement(By.XPath("//*[@class='col-sm-6']/img"));
 
         public IWebElement testCasesButton => driver.FindElement(By.XPath("//*[@href='/test cases' and contains(@class,'test_cases_list')]"));
         public IWebElement apisListButton => driver.FindElement(By.XPath("//*[@href='/api_list' and contains(@class,'apis_list')]"));
         public IList<IWebElement> indicators => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@data-target='#slider-carousel']"));
         public IWebElement activeIndicator => driver.FindElement(By.XPath("//*[@data-target='#slider-carousel' and @class='active']"));
         public IList<IWebElement> allProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']"));
+        public IList<IWebElement> overlayAllProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='product-overlay']"));
         public IList<IWebElement> productsName => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
         public IList<IWebElement> addProductButton => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='product-overlay']//a[contains(@data-product-id,'')]"));
         public IList<IWebElement> viewProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='choose']"));
@@ -59,5 +60,10 @@ namespace Automation_Exercise.Pages.HomePage
         public IWebElement brandsKookieKids => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Kookie Kids')]"));
         public IWebElement brandsBiba => driver.FindElement(By.XPath("//*[contains(@href, '/brand_products/Biba')]"));
         public IWebElement copyRightText => driver.FindElement(By.XPath("//*[@class='pull-left']"));
+        public IWebElement scrollUpButton => driver.FindElement(By.XPath("//*[@id='scrollUp']"));
+        public IWebElement recommendedItemsLeftArrow => driver.FindElement(By.XPath("//*[@class='left recommended-item-control']/i"));
+        public IWebElement recommendedItemsRightArrow => driver.FindElement(By.XPath("//*[@class='right recommended-item-control']/i"));
+        public IList<IWebElement> recommendedItemsProductsName => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='carousel-inner']//*[@class='item active']//p"));
+
     }
 }

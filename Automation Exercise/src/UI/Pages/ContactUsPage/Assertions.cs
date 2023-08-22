@@ -13,6 +13,14 @@ namespace Automation_Exercise.Pages.ContactUsPage
         {
             Assert.AreEqual("CONTACT US", contactUsFormTitle.Text);
         }
+        public void AssertFeedbackTitleIsDisplayedCorrectly()
+        {
+            Assert.AreEqual("FEEDBACK FOR US",feedbackTitle.Text);
+        }
+        public void AssertFeedbackTextInfoIsDisplayedCorrectly()
+        {
+            Assert.AreEqual("asdasd",feedbackTextInfo.Text);
+        }
         public void AssertContactFormFieldsAreDisplayed()
         {
             Assert.True(nameField.Displayed);

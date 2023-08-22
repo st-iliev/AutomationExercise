@@ -33,5 +33,10 @@ namespace Automation_Exercise.Pages.ProductPage
         {
             Assert.AreEqual(GetCountOfBrandProducts(brandName), NumberOfDisplayedBrandProducts(brandName));
         }
+        public void AssertProductOverlayInfoIsDisplayed(string productName)
+        {
+            Assert.True(GetProductOverlayInfo(productName));
+        }
+
     }
 }

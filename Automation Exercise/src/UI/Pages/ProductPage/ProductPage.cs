@@ -10,7 +10,40 @@ namespace Automation_Exercise.Pages.ProductPage
         {
         }
         private int productId;
+        private bool GetProductOverlayInfo(string productName)
+        {
+            foreach (var product in overlayAllProducts)
+            {
+                string name = product.FindElement(By.XPath(".//p")).Text;
+                if (name == productName)
+                {
+                    if (product.FindElement(By.XPath(".//p")).Displayed)
+                    {
+                        if (product.FindElement(By.XPath(".//h2")).Displayed)
+                        {
+                            return true;
+                        }
+                    }
+                    return false;
+                }
+            }
+            return false;
+        }
+
         public int GetProductId() => productId;
+        public void HoverOverProduct(IWebDriver driver, string productName)
+        {
+            foreach (var product in allProducts)
+            {
+                string name = product.FindElement(By.XPath(".//p")).Text;
+                if (name == productName)
+                {
+                    productId = int.Parse(product.FindElement(By.XPath(".//a")).GetDomAttribute("data-product-id"));
+                    HoverOverElement(driver, allProducts[productId - 1]);
+                    break;
+                }
+            }
+        }
         public override string PageURL => "https://www.automationexercise.com/products";
         public void SelectCategoryAndProductType(string categoryName, string productType)
         {
@@ -148,10 +181,9 @@ namespace Automation_Exercise.Pages.ProductPage
             {
                 return true;
             }
-            else
-            {
                 return false;
-            }
         }
+        public void ClickOnScrollUpButton() => scrollUpButton.Click();
+
     }
 }

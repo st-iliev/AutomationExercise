@@ -8,6 +8,7 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement searchField => driver.FindElement(By.XPath("//*[@id='search_product']"));
         public IWebElement searchButton => driver.FindElement(By.XPath("//*[@id='submit_search']"));
         public IList<IWebElement> allProducts => driver.FindElements(By.XPath("//*[@class='features_items']/*[@class='col-sm-4']"));
+        public IList<IWebElement> overlayAllProducts => (IList<IWebElement>)driver.FindElements(By.XPath("//*[@class='product-overlay']"));
         public IList<IWebElement> productsName => driver.FindElements(By.XPath("//*[@class='productinfo text-center']/p"));
         public IList<IWebElement> addProductButton => driver.FindElements(By.XPath("//*[@class='productinfo text-center']//a[contains(@data-product-id,'')]"));
         public IList<IWebElement> viewProducts => driver.FindElements(By.XPath("//*[@class='choose']"));
@@ -34,5 +35,7 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement productAddedSuccessfulMsg => WaitAndFindElements(By.XPath("//p[@class='text-center'][1]"));
         public IWebElement viewCart => WaitAndFindElements(By.XPath("//p[@class='text-center'][2]/a"));
         public IWebElement continueShoppingButton => WaitAndFindElements(By.XPath("//button[@data-dismiss='modal']"));
+        public IWebElement scrollUpButton => driver.FindElement(By.XPath("//*[@id='scrollUp']"));
+
     }
 }

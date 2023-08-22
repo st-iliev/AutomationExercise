@@ -110,5 +110,15 @@ namespace Automation_Exercise.Test_Scripts
                 };
             });
         }
+        [Test, Order(5)]
+        public void VerifyFeedbackInformationIsDisplayedCorrect()
+        {
+            test = suiteTest.CreateNode("Test Correct feedback information is displayed.");
+            ExceptionHandler.HandleException(() =>
+            {
+                contactUsPage.AssertFeedbackTitleIsDisplayedCorrectly();
+            contactUsPage.AssertFeedbackTextInfoIsDisplayedCorrectly();
+            });
+        }
     }
 }

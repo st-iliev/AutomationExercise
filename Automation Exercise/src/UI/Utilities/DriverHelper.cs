@@ -17,7 +17,7 @@ namespace Automation_Exercise.Utilities
                 case BrowserType.Chrome:
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArguments("--lang=en-US");
-                    chromeOptions.AddArgument("--headless");
+                    //chromeOptions.AddArgument("--headless");
                     return driver = new ChromeDriver(chromeOptions);
                 case BrowserType.Firefox:
                     var mozillaOptions = new FirefoxOptions();

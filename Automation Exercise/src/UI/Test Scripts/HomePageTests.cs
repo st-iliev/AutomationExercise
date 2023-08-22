@@ -12,6 +12,7 @@ namespace Automation_Exercise.Test_Scripts
         public void OneTimeSetUp()
         {
             suiteTest = extent.CreateTest("Home Page Tests");
+
         }
         [SetUp]
         public void Preconditions()
@@ -20,7 +21,6 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertWebBannerIsDisplayed();
         }
-
         [Test, Order(1)]
         public void VerifyNavigationLinksArePresentAndFunctioningCorrectly()
         {
@@ -203,16 +203,13 @@ namespace Automation_Exercise.Test_Scripts
             test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
             ExceptionHandler.HandleException(() =>
             {
-                homePage.Open();
-                homePage.AssertCorrectPageIsLoaded();
-                homePage.AssertWebBannerIsDisplayed();
                 ScrollToBottom(driver);
                 homePage.AssertCorrectCarouselTextsAreDisplayed();
             });
         }
         [Test, Order(12)]
         [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.ProductCases))]
-        public void VerifyOpenProductDetailsPage(string productName)
+        public void VerifyOpenProductDetailsPageFromHomePage(string productName)
         {
             test = suiteTest.CreateNode("Test Open detailspage of product");
             ExceptionHandler.HandleException(() =>
@@ -222,6 +219,53 @@ namespace Automation_Exercise.Test_Scripts
                 AdverticeHelper.CheckForAdvertice(driver);
                 productDetailsPage.AssertCorrectPageIsLoaded();
                 productDetailsPage.AssertCorrectProductName(productName);
+            });
+        }
+        [Test, Order(13)]
+        public void VerifyWebsiteLogoLoardedProperly()
+        {
+            test = suiteTest.CreateNode("Test Website logo is displayed property.");
+            ExceptionHandler.HandleException(() =>
+            {
+                homePage.AssertWebsiteLogoIsDisplayed();
+            });
+        }
+        [Test, Order(14)]
+        [TestCaseSource(typeof(HomePageTestCases), nameof(HomePageTestCases.ScrollDownHeightCases))]
+        public void VerifyFunctuallityOfScrollUpButton(int height)
+        {
+            test = suiteTest.CreateNode("Test Functuallity of scrollup button.");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollDown(driver, height);
+                homePage.ClickOnScrollUpButton();
+                homePage.AssertWebsiteLogoIsDisplayed();
+                homePage.AssertWebBannerIsDisplayed();
+            });
+        }
+        [Test, Order(15)]
+        [TestCaseSource(typeof(HomePageTestCases), nameof(HomePageTestCases.SidesOfArrowsCases))]
+        public void VerifyFunctionalityOfRecommendedItemsArrows(string side)
+        {
+            test = suiteTest.CreateNode("Test Functuallity of side arrows of recommended items.");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollDown(driver, 7310);
+                var previousItems = homePage.GetNamesOfCurrentRecommendedItems();
+                homePage.ClickOnRecommendedItemArow(side);
+                homePage.AssertNamesOfCurrentRecommendedItems(previousItems, homePage.GetNamesOfCurrentRecommendedItems());
+            });
+        }
+        [Test, Order(16)]
+        [TestCaseSource(typeof(HomePageTestCases), nameof(HomePageTestCases.ProductOverlayInfo))]
+        public void VerifyOverlayShownOnProduct(string productName)
+        {
+            test = suiteTest.CreateNode("Test Product overlay info is displayed.");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollDown(driver, 600);
+                homePage.HoverOverProduct(driver, productName);
+                homePage.AssertProductOverlayInfoIsDisplayed(productName);
             });
         }
     }

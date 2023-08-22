@@ -13,9 +13,10 @@ namespace Automation_Exercise.Test_Scripts
         public void OneTimeSetUp()
         {
             suiteTest = extent.CreateTest("Product Page Tests");
+
         }
         [SetUp]
-        public void Precondition()
+        public void Preconditions()
         {
             productPage.Open();
             productPage.AssertCorrectPageIsLoaded();
@@ -167,6 +168,49 @@ namespace Automation_Exercise.Test_Scripts
                 productDetailsPage.AssertCorrectProductName(productName);
             });
         }
-
+        [Test,Order(11)]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.ScrollDownHeightCases))]
+        public void VerifyFunctuallityOfScrollUpButton(int height)
+        {
+            test = suiteTest.CreateNode("Test Functuallity of scrollup button.");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollDown(driver, height);
+                productPage.ClickOnScrollUpButton();
+                productPage.AssertSaleBannerIsDisplayed();
+            });
+        }
+        [Test, Order(12)]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.ProductOverlayInfo))]
+        public void VerifyOverlayShownOnProduct(string productName)
+        {
+            test = suiteTest.CreateNode("Test Product overlay info is displayed.");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollDown(driver, 600);
+                productPage.HoverOverProduct(driver, productName);
+                productPage.AssertProductOverlayInfoIsDisplayed(productName);
+            });
+        }
+        [Test, Order(13)]
+        public void VerifyScrollDownFuncionallity()
+        {
+            test = suiteTest.CreateNode("Test Scrolldown fuctionallity of page");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollToBottom(driver);
+                homePage.AssertCopyRightTextIsDisplayed();
+            });
+        }
+        [Test, Order(14)]
+        public void VerifyScrollUpFuncionallity()
+        {
+            test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
+            ExceptionHandler.HandleException(() =>
+            {
+                ScrollToBottom(driver);
+                productPage.AssertSaleBannerIsDisplayed();
+            });
+        }
     }
 }

@@ -55,6 +55,18 @@ namespace Automation_Exercise.src.UI.TestData
             yield return new TestCaseData("KIDS", "DRESS");
             yield return new TestCaseData("KIDS", "TOPS & SHIRTS");
         }
-
+        public static IEnumerable ScrollDownHeightCases()
+        {
+            yield return new TestCaseData(1250);
+            yield return new TestCaseData(2980);
+            yield return new TestCaseData(4550);
+            yield return new TestCaseData(6310);
+        }
+        public static IEnumerable ProductOverlayInfo()
+        {
+            yield return new TestCaseData("Blue Top");
+            yield return new TestCaseData("Men Tshirt");
+            yield return new TestCaseData("Sleeveless Dress");
+        }
     }
 }
