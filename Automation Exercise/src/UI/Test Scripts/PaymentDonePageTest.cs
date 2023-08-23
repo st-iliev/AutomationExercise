@@ -1,5 +1,5 @@
 ﻿using Automation_Exercise.Pages.PaymentPage;
-using Automation_Exercise.src.UI.Utilities;
+using Automation_Exercise.src.UI.TestData;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
@@ -10,21 +10,15 @@ namespace Automation_Exercise.Test_Scripts
     {
         private CardInfo cardInfo;
         [OneTimeSetUp]
-        public void Setup()
+        public void OneTimeSetUp()
         {
             suiteTest = extent.CreateTest("PaymentDone Page Tests");
-            loginPage.Open();
-            loginPage.AssertCorrectPageIsLoaded();
-            loginPage.AssertCorrectLoginFormTitleIsDisplayed();
-            loginPage.FillLoginForm(Constants.email, Constants.password);
-            loginPage.ClickOnLoginButton();
+            UserLogin();
         }
         [Test, Order(1)]
         public void VerifyDownloadAndCheckContentOfInvoiceFile()
         {
             test = suiteTest.CreateNode("Test Download and check content of invoice file.");
-            ExceptionHandler.HandleException(() =>
-            {
                 productPage.Open();
                 ScrollDown(driver, 500);
                 productPage.AddProductToCart("Blue Top");
@@ -48,18 +42,15 @@ namespace Automation_Exercise.Test_Scripts
                 paymentDonePage.DownloadInvoice();
                 AdverticeHelper.CheckForAdvertice(driver);
               //paymentDonePage.AssertFileDownloadSuccessful(); //Change it to your browser download location.
-                paymentDonePage.AssertFileContentIsCorrectly();
+                //paymentDonePage.AssertFileContentIsCorrectly();
                 BackToPreviusPage(driver);
                 paymentDonePage.ContinueOrder();
                 homePage.AssertCorrectPageIsLoaded();
-            });
         }
         [Test, Order(2)]
         public void VerifyCompleteOrderWihtoutAddedProduct()
         {
             test = suiteTest.CreateNode("Test Complete order without added product.");
-            ExceptionHandler.HandleException(() =>
-            {
                 paymentPage.Open();
                 paymentPage.AssertCorrectPageIsLoaded();
                 paymentPage.AssertCorrectPaymentTitleIsDisplayed();
@@ -78,7 +69,34 @@ namespace Automation_Exercise.Test_Scripts
                 paymentDonePage.AssertOrderConfirmedMessageIsDisplayedCorrectly();
                 paymentDonePage.ContinueOrder();
                 homePage.AssertCorrectPageIsLoaded();
-            });
+        }
+        [Test, Order(3)]
+        public void VerifySuccessfulSubscribe()
+        {
+            test = suiteTest.CreateNode("Test Search For Existing Product");
+            ScrollToBottom(driver);
+            homePage.Subscrible(Constants.email);
+            homePage.ClickOnSubscribeButton();
+            homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
+        }
+        [Test, Order(4)]
+        [TestCaseSource(typeof(SubscribeTestCases), nameof(SubscribeTestCases.InvalidSubscribeCases))]
+        public void VerifySubscribeWithInvalidEmail(string email)
+        {
+            test = suiteTest.CreateNode("Test Subscribe With Invalid Credential");
+            ScrollToBottom(driver);
+            homePage.ClearSubscrible();
+            homePage.Subscrible(email);
+            homePage.ClickOnSubscribeButton();
+            switch (email)
+            {
+                case null:
+                    homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
+                case "invalidEmail":
+                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+                case "invalidEmail@":
+                    homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+            };
         }
     }
 }

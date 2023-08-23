@@ -37,5 +37,6 @@ namespace Automation_Exercise.Pages.ProductPage
         public IWebElement continueShoppingButton => WaitAndFindElements(By.XPath("//button[@data-dismiss='modal']"));
         public IWebElement scrollUpButton => driver.FindElement(By.XPath("//*[@id='scrollUp']"));
 
+
     }
 }

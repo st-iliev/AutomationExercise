@@ -6,6 +6,7 @@ namespace Automation_Exercise.Pages.SignupPage
     {
       
         public string Title { get; set; }
+        public string Name { get; set; }
         public string Email { get; set; }
         public string? Password { get; set; }
         public DayOfMonth DayOfMonth { get; set; }

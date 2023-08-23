@@ -1,6 +1,5 @@
 ﻿using Automation_Exercise.Pages.SignupPage;
 using Automation_Exercise.src.UI.TestData;
-using Automation_Exercise.src.UI.Utilities;
 using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
@@ -29,166 +28,158 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifySuccessfulSubscribe()
         {
             test = suiteTest.CreateNode("Test Successful Subscribe With Valid Credentials");
-            ExceptionHandler.HandleException(() =>
-            {
-                ScrollToBottom(driver);
-                homePage.Subscrible(Constants.email);
-                homePage.ClickOnSubscribeButton();
-                homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
-            });
+            ScrollToBottom(driver);
+            homePage.Subscrible(Constants.email);
+            homePage.ClickOnSubscribeButton();
+            homePage.AssertCorrectSuccessfulSubscribeMessageIsDisplayed();
         }
         [Test, Order(2)]
         [TestCaseSource(typeof(SubscribeTestCases), nameof(SubscribeTestCases.InvalidSubscribeCases))]
         public void VerifySubscribeWithInvalidEmail(string email)
         {
             test = suiteTest.CreateNode("Test Subscribe With Invalid Credentials");
-            ExceptionHandler.HandleException(() =>
+            ScrollToBottom(driver);
+            homePage.Subscrible(email);
+            homePage.ClickOnSubscribeButton();
+            switch (email)
             {
-                ScrollToBottom(driver);
-                homePage.Subscrible(email);
-                homePage.ClickOnSubscribeButton();
-                switch (email)
-                {
-                    case "":
-                        homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
-                    case "invalidEmail":
-                        homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
-                    case "invalidEmail@":
-                        homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
-                };
-            });
+                case "":
+                    homePage.AssertErrorEmptyFieldMessageIsDisplayed(homePage.subscribeField); break;
+                case "invalidEmail":
+                    homePage.AssertErrorInvalidEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+                case "invalidEmail@":
+                    homePage.AssertErrorIncompleteEmailAddressMessageIsDisplayed(homePage.subscribeField, email); break;
+            };
         }
         [Test, Order(3)]
         public void VerifyRegisterNewUserWithOnlyRequiredFieldsFilled()
         {
             test = suiteTest.CreateNode("Test Register User With Required Credentials");
-            ExceptionHandler.HandleException(() =>
+            accountInfo = new AccountInfo()
             {
-                accountInfo = new AccountInfo()
-                {
-                    Title = Constants.title,
-                    Password = Constants.password,
-                    FirstName = Constants.firstName,
-                    LastName = Constants.lastName,
-                    Company = Constants.companyName,
-                    Address1 = Constants.firstAddress,
-                    Country = Constants.country,
-                    State = Constants.state,
-                    City = Constants.city,
-                    ZipCode = Constants.zipCode,
-                    MobileNumber = Constants.mobileNumber
-                };
-                signupPage.FillSignupForm(accountInfo);
-                ScrollToBottom(driver);
-                signupPage.ClickOnCreateAccount();
-                accountCreatedPage.AssertCorrectPageIsLoaded();
-                accountCreatedPage.AssertAccountCreatedTitleIsDisplayedCorrectly();
-                accountCreatedPage.AssertFirstSuccessfullMessageIsDisplayedCorrectly();
-                accountCreatedPage.AssertSecondSuccessfullMessageIsDisplayedCorrectly();
-                accountCreatedPage.ClickOnContinue();
-                AdverticeHelper.CheckForAdvertice(driver);
-                homePage.AssertCorrectPageIsLoaded();
-                homePage.DeleteAccount();
-                deleteAccountPage.ClickOnContinue();
-                homePage.AssertUserIsLogout();
-            });
+                Name = Constants.name,
+                Title = Constants.title,
+                Password = Constants.password,
+                FirstName = Constants.firstName,
+                LastName = Constants.lastName,
+                Company = Constants.companyName,
+                Address1 = Constants.firstAddress,
+                Country = Constants.country,
+                State = Constants.state,
+                City = Constants.city,
+                ZipCode = Constants.zipCode,
+                MobileNumber = Constants.mobileNumber
+            };
+            signupPage.FillSignupForm(accountInfo);
+            ScrollToBottom(driver);
+            signupPage.ClickOnCreateAccount();
+            accountCreatedPage.AssertCorrectPageIsLoaded();
+            accountCreatedPage.AssertAccountCreatedTitleIsDisplayedCorrectly();
+            accountCreatedPage.AssertFirstSuccessfullMessageIsDisplayedCorrectly();
+            accountCreatedPage.AssertSecondSuccessfullMessageIsDisplayedCorrectly();
+            accountCreatedPage.ClickOnContinue();
+            AdverticeHelper.CheckForAdvertice(driver);
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.DeleteAccount();
+            deleteAccountPage.ClickOnContinue();
+            homePage.AssertUserIsLogout();
         }
         [Test, Order(4)]
         [TestCaseSource(typeof(SignupTestCases), nameof(SignupTestCases.ErrorMessagesOnSignup))]
-        public void VerifyErrorMessageDisplayedOnRequiredFields(string password, string firsName, string lastName, string address1, string country, string state, string city, string zipeCode, string mobileNumber)
+        public void VerifyErrorMessageDisplayedOnRequiredFields(string name, string password, string firsName, string lastName, string address1, string country, string state, string city, string zipeCode, string mobileNumber)
         {
-            test = suiteTest.CreateNode("Test Error Message Displayed On Required Credentials");
-            ExceptionHandler.HandleException(() =>
+            test = suiteTest.CreateNode("Test Error Message Displayed On Required Fields");
+            accountInfo = new AccountInfo()
             {
-                accountInfo = new AccountInfo()
-                {
-                    Password = password,
-                    FirstName = firsName,
-                    LastName = lastName,
-                    Address1 = address1,
-                    Country = country,
-                    State = state,
-                    City = city,
-                    ZipCode = zipeCode,
-                    MobileNumber = mobileNumber
-                };
-                signupPage.FillSignupForm(accountInfo);
-                ScrollToBottom(driver);
-                signupPage.ClickOnCreateAccount();
-                if (accountInfo.Password != "")
-                {
-                    signupPage.AssertValidationMessageIsDisplayed(signupPage.passwordField);
-                }
-                if (accountInfo.FirstName != "")
-                {
-                    signupPage.AssertValidationMessageIsDisplayed(signupPage.firstNameField);
-                }
-                if (accountInfo.LastName != "")
-                {
-                    signupPage.AssertValidationMessageIsDisplayed(signupPage.lastNameField);
-                }
-                if (accountInfo.Address1 != "")
-                {
-                    signupPage.AssertValidationMessageIsDisplayed(signupPage.addressField);
-                }
-                if (accountInfo.State != "")
-                {
-                    signupPage.AssertValidationMessageIsDisplayed(signupPage.stateField);
-                }
-                if (accountInfo.City != "")
-                {
-                    signupPage.AssertValidationMessageIsDisplayed(signupPage.cityField);
-                }
-                if (accountInfo.ZipCode != "")
-                {
-                    signupPage.AssertValidationMessageIsDisplayed(signupPage.zipCodeField);
-                }
-                if (accountInfo.MobileNumber != "")
-                {
-                    signupPage.AssertValidationMessageIsDisplayed(signupPage.mobileNumberField);
-                }
-            });
-
+                Name = name,
+                Password = password,
+                FirstName = firsName,
+                LastName = lastName,
+                Address1 = address1,
+                Country = country,
+                State = state,
+                City = city,
+                ZipCode = zipeCode,
+                MobileNumber = mobileNumber
+            };
+            signupPage.ClearSignupForm();
+            signupPage.FillSignupForm(accountInfo);
+            ScrollToBottom(driver);
+            signupPage.ClickOnCreateAccount();
+            if (accountInfo.Name != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.nameField);
+            }
+            if (accountInfo.Password != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.passwordField);
+            }
+            if (accountInfo.FirstName != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.firstNameField);
+            }
+            if (accountInfo.LastName != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.lastNameField);
+            }
+            if (accountInfo.Address1 != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.addressField);
+            }
+            if (accountInfo.State != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.stateField);
+            }
+            if (accountInfo.City != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.cityField);
+            }
+            if (accountInfo.ZipCode != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.zipCodeField);
+            }
+            if (accountInfo.MobileNumber != "")
+            {
+                signupPage.AssertValidationMessageIsDisplayed(signupPage.mobileNumberField);
+            }
         }
         [Test, Order(5)]
         public void VerifyRegisterNewUserWithFilledAllFields()
         {
             test = suiteTest.CreateNode("Test Register User With All Credentials");
-            ExceptionHandler.HandleException(() =>
+            accountInfo = new AccountInfo()
             {
-                accountInfo = new AccountInfo()
-                {
-                    Title = Constants.title,
-                    Password = Constants.password,
-                    DayOfMonth = DayOfMonth.Day22,
-                    MonthOfYear = MonthOfYear.July,
-                    Years = Years.Year1999,
-                    FirstName = Constants.firstName,
-                    LastName = Constants.lastName,
-                    Company = Constants.companyName,
-                    Address1 = Constants.firstAddress,
-                    Address2 = Constants.secondAddress,
-                    Country = Constants.country,
-                    State = Constants.state,
-                    City = Constants.city,
-                    ZipCode = Constants.zipCode,
-                    MobileNumber = Constants.mobileNumber
-                };
-                ScrollDown(driver, 250);
-                signupPage.CheckForNewsLetter();
-                signupPage.CheckForReceiveSpecialOffers();
-                signupPage.FillSignupForm(accountInfo);
-                ScrollToBottom(driver);
-                signupPage.ClickOnCreateAccount();
-                accountCreatedPage.AssertCorrectPageIsLoaded();
-                accountCreatedPage.AssertAccountCreatedTitleIsDisplayedCorrectly();
-                accountCreatedPage.AssertFirstSuccessfullMessageIsDisplayedCorrectly();
-                accountCreatedPage.AssertSecondSuccessfullMessageIsDisplayedCorrectly();
-                accountCreatedPage.ClickOnContinue();
-                AdverticeHelper.CheckForAdvertice(driver);
-                homePage.AssertCorrectPageIsLoaded();
-                homePage.AssertUserIsLogin();
-            });
+                Name = Constants.name,
+                Title = Constants.title,
+                Password = Constants.password,
+                DayOfMonth = DayOfMonth.Day22,
+                MonthOfYear = MonthOfYear.July,
+                Years = Years.Year1999,
+                FirstName = Constants.firstName,
+                LastName = Constants.lastName,
+                Company = Constants.companyName,
+                Address1 = Constants.firstAddress,
+                Address2 = Constants.secondAddress,
+                Country = Constants.country,
+                State = Constants.state,
+                City = Constants.city,
+                ZipCode = Constants.zipCode,
+                MobileNumber = Constants.mobileNumber
+            };
+            ScrollDown(driver, 250);
+            signupPage.CheckForNewsLetter();
+            signupPage.CheckForReceiveSpecialOffers();
+            signupPage.FillSignupForm(accountInfo);
+            ScrollToBottom(driver);
+            signupPage.ClickOnCreateAccount();
+            accountCreatedPage.AssertCorrectPageIsLoaded();
+            accountCreatedPage.AssertAccountCreatedTitleIsDisplayedCorrectly();
+            accountCreatedPage.AssertFirstSuccessfullMessageIsDisplayedCorrectly();
+            accountCreatedPage.AssertSecondSuccessfullMessageIsDisplayedCorrectly();
+            accountCreatedPage.ClickOnContinue();
+            AdverticeHelper.CheckForAdvertice(driver);
+            homePage.AssertCorrectPageIsLoaded();
+            homePage.AssertUserIsLogin();
         }
     }
 }

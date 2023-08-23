@@ -11,6 +11,7 @@ namespace Automation_Exercise.Pages.CheckoutPage
         {
         }
         public override string PageURL => "https://www.automationexercise.com/checkout";
+        public void ClickOnHomeButton() => homeButton.Click();
         public List<string> GetNameOfAllAddedProducts()
         {
             List<string> names = new List<string>();

@@ -12,7 +12,7 @@ namespace Automation_Exercise.Pages.SignupPage
         public IWebElement accountInfoTitle => driver.FindElement(By.XPath("//*[@class='login-form']h2"));
         public IWebElement titleMrRadioButton => driver.FindElement(By.XPath("//input[@id='id_gender1']"));
         public IWebElement titleMrsRadioButton => driver.FindElement(By.XPath("//input[@id='id_gender2']"));
-        public IWebElement nameField => driver.FindElement(By.XPath("//input[@id='id_gender2']"));
+        public IWebElement nameField => driver.FindElement(By.XPath("//input[@id='name']"));
         public IWebElement emailField => driver.FindElement(By.XPath("//input[@id='email']"));
         public IWebElement passwordField => driver.FindElement(By.XPath("//input[@id='password']"));
         public IWebElement dayOfBirthDropDown => driver.FindElement(By.XPath("//select[@id='days']"));

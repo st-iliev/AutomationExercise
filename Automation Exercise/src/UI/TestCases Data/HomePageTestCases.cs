@@ -19,13 +19,6 @@ namespace Automation_Exercise.src.UI.TestData
             yield return new TestCaseData("left");
             yield return new TestCaseData("left");
         }
-        public static IEnumerable ScrollDownHeightCases()
-        {
-            yield return new TestCaseData(1300);
-            yield return new TestCaseData(3300);
-            yield return new TestCaseData(4800);
-            yield return new TestCaseData(6400);
-        }
         public static IEnumerable SidesOfArrowsCases()
         {
             yield return new TestCaseData("left");

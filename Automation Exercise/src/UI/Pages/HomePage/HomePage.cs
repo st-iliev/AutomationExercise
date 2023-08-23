@@ -141,6 +141,7 @@ namespace Automation_Exercise.Pages.HomePage
         }
         public void Logout() => logoutLink.Click();
         public void DeleteAccount() => deleteAccountLink.Click();
+        public void ClearSubscrible() => subscribeField.Clear();
         public void Subscrible(string email) => subscribeField.SendKeys(email);
         public void ClickOnSubscribeButton() => subscribeButton.Click();
         public int GetCountOfBrandProducts(Brands brandName)

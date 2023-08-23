@@ -17,11 +17,11 @@ namespace Automation_Exercise.Pages.DeleteAccountPage
         {
             Assert.AreEqual("ACCOUNT DELETED!", accountDeleteMsg.Text);
         }
-        public void AssertCorrectAccountDeletedSuccessfullMessageIsDisplayed()
+        public void AssertCorrectSuccessfullMessageIsDisplayed()
         {
             Assert.AreEqual(SuccessfulMessages.accountDeleted, firstAccountDeletedSuccessfullMsg.Text);
         }
-        public void AssertCorrectSecondAccountDeletedSuccessfullMessageIsDisplayed()
+        public void AssertCorrectSecondSuccessfullMessageIsDisplayed()
         {
             Assert.AreEqual(SuccessfulMessages.secondAccountDeleted, secondAccountDeletedSuccessfullMsg.Text);
         }

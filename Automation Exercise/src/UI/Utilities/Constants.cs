@@ -32,6 +32,7 @@
         public const string carouselSecondText = "Full-Fledged practice website for Automation Engineers";
         public const string carouselThirdText = "All QA engineers can use this website for automation practice and API testing either they are at beginner or advance level. This is for everybody to help them brush up their automation skills.";
         public const string productReviewText = "I highly recommend this product to anyone in need. It's a valuable addition to any setup. Thank you for creating such a fantastic product!";
+        public const string feedbackInfoText = "We really appreciate your response to our website.\r\n\r\nKindly share your feedback with us at feedback@automationexercise.com.\r\n\r\nIf you have any suggestion areas or improvements, do let us know. We will definitely work on it.\r\n\r\nThank you";
        
     }
 }

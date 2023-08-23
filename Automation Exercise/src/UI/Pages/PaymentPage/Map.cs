@@ -12,5 +12,6 @@ namespace Automation_Exercise.Pages.PaymentPage
         public IWebElement expirationYearField => driver.FindElement(By.XPath("//input[@data-qa='expiry-year']"));
         public IWebElement payOrderButton => driver.FindElement(By.XPath("//button[@data-qa='pay-button']"));
         public IWebElement successfulOrderMsg => driver.FindElement(By.XPath("//*[@class='alert-success alert']"));
+        public IWebElement homeButton => driver.FindElement(By.XPath("//*[@id='cart_items']//a[contains(text(),'Home')]"));
     }
 }

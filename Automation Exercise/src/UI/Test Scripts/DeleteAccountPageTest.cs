@@ -1,5 +1,4 @@
-﻿using Automation_Exercise.src.UI.Utilities;
-using Automation_Exercise.Utilities;
+﻿using Automation_Exercise.Utilities;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -16,26 +15,17 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyDeleteUserAccount()
         {
             test = suiteTest.CreateNode("Test Delete user account.");
-            ExceptionHandler.HandleException(() =>
-            {
-                loginPage.Open();
-                loginPage.AssertCorrectPageIsLoaded();
-                loginPage.AssertCorrectLoginFormTitleIsDisplayed();
-                loginPage.FillLoginForm(Constants.email, Constants.password);
-                loginPage.ClickOnLoginButton();
-                homePage.AssertUserIsLogin();
-                homePage.DeleteAccount();
-                AdverticeHelper.CheckForAdvertice(driver);
-                deleteAccountPage.AssertCorrectPageIsLoaded();
-                deleteAccountPage.AssertCorrectAccountDeleteMessageIsDisplayed();
-                deleteAccountPage.AssertCorrectAccountDeletedSuccessfullMessageIsDisplayed();
-                deleteAccountPage.AssertCorrectSecondAccountDeletedSuccessfullMessageIsDisplayed();
-                deleteAccountPage.ClickOnContinue();
-                loginPage.Open();
-                loginPage.FillLoginForm(Constants.email, Constants.password);
-                loginPage.ClickOnLoginButton();
-                loginPage.AssertIncorrectInputDataMessageIsDisplayed();
-            });
+            UserLogin();
+            homePage.AssertUserIsLogin();
+            homePage.DeleteAccount();
+            AdverticeHelper.CheckForAdvertice(driver);
+            deleteAccountPage.AssertCorrectPageIsLoaded();
+            deleteAccountPage.AssertCorrectAccountDeleteMessageIsDisplayed();
+            deleteAccountPage.AssertCorrectSuccessfullMessageIsDisplayed();
+            deleteAccountPage.AssertCorrectSecondSuccessfullMessageIsDisplayed();
+            deleteAccountPage.ClickOnContinue();
+            UserLogin();
+            loginPage.AssertIncorrectInputDataMessageIsDisplayed();
         }
     }
 }

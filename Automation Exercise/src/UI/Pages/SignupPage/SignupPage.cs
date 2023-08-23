@@ -26,6 +26,10 @@ namespace Automation_Exercise.Pages.SignupPage
                     titleMrsRadioButton.Click();
                 }                 
             }
+            if (accountInfo.Name != "")
+            {
+                nameField.SendKeys(accountInfo.Name);
+            }
             if (accountInfo.Password != "")
             {
             passwordField.SendKeys(accountInfo.Password);
@@ -76,6 +80,19 @@ namespace Automation_Exercise.Pages.SignupPage
             {
                 mobileNumberField.SendKeys(accountInfo.MobileNumber);
             }
+        }
+        public void ClearSignupForm()
+        {
+            nameField.Clear();
+            passwordField.Clear();
+            firstNameField.Clear();
+            lastNameField.Clear();
+            companyField.Clear();
+            addressField.Clear();
+            address2Field.Clear();
+            stateField.Clear();
+            zipCodeField.Clear();
+            mobileNumberField.Clear();
         }
         public void ClickOnCreateAccount() => createAccountButton.Click();
        public bool ValidationMessageIsDisplayed(IWebElement nameOfField)

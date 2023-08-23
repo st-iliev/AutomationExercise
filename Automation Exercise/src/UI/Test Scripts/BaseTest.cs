@@ -11,12 +11,11 @@ using Automation_Exercise.Pages.ProductDetailsPage;
 using Automation_Exercise.Pages.ProductPage;
 using Automation_Exercise.Pages.SignupPage;
 using Automation_Exercise.Utilities;
-using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports;
+using AventStack.ExtentReports.Reporter;
+using AventStack.ExtentReports.Reporter.Configuration;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
-using AventStack.ExtentReports.Reporter.Configuration;
-using OpenQA.Selenium.Interactions;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -67,6 +66,12 @@ namespace Automation_Exercise.Test_Scripts
                 extent.AttachReporter(htmlReporter);
             }
         }
+        protected void UserLogin()
+        {
+            loginPage.Open();
+            loginPage.FillLoginForm(Constants.email, Constants.password);
+            loginPage.ClickOnLoginButton();
+        }
         protected static void ScrollToTop(IWebDriver driver)
         {
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
@@ -96,7 +101,8 @@ namespace Automation_Exercise.Test_Scripts
       
         private string CaptureScreenshot()
         {
-            string screenshotFileName = $"{TestContext.CurrentContext.Test.Name}-{DateTime.Now}.png";
+            string dateTimeFormatted = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
+            string screenshotFileName = $"{TestContext.CurrentContext.Test.Name}-{dateTimeFormatted}.png";
             string screenshotFilePath = $@"..\..\..\src\Common\Test Results\UI\{screenshotFileName}";
 
             // Capture the screenshot and save it to the specified file path

@@ -19,7 +19,7 @@ namespace Automation_Exercise.Pages.ContactUsPage
         }
         public void AssertFeedbackTextInfoIsDisplayedCorrectly()
         {
-            Assert.AreEqual("asdasd",feedbackTextInfo.Text);
+            Assert.AreEqual(Constants.feedbackInfoText, feedbackTextInfo.Text);
         }
         public void AssertContactFormFieldsAreDisplayed()
         {

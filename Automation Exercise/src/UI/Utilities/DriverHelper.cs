@@ -1,4 +1,5 @@
-﻿using OpenQA.Selenium;
+﻿using Microsoft.Extensions.Options;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
@@ -17,7 +18,8 @@ namespace Automation_Exercise.Utilities
                 case BrowserType.Chrome:
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArguments("--lang=en-US");
-                    //chromeOptions.AddArgument("--headless");
+                    //chromeOptions.AddArgument("--incognito"); // This argument enables incognito mode
+                    chromeOptions.AddArgument("--headless");
                     return driver = new ChromeDriver(chromeOptions);
                 case BrowserType.Firefox:
                     var mozillaOptions = new FirefoxOptions();

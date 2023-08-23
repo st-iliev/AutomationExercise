@@ -26,5 +26,6 @@ namespace Automation_Exercise.Pages.CheckoutPage
         public IList<IWebElement> orderProductsName => driver.FindElements(By.XPath("//*[@class='cart_description']/h4"));
         public IWebElement commentArea => driver.FindElement(By.XPath("//textarea[@class='form-control']"));
         public IWebElement placeOrderButton => driver.FindElement(By.XPath("//*[@href='/payment']"));
+        public IWebElement homeButton => driver.FindElement(By.XPath("//*[@id='cart_items']//a[contains(text(),'Home')]"));
     }
 }
