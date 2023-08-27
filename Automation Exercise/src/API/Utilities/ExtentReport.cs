@@ -20,8 +20,10 @@ namespace Automation_Exercise.src.API.Utilities
                 htmlReporter.Config.DocumentTitle = "Test Automation Report";
                 htmlReporter.Config.Encoding = "UTF-8";
                 htmlReporter.Config.Theme = Theme.Dark;
-                htmlReporter.Config.EnableTimeline = true;
                 extent = new ExtentReports();
+                extent.AddSystemInfo("OS", Environment.OSVersion.ToString());
+                extent.AddSystemInfo("Framework", "NUnit ver.3.13.3<br>RestSharp ver.110.2.0");
+                extent.AddSystemInfo(".NET Version", Environment.Version.ToString());
                 extent.AttachReporter(htmlReporter);
             }
         }

@@ -108,6 +108,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             test = suiteTest.CreateNode("Test home button redirect user to home page. ");
             cartPage.ClickOnHomeButton();
+            AdverticeHelper.CheckForAdvertice(driver);
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertCorrectCarouselTextsAreDisplayed();
         }

@@ -1,6 +1,4 @@
-﻿using Automation_Exercise.Utilities;
-using OpenQA.Selenium;
-using OpenQA.Selenium.DevTools.V112.Debugger;
+﻿using OpenQA.Selenium;
 
 namespace Automation_Exercise.Pages.SignupPage
 {

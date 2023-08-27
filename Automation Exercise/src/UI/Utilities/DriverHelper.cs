@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using OpenQA.Selenium;
+﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
 using OpenQA.Selenium.Firefox;
@@ -24,12 +23,12 @@ namespace Automation_Exercise.Utilities
                 case BrowserType.Firefox:
                     var mozillaOptions = new FirefoxOptions();
                     mozillaOptions.AddArguments("--lang=en-US");
-                    //mozillaOptions.AddArgument("--headless");
+                   // mozillaOptions.AddArgument("--headless");
                     return driver = new FirefoxDriver(mozillaOptions);
                 case BrowserType.Edge:
                     var edgeOptions = new EdgeOptions();
                     edgeOptions.AddArguments("--lang=en-US");
-                    //edgeOptions.AddArgument("--headless");
+                    edgeOptions.AddArgument("--headless");
                     return driver = new EdgeDriver(edgeOptions);
                 default:
                     throw new ArgumentException("Invalid browser type.");

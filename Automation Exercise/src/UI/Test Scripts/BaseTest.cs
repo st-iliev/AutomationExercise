@@ -1,4 +1,5 @@
-﻿using Automation_Exercise.Pages.AccountCreatedPage;
+﻿using System.Text.RegularExpressions;
+using Automation_Exercise.Pages.AccountCreatedPage;
 using Automation_Exercise.Pages.CartPage;
 using Automation_Exercise.Pages.CheckoutPage;
 using Automation_Exercise.Pages.ContactUsPage;
@@ -37,10 +38,11 @@ namespace Automation_Exercise.Test_Scripts
         protected static ExtentReports extent;
         protected ExtentTest suiteTest;
         protected ExtentTest test;
+        private BrowserType browserType;
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            BrowserType browserType = BrowserType.Chrome; // Change this to the desired browser
+            browserType = BrowserType.Chrome; // Change this to the desired browser
             driver = DriverHelper.Start(browserType); //To use headless mode uncomment it in this method.
             driver.Manage().Window.Maximize();
             homePage = new HomePage(driver);
@@ -61,10 +63,32 @@ namespace Automation_Exercise.Test_Scripts
                 htmlReporter.Config.DocumentTitle = "Test Automation Report";
                 htmlReporter.Config.Encoding = "UTF-8";
                 htmlReporter.Config.Theme = Theme.Dark;
-                htmlReporter.Config.EnableTimeline = true;
                 extent = new ExtentReports();
+                extent.AddSystemInfo("OS", Environment.OSVersion.ToString());
+                extent.AddSystemInfo("Browser", $"{browserType} ver.{GetCurrentBrowserVersion()}");
+                extent.AddSystemInfo("Framework", "NUnit ver.3.13.3 <br>SeleniumWebDriver ver.4.11.0");
+                extent.AddSystemInfo(".NET Version", Environment.Version.ToString());
                 extent.AttachReporter(htmlReporter);
             }
+        }
+        private string GetCurrentBrowserVersion()
+        {
+            string pattern;
+            string browserVersion = ((IJavaScriptExecutor)driver).ExecuteScript("return navigator.userAgent;").ToString();
+            if (browserType == BrowserType.Firefox)
+            {
+                pattern = @"Firefox\/(\d+\.\d+)";
+            }
+            else
+            {
+                pattern = @"([\d\.]){13,14}";
+            }
+            Match match = Regex.Match(browserVersion, pattern);
+            if (match.Success && match.Groups.Count > 1 && browserType != BrowserType.Firefox)
+            {
+                return match.Groups[0].Value;
+            }
+            return match.Groups[1].Value;
         }
         protected void UserLogin()
         {
@@ -76,7 +100,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             IJavaScriptExecutor jsExecutor = (IJavaScriptExecutor)driver;
             jsExecutor.ExecuteScript("window.scrollTo(0, -document.body.scrollHeight)");
-            
+
         }
         protected static void ScrollToBottom(IWebDriver driver)
         {
@@ -94,12 +118,11 @@ namespace Automation_Exercise.Test_Scripts
             //Using this method because in some cases every time ads are different.
             if (driver.Url.EndsWith("#google_vignette"))
             {
-            driver.Navigate().Back();
-            driver.Navigate().Back();
+                driver.Navigate().Back();
+                driver.Navigate().Back();
             }
         }
-      
-        private string CaptureScreenshot()
+        public string CaptureScreenshot()
         {
             string dateTimeFormatted = DateTime.Now.ToString("yyyy-MM-dd-HH-mm-ss");
             string screenshotFileName = $"{TestContext.CurrentContext.Test.Name}-{dateTimeFormatted}.png";
@@ -111,6 +134,7 @@ namespace Automation_Exercise.Test_Scripts
 
             return screenshotFileName;
         }
+
         [TearDown]
         public void AfterTest()
         {

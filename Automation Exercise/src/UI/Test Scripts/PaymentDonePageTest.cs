@@ -19,56 +19,57 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyDownloadAndCheckContentOfInvoiceFile()
         {
             test = suiteTest.CreateNode("Test Download and check content of invoice file.");
-                productPage.Open();
-                ScrollDown(driver, 500);
-                productPage.AddProductToCart("Blue Top");
-                paymentPage.Open();
-                paymentPage.AssertCorrectPageIsLoaded();
-                paymentPage.AssertCorrectPaymentTitleIsDisplayed();
-                paymentPage.AssertCorrectPaymentFormIsDisplayed();
-                cardInfo = new CardInfo()
-                {
-                    NameOnCard = $"{Constants.firstName} {Constants.lastName}",
-                    CardNumber = Constants.cardNumber,
-                    CVC = Constants.CVC,
-                    ExpirationMonth = Constants.expirationMonth,
-                    ExpirationYear = Constants.expirationYear,
-                };
-                paymentPage.FillPaymentForm(cardInfo);
-                paymentPage.ClickOnPayOrder();
-                paymentDonePage.AssertCorrectOrderTitleIsDisplayed();
-                paymentDonePage.AssertOrderConfirmedMessageIsDisplayedCorrectly();
-                paymentDonePage.DeleteDownloadedFile();
-                paymentDonePage.DownloadInvoice();
-                AdverticeHelper.CheckForAdvertice(driver);
-              //paymentDonePage.AssertFileDownloadSuccessful(); //Change it to your browser download location.
-                //paymentDonePage.AssertFileContentIsCorrectly();
-                BackToPreviusPage(driver);
-                paymentDonePage.ContinueOrder();
-                homePage.AssertCorrectPageIsLoaded();
+            productPage.Open();
+            ScrollDown(driver, 500);
+            productPage.AddProductToCart("Blue Top");
+            paymentPage.Open();
+            paymentPage.AssertCorrectPageIsLoaded();
+            paymentPage.AssertCorrectPaymentTitleIsDisplayed();
+            paymentPage.AssertCorrectPaymentFormIsDisplayed();
+            cardInfo = new CardInfo()
+            {
+                NameOnCard = $"{Constants.firstName} {Constants.lastName}",
+                CardNumber = Constants.cardNumber,
+                CVC = Constants.CVC,
+                ExpirationMonth = Constants.expirationMonth,
+                ExpirationYear = Constants.expirationYear,
+            };
+            paymentPage.FillPaymentForm(cardInfo);
+            paymentPage.ClickOnPayOrder();
+            paymentDonePage.AssertCorrectOrderTitleIsDisplayed();
+            paymentDonePage.AssertOrderConfirmedMessageIsDisplayedCorrectly();
+            paymentDonePage.DeleteDownloadedFile();
+            paymentDonePage.DownloadInvoice();
+            AdverticeHelper.CheckForAdvertice(driver);
+            //paymentDonePage.AssertFileDownloadSuccessful(); //Change it to your browser download location.
+            //paymentDonePage.AssertFileContentIsCorrectly();
+            BackToPreviusPage(driver);
+            paymentDonePage.ContinueOrder();
+            homePage.AssertCorrectPageIsLoaded();
         }
         [Test, Order(2)]
         public void VerifyCompleteOrderWihtoutAddedProduct()
         {
             test = suiteTest.CreateNode("Test Complete order without added product.");
-                paymentPage.Open();
-                paymentPage.AssertCorrectPageIsLoaded();
-                paymentPage.AssertCorrectPaymentTitleIsDisplayed();
-                paymentPage.AssertCorrectPaymentFormIsDisplayed();
-                cardInfo = new CardInfo()
-                {
-                    NameOnCard = $"{Constants.firstName} {Constants.lastName}",
-                    CardNumber = Constants.cardNumber,
-                    CVC = Constants.CVC,
-                    ExpirationMonth = Constants.expirationMonth,
-                    ExpirationYear = Constants.expirationYear,
-                };
-                paymentPage.FillPaymentForm(cardInfo);
-                paymentPage.ClickOnPayOrder();
-                paymentDonePage.AssertCorrectOrderTitleIsDisplayed();
-                paymentDonePage.AssertOrderConfirmedMessageIsDisplayedCorrectly();
-                paymentDonePage.ContinueOrder();
-                homePage.AssertCorrectPageIsLoaded();
+            paymentPage.Open();
+            paymentPage.AssertCorrectPageIsLoaded();
+            paymentPage.AssertCorrectPaymentTitleIsDisplayed();
+            paymentPage.AssertCorrectPaymentFormIsDisplayed();
+            cardInfo = new CardInfo()
+            {
+                NameOnCard = $"{Constants.firstName} {Constants.lastName}",
+                CardNumber = Constants.cardNumber,
+                CVC = Constants.CVC,
+                ExpirationMonth = Constants.expirationMonth,
+                ExpirationYear = Constants.expirationYear,
+            };
+            paymentPage.FillPaymentForm(cardInfo);
+            paymentPage.ClickOnPayOrder();
+            AdverticeHelper.CheckForAdvertice(driver);
+            paymentDonePage.AssertCorrectOrderTitleIsDisplayed();
+            paymentDonePage.AssertOrderConfirmedMessageIsDisplayedCorrectly();
+            paymentDonePage.ContinueOrder();
+            homePage.AssertCorrectPageIsLoaded();
         }
         [Test, Order(3)]
         public void VerifySuccessfulSubscribe()
