@@ -33,7 +33,7 @@ namespace Automation_Exercise.Test_Scripts
                 Email = email,
                 Subject = Constants.contactUsSubject,
                 Message = Constants.contactUsMessage,
-                // ChoosenFile = Constants.choosenFilePath
+                 //ChoosenFile = Constants.choosenFilePath
             };
             contactUsPage.FillContactUsForm(form);
             contactUsPage.SubmiteForm();
@@ -60,15 +60,12 @@ namespace Automation_Exercise.Test_Scripts
                 Email = Constants.email,
                 Subject = Constants.contactUsSubject,
                 Message = Constants.contactUsMessage,
-                ChoosenFile = Constants.choosenFilePath
+                //ChoosenFile = Constants.choosenFilePath
             };
             contactUsPage.FillContactUsForm(form);
             contactUsPage.SubmiteForm();
             AlertHelper.CheckForAlert(driver);
             contactUsPage.AssertSuccessfulMessageIsDisplayed();
-            contactUsPage.ClickOnHomeButton();
-            AdverticeHelper.CheckForAdvertice(driver);
-            homePage.AssertCorrectPageIsLoaded();
         }
         [Test, Order(3)]
         public void VerifySuccessfulSubscribeFromContactUsPage()

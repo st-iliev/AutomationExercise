@@ -9,9 +9,9 @@ namespace Automation_Exercise.Pages.HomePage
         {
             Assert.AreEqual("Automation Exercise", GetPageTitle());
         } 
-        public void AssertWebBannerIsDisplayed()
+        public void AssertCarouselIsDisplayed()
         {
-            Assert.True(webBanner.Displayed);
+            Assert.True(carousel.Displayed);
         }
         public void AssertWebsiteLogoIsDisplayed()
         {

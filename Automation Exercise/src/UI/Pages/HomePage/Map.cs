@@ -22,7 +22,7 @@ namespace Automation_Exercise.Pages.HomePage
         public IWebElement subscribeField => driver.FindElement(By.XPath("//input[@id='susbscribe_email']"));
         public IWebElement subscribeButton => driver.FindElement(By.XPath("//button[@id='subscribe']"));
         public IWebElement subscribleSuccessfulMessage => driver.FindElement(By.XPath("//*[@id='success-subscribe']"));
-        public IWebElement webBanner => driver.FindElement(By.XPath("//*[@id='slider-carousel']"));
+        public IWebElement carousel => driver.FindElement(By.XPath("//*[@id='slider-carousel']"));
         public IWebElement rightArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-right']"));
         public IWebElement leftArrow => driver.FindElement(By.XPath("//*[@class='fa fa-angle-left']"));
         public IWebElement carouselFirstText => WaitAndFindElements(By.XPath("//*[@class='item active']//h1"));

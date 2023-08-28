@@ -33,6 +33,7 @@ namespace Automation_Exercise.Pages.ContactUsPage
         public void AssertSuccessfulMessageIsDisplayed()
         {
             Assert.True(successfulMessage.Displayed);
+            Assert.AreEqual(SuccessfulMessages.contactUsSuccessfulMessage, successfulMessage.Text);
         }
         public void AssertHomeButtonIsDisplayed()
         {

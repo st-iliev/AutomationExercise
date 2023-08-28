@@ -49,7 +49,6 @@ namespace Automation_Exercise.src.UI.TestData
             yield return new TestCaseData("WOMEN", "DRESS");
             yield return new TestCaseData("WOMEN", "TOPS");
             yield return new TestCaseData("WOMEN", "SAREE");
-            yield return new TestCaseData("MEN", "TSHIRTS");
             yield return new TestCaseData("MEN", "JEANS");
             yield return new TestCaseData("MEN", "TSHIRTS");
             yield return new TestCaseData("KIDS", "DRESS");

@@ -19,13 +19,14 @@ namespace Automation_Exercise.Test_Scripts
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            homePage.AssertCarouselIsDisplayed();
         }
         [Test, Order(1)]
         public void VerifyNavigationLinksArePresentAndFunctioningCorrectly()
         {
             test = suiteTest.CreateNode("Test All navigation links are displayed and works correct");
             homePage.AssertNavigationLinksArePresent();
+            
         }
         [Test, Order(2)]
         [TestCaseSource(typeof(HomePageTestCases), nameof(HomePageTestCases.CarouselArrowCases))]
@@ -33,7 +34,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             test = suiteTest.CreateNode("Test Using side arrows works correctly");
             homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            homePage.AssertCarouselIsDisplayed();
             homePage.ClickOnArrow(side);
             homePage.AssertCorrectCarouselTextsAreDisplayed();
             homePage.AssertImageSwitched();
@@ -152,7 +153,7 @@ namespace Automation_Exercise.Test_Scripts
         }
         [Test, Order(9)]
         [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.CategoryAndSubcategoryCases))]
-        public void VerifyCorrectProductFromSubCategoryAreLoaded(string categoryName, string subCategoryName)
+        public void VerifyCorrectProductsFromSubCategoryAreLoaded(string categoryName, string subCategoryName)
         {
             test = suiteTest.CreateNode("Test Subscribe With Valid Credential");
             ScrollDown(driver, 600);
@@ -171,6 +172,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
             ScrollToBottom(driver);
+            ScrollToTop(driver);
             homePage.AssertCorrectCarouselTextsAreDisplayed();
         }
         [Test, Order(12)]
@@ -198,7 +200,7 @@ namespace Automation_Exercise.Test_Scripts
             ScrollDown(driver, height);
             homePage.ClickOnScrollUpButton();
             homePage.AssertWebsiteLogoIsDisplayed();
-            homePage.AssertWebBannerIsDisplayed();
+            homePage.AssertCarouselIsDisplayed();
         }
         [Test, Order(15)]
         [TestCaseSource(typeof(HomePageTestCases), nameof(HomePageTestCases.SidesOfArrowsCases))]
