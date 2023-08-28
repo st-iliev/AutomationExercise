@@ -7,23 +7,27 @@ Test ID: TC_ContactForm_001
 Priority: Medium
 
 **Description:** 
--Verify that the contact form cannot be submitted with invalid email addresses, and appropriate error messages are displayed.
+- Verify that the contact form cannot be submitted with invalid email addresses, and appropriate error messages are displayed.
 
 **Preconditions:**
 - The web application is accessible and operational.
 - The user is on the Contact Us page.
 
 **Test Steps:**
-1.Provide an invalid email address as test data.
-2.Fill out the Contact Us form with valid credentials based on the test data.
-3.Submit the Contact Us form.
+1. Provide an invalid email address as test data.
+2. Fill out the Contact Us form with valid credentials based on the test data.
+3. Submit the Contact Us form.
 
 **Test Data:**
+
 Name: "Mat"
+
 Subject:"Field validations."
-Message:"Dear [Site Support Team/Technical Support Team],\r\n I hope this email finds you well. 
-I am writing to request the addition of validation on an important field within the [name of the site/application/service]. 
+
+Message:"Dear [Site Support Team/Technical Support Team],I hope this email finds you well. 
+I am writing to request the addition of validation on an important field within the [https://www.automationexercise.com/]. 
 This enhancement will help ensure data accuracy, integrity, and provide a better user experience for all users."
+
 Email Scenarios:
  - email: null
  - email: "invalidEmail"
@@ -49,16 +53,18 @@ Priority: High
 - The user is on the Contact Us page.
 
 **Test Steps:**
-1.Open the Contact Us page of the web application.
-2.Fill out the Contact Us form with valid credentials based on the test data.
-3.Submit the Contact Us form.
+1. Open the Contact Us page of the web application.
+2. Fill out the Contact Us form with valid credentials based on the test data.
+3. Submit the Contact Us form.
 
 **Test Data:**
+
 Name: "Mat"
+
 Subject:"Field validations."
-Message:"Dear [Site Support Team/Technical Support Team],\r\n I hope this email finds you well. 
-I am writing to request the addition of validation on an important field within the [name of the site/application/service]. 
-This enhancement will help ensure data accuracy, integrity, and provide a better user experience for all users."
+
+Message:"Dear [Site Support Team/Technical Support Team], I hope this email finds you well.I am writing to request the addition of validation on an important field within the [https://www.automationexercise.com/]. This enhancement will help ensure data accuracy, integrity, and provide a better user experience for all users."
+
 Email: "justfortest777@abv.bg"
 
 **Expected Results:**
@@ -95,7 +101,7 @@ Test ID: TC_Subscribe_004
 Priority: Medium
 
 **Description:** 
--Verify that the user cannot subscribe to the newsletter from the Contact Us page using invalid email addresses.
+- Verify that the user cannot subscribe to the newsletter from the Contact Us page using invalid email addresses.
 
 **Preconditions:**
 - The web application is accessible and operational.
@@ -115,9 +121,9 @@ Priority: Medium
 
 **Expected Results:**
 - The following error messages are displayed to the user based on the provided email scenarios:
- - When email is null: An error message "Please fill out this field." is displayed.
- - When email is "invalidEmail": An error message "Please include an '@' in the email address. 'invalidEmail' is missing an '@'." is displayed.
- - When email is "invalidEmail@": An error message "Please enter a part following '@'. 'invalidEmail@' is incomplete." is displayed.
+  - When email is null: An error message "Please fill out this field." is displayed.
+  - When email is "invalidEmail": An error message "Please include an '@' in the email address. 'invalidEmail' is missing an '@'." is displayed.
+  - When email is "invalidEmail@": An error message "Please enter a part following '@'. 'invalidEmail@' is incomplete." is displayed.
 
 **Test Case 5:** Verify Correct Display of Feedback Information
 
