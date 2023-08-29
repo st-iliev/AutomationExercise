@@ -86,7 +86,7 @@ namespace Automation_Exercise.Test_Scripts
             ScrollDown(driver, height);
             homePage.ClickOnScrollUpButton();
             homePage.AssertWebsiteLogoIsDisplayed();
-            homePage.AssertWebBannerIsDisplayed();
+            homePage.AssertCarouselIsDisplayed();
         }
     }
 }

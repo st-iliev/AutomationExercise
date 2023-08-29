@@ -109,10 +109,11 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCopyRightTextIsDisplayed();
         }
         [Test, Order(7)]
-        public void VerifyScrollUpFuncionallity()
+        public void VerifyScrollUpButtonFuncionallity()
         {
             test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
             ScrollToBottom(driver);
+            homePage.ClickOnScrollUpButton();
             homePage.AssertWebsiteLogoIsDisplayed();
         }
         [Test, Order(8)]

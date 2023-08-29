@@ -52,7 +52,6 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.AssertProductListIsNotEmpty();
             cartPage.ContinueToCheckout();
             cartPage.AssertCorrectLoginToAccoutMessageIsDisplayed();
-            cartPage.ContinueOnCart();
         }
         [Test, Order(4)]
         public void VerifyTotalPriceOfAllAddedProductsAreCorrectWithoutLogin()
@@ -102,11 +101,10 @@ namespace Automation_Exercise.Test_Scripts
             test = suiteTest.CreateNode("Test Redirected nonlogin user to home page using home button.");
             cartPage.Open();
             cartPage.AssertCorrectPageIsLoaded();
-            cartPage.RemoveAllProductFromOrder();
             cartPage.ClickOnHomeButton();
             AdverticeHelper.CheckForAdvertice(driver);
             homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            homePage.AssertCarouselIsDisplayed();
         }
         [Test, Order(8)]
         public void VerifyLoginUserCartIsEmpty()
@@ -145,6 +143,7 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.AssertProductListIsNotEmpty();
             cartPage.ContinueToCheckout();
             checkoutPage.AssertCorrectPageIsLoaded();
+            checkoutPage.AssertAddressesDetailsFormTitleIsDisplayedCorectly();
         }
         [Test, Order(11)]
         public void VerifyLoginUserTotalPriceOfAddedProductIsCorrect()
@@ -198,11 +197,8 @@ namespace Automation_Exercise.Test_Scripts
             cartPage.AssertCorrectPageIsLoaded();
             cartPage.RemoveAllProductFromOrder();
             cartPage.AssertCorrectEmptyCartMessageIsDisplayed();
-            cartPage.ContinueToProductPage();
-            AdverticeHelper.CheckForAdvertice(driver);
-            productPage.AssertCorrectPageIsLoaded();
         }
-        [Test, Order(14)]
+        [Test, Order(15)]
         public void VerifyScrollDownFuncionallity()
         {
             test = suiteTest.CreateNode("Test Scrolldown fuctionallity of page");
@@ -211,16 +207,17 @@ namespace Automation_Exercise.Test_Scripts
             ScrollToBottom(driver);
             homePage.AssertCopyRightTextIsDisplayed();
         }
-        [Test, Order(15)]
+        [Test, Order(16)]
         public void VerifyScrollUpFuncionallity()
         {
             test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
             cartPage.Open();
             cartPage.AssertCorrectPageIsLoaded();
             ScrollToBottom(driver);
+            homePage.ClickOnScrollUpButton();
             homePage.AssertWebsiteLogoIsDisplayed();
         }
-        [Test, Order(16)]
+        [Test, Order(17)]
         public void VerifyHomeButtonRedirectUserToCorrectPage()
         {
             test = suiteTest.CreateNode("Test home button redirect user to home page. ");

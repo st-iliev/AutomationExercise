@@ -74,8 +74,9 @@ Priority: Medium
 
 **Test Case 4:** Verify Category and Subcategory Are Display
 
-    Test ID: TC_Category_001
-    Priority: Medium
+  Test ID: TC_Category_001
+
+  Priority: Medium
 
 **Description:** 
 - Verify that all categories and their corresponding subcategories are displayed correctly on home page.
@@ -170,10 +171,9 @@ Priority: Medium
 
 **Test Data:**
 - Email Scenarios:
-
-        email: null
-        email: "invalidEmail"
-        email: "invalidEmail@"
+  - email: null
+  - email: "invalidEmail"
+  - email: "invalidEmail@"
 
 **Expected Results:**
 - The following error messages are displayed to the user based on the provided email scenarios:

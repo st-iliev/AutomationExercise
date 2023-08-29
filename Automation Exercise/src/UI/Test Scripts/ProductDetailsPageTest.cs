@@ -19,7 +19,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             homePage.Open();
             homePage.AssertCorrectPageIsLoaded();
-            homePage.AssertWebBannerIsDisplayed();
+            homePage.AssertCarouselIsDisplayed();
         }
         [Test, Order(1)]
         public void VerifySuccessfulSubscribe()

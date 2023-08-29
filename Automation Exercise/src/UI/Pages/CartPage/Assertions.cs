@@ -27,6 +27,7 @@ namespace Automation_Exercise.Pages.CartPage
         public void AssertCorrectEmptyCartMessageIsDisplayed()
         {
             Assert.True(emptyCartMessage.Displayed);
+            Assert.AreEqual(Constants.emptyCartText, emptyCartMessage.Text);
         }
         public void AssertProductIsAddedToCart(string productName)
         {
