@@ -41,7 +41,7 @@ namespace Automation_Exercise.Test_Scripts
             paymentDonePage.DeleteDownloadedFile();
             paymentDonePage.DownloadInvoice();
             AdverticeHelper.CheckForAdvertice(driver);
-            //paymentDonePage.AssertFileDownloadSuccessful(); //Change it to your browser download location.
+            paymentDonePage.AssertFileDownloadSuccessful(); //Change it to your browser download location.
             //paymentDonePage.AssertFileContentIsCorrectly();
             BackToPreviusPage(driver);
             paymentDonePage.ContinueOrder();
@@ -74,7 +74,25 @@ namespace Automation_Exercise.Test_Scripts
         [Test, Order(3)]
         public void VerifySuccessfulSubscribe()
         {
-            test = suiteTest.CreateNode("Test Search For Existing Product");
+            test = suiteTest.CreateNode("Test Subscribe With Valid Credential");
+            paymentPage.Open();
+            paymentPage.AssertCorrectPageIsLoaded();
+            paymentPage.AssertCorrectPaymentTitleIsDisplayed();
+            paymentPage.AssertCorrectPaymentFormIsDisplayed();
+            cardInfo = new CardInfo()
+            {
+                NameOnCard = $"{Constants.firstName} {Constants.lastName}",
+                CardNumber = Constants.cardNumber,
+                CVC = Constants.CVC,
+                ExpirationMonth = Constants.expirationMonth,
+                ExpirationYear = Constants.expirationYear,
+            };
+            paymentPage.FillPaymentForm(cardInfo);
+            paymentPage.ClickOnPayOrder();
+            AdverticeHelper.CheckForAdvertice(driver);
+            AdverticeHelper.CheckForAdvertice(driver);
+            paymentDonePage.AssertCorrectOrderTitleIsDisplayed();
+            paymentDonePage.AssertOrderConfirmedMessageIsDisplayedCorrectly();
             ScrollToBottom(driver);
             homePage.Subscrible(Constants.email);
             homePage.ClickOnSubscribeButton();
@@ -85,6 +103,10 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifySubscribeWithInvalidEmail(string email)
         {
             test = suiteTest.CreateNode("Test Subscribe With Invalid Credential");
+            paymentPage.Open();
+            paymentPage.AssertCorrectPageIsLoaded();
+            paymentPage.AssertCorrectPaymentTitleIsDisplayed();
+            paymentPage.AssertCorrectPaymentFormIsDisplayed();
             ScrollToBottom(driver);
             homePage.ClearSubscrible();
             homePage.Subscrible(email);

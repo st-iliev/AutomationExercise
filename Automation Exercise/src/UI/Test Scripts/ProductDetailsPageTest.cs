@@ -130,7 +130,7 @@ namespace Automation_Exercise.Test_Scripts
         }
         [Test, Order(6)]
         [TestCase("Sleeveless Dress")]
-        public void VerifyAddProductFromDetailsPage(string productName)
+        public void VerifyAddProductToCartFromDetailsPage(string productName)
         {
             test = suiteTest.CreateNode("Test Successful Add Product From ProductDetailsPage");
                 ScrollDown(driver, 600);

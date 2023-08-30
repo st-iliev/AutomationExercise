@@ -15,14 +15,19 @@ namespace Automation_Exercise.Test_Scripts
             suiteTest = extent.CreateTest("Payment Page Tests");
             UserLogin();
         }
-        [Test, Order(1)]
-        public void VerifySuccessfulPaymentWithValidData()
+        [SetUp]
+        public void Preconditions()
         {
-            test = suiteTest.CreateNode("Test Payment With Valid Credentials");
             paymentPage.Open();
             paymentPage.AssertCorrectPageIsLoaded();
             paymentPage.AssertCorrectPaymentTitleIsDisplayed();
             paymentPage.AssertCorrectPaymentFormIsDisplayed();
+        }
+
+        [Test, Order(1)]
+        public void VerifySuccessfulPaymentWithValidData()
+        {
+            test = suiteTest.CreateNode("Test Payment With Valid Credentials");
             cardInfo = new CardInfo()
             {
                 NameOnCard = $"{Constants.firstName} {Constants.lastName}",
@@ -40,10 +45,6 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyPaymentFormHaveValidationFromEmptyField(string nameOfCard, string cardNumber, string cvc, string month, string year)
         {
             test = suiteTest.CreateNode("Test Payment With Valid Credentials");
-            paymentPage.Open();
-            paymentPage.AssertCorrectPageIsLoaded();
-            paymentPage.AssertCorrectPaymentTitleIsDisplayed();
-            paymentPage.AssertCorrectPaymentFormIsDisplayed();
             cardInfo = new CardInfo()
             {
                 NameOnCard = nameOfCard,
@@ -112,6 +113,5 @@ namespace Automation_Exercise.Test_Scripts
             homePage.AssertCorrectPageIsLoaded();
             homePage.AssertCorrectCarouselTextsAreDisplayed();
         }
-
     }
 }
