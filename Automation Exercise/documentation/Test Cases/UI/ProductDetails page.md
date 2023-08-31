@@ -1,6 +1,6 @@
 # ProductDetails Page Test Cases
 
-**Test Case 1:** Verify Successful Subscription.
+### Test Case 1: Verify Successful Subscription.
 
 Test ID: TC_Subscribe_001
 
@@ -23,7 +23,7 @@ Priority: High
 **Expected Results:**
 -  The successfull message "You have been successfully subscribed!" is displayed.
 
-**Test Case 2:** Verify Subscribe With Invalid Email From Product Details Page
+### Test Case 2: Verify Subscribe With Invalid Email From Product Details Page
 
 Test ID: TC_Subscribe_002
 
@@ -54,7 +54,7 @@ Email Cases:
     - When email field is fieled with"invalidEmail", an error message "Please include an '@' in the email address. 'invalidEmail' is missing an '@'." is displayed.
     - When email field is fieled with "invalidEmail@", an error message "Please enter a part following '@'. 'invalidEmail@' is incomplete." is displayed.
 
-**Test Case 3:** Verify Product Details Are Correct
+### Test Case 3: Verify Product Details Are Correct
 
 Test ID: TC_ProductDetails_001
 
@@ -100,7 +100,7 @@ Priority: High
 **Expected Results:**
 -  The successfull message "Thank you for your review." is displayed.
 
-**Test Case 5:** Verify Submitting Review for Product With Invalid Data.
+### Test Case 5: Verify Submitting Review for Product With Invalid Data.
 
 Test ID: TC_ProductReview_002
 
@@ -113,12 +113,13 @@ Priority: High
 1. Open home page of web application.
 
 **Test Data:**
+
 - Cases:
-name : "", email : "", reviewText : ""
-name : "Jordan", email : "", reviewText : ""
-name : "George", email : "email", reviewText : ""
-name : "John", email : "email@", reviewText : ""
-name : "John", email : "email@zzz", reviewText : ""
+ name : "", email : "", reviewText : ""
+ name : "Jordan", email : "", reviewText : ""
+ name : "George", email : "email", reviewText : ""
+ name : "John", email : "email@", reviewText : ""
+ name : "John", email : "email@zzz", reviewText : ""
 
 **Test Steps:**
 1. Click on the "View Product" for the product named "Blue Top."
@@ -134,7 +135,7 @@ name : "John", email : "email@zzz", reviewText : ""
      - When review field is empty , an erro message "Please fill out this field." is displayed.
 
 
-**Test Case 6:** Verify Successful Addition of Product to Cart from Product Details Page
+### Test Case 6: Verify Successful Addition of Product to Cart from Product Details Page
 
 Test ID: TC_AddProduct_001
 

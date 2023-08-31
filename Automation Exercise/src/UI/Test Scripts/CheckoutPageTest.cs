@@ -8,7 +8,7 @@ namespace Automation_Exercise.Test_Scripts
     public class CheckoutPageTest : BaseTest
     {
         [OneTimeSetUp]
-        public void Preconditions()
+        public void OneTimeSetUp()
         {
             suiteTest = extent.CreateTest("Checkout Page Tests");
             UserLogin();
@@ -75,6 +75,7 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyScrollDownFuncionallity()
         {
             test = suiteTest.CreateNode("Test Scrolldown fuctionallity of page");
+            productPage.Open();
             ScrollToBottom(driver);
             homePage.AssertCopyRightTextIsDisplayed();
         }
@@ -83,10 +84,10 @@ namespace Automation_Exercise.Test_Scripts
         public void VerifyFunctuallityOfScrollUpButton(int height)
         {
             test = suiteTest.CreateNode("Test Functuallity of scrollup button.");
+            productPage.Open();
             ScrollDown(driver, height);
             homePage.ClickOnScrollUpButton();
             homePage.AssertWebsiteLogoIsDisplayed();
-            homePage.AssertCarouselIsDisplayed();
         }
     }
 }

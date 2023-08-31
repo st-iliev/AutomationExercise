@@ -14,11 +14,12 @@ Priority: High
 2. Open payment page of web application.
 
 **Test Data:**
-NameOnCard : "Matthew Tudor"
-CardNumber : "7271 9888 3445 9541"
-CVC : "672"
-ExpirationMonth : "09"
-ExpirationYear : "29"
+ - NameOnCard : "Matthew Tudor"
+ - CardNumber : "7271 9888 3445 9541"
+ - CVC : "672"
+ - ExpirationMonth : "09"
+ - ExpirationYear : "29"
+
 **Test Steps:**
 1. Fill Payment form with valid data values.
 2. Click on "Pay and Confirm Order" button.
@@ -40,12 +41,14 @@ Priority: Medium
 2. Open payment page of web application.
 
 **Test Data:**
+
 Scenatios:
-  name : "" , cardNumber : "", cvc : "" , expirationMonth : "" , expirationYear: ""
-  name : "Matthew Tudor" , cardNumber : "7271 9888 3445 9541", cvc : "" , expirationMonth : "" , expirationYear: ""
-  name : "Matthew Tudor" , cardNumber : "7271 9888 3445 9541", cvc : "672" , expirationMonth : "" , expirationYear: ""
-  name : "Matthew Tudor" , cardNumber : "7271 9888 3445 9541", cvc : "672" , expirationMonth : "09" , expirationYear: ""
-  name : "Matthew Tudor" , cardNumber : "7271 9888 3445 9541", cvc : "672" , expirationMonth : "09" , expirationYear: ""
+- name : "" , cardNumber : "", cvc : "" , expirationMonth : "" , expirationYear: ""
+- name : "Matthew Tudor" , cardNumber : "7271 9888 3445 9541", cvc : "" , expirationMonth : "" , expirationYear: ""
+- name : "Matthew Tudor" , cardNumber : "7271 9888 3445 9541", cvc : "672" , expirationMonth : "" , expirationYear: ""
+- name : "Matthew Tudor" , cardNumber : "7271 9888 3445 9541", cvc : "672" , expirationMonth : "09" , expirationYear: ""
+- name : "Matthew Tudor" , cardNumber : "7271 9888 3445 9541", cvc : "672" , expirationMonth : "09" , expirationYear: ""„
+  
 **Test Steps:**
 1. Fill Payment form with the following information:
 2. Click on the "Pay and Confirm Order" button.
@@ -53,7 +56,7 @@ Scenatios:
 **Expected Results:**
 - For each empty field in the payment form user should see an appropriate validation message ""Please fill out this field.".
 
-### Test Case 3:** Verify Successful Subscription from payment page.
+### Test Case 3: Verify Successful Subscription from payment page.
 
 Test ID: TC_Subscription_001
 
@@ -76,7 +79,7 @@ Priority: High
 **Expected Results:**
 - The successfull message "You have been successfully subscribed!" is displayed.
 
-## Test Case 4:  Verify Subscription with Invalid Email from payment page.
+### Test Case 4:  Verify Subscription with Invalid Email from payment page.
 
 Test ID: TC_Subscription_002
 
@@ -103,9 +106,9 @@ Email Cases:
 
 **Expected Results:**
 - Depending on the provided invalid email address:
- - When email field is empty, an error message "Please fill out this field." is displayed.
- - When email field is filled with "invalidEmail", an error message "Please include an '@' in the email address. 'invalidEmail' is missing an '@'." is displayed.
- - When email field is filled with "invalidEmail@", an error message "Please enter a part following '@'. 'invalidEmail@' is incomplete." is displayed.
+  - When email field is empty, an error message "Please fill out this field." is displayed.
+  - When email field is filled with "invalidEmail", an error message "Please include an '@' in the email address. 'invalidEmail' is missing an '@'." is displayed.
+  - When email field is filled with "invalidEmail@", an error message "Please enter a part following '@'. 'invalidEmail@' is incomplete." is displayed.
 
 ### Test Case 5:Verify Home Button Redirection
 

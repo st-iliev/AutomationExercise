@@ -15,11 +15,11 @@ Priority: High
 3. Open payment page.
 
 **Test Data:**
-NameOnCard : "Matthew Tudor"
-CardNumber : "7271 9888 3445 9541"
-CVC : "672"
-ExpirationMonth : "09"
-ExpirationYear : "29"
+ - NameOnCard : "Matthew Tudor"
+ - CardNumber : "7271 9888 3445 9541"
+ - CVC : "672"
+ - ExpirationMonth : "09"
+ - ExpirationYear : "29"
 
 **Test Steps:**
 1. Fill Payment form with valid data values.
@@ -28,8 +28,7 @@ ExpirationYear : "29"
 4. Click on "Continue" button.
 
 **Expected Results:**
-- The invoice file is downloaded successfully and  content of the downloaded invoice file matches the expected content "Hi Matthew Tudor, Your total purchase amount is 500. Thank you."
-- The user is redirected to home page.
+- The invoice file is downloaded successfully and  content of the downloaded invoice file matches the expected content "Hi Matthew Tudor, Your total purchase amount is 500. Thank you.".The user is redirected to home page.
 
 ### Test Case 2: Verify Complete Order Without Added Product
 
@@ -45,11 +44,11 @@ Priority: High
 2. Open payment page.
 
 **Test Data:**
-NameOnCard : "Matthew Tudor"
-CardNumber : "7271 9888 3445 9541"
-CVC : "672"
-ExpirationMonth : "09"
-ExpirationYear : "29"
+ - NameOnCard : "Matthew Tudor"
+ - CardNumber : "7271 9888 3445 9541"
+ - CVC : "672"
+ - ExpirationMonth : "09"
+ - ExpirationYear : "29"
 
 **Test Steps:**
 1. Fill Payment form with valid data values.
@@ -58,8 +57,7 @@ ExpirationYear : "29"
 4. Click on "Continue" button.
 
 **Expected Results:**
-- The invoice file is downloaded successfully and  content of the downloaded invoice file matches the expected content "Hi Matthew Tudor, Your total purchase amount is 0. Thank you."
-- The user is redirected to home page.
+- The invoice file is downloaded successfully and  content of the downloaded invoice file matches the expected content "Hi Matthew Tudor, Your total purchase amount is 0. Thank you.".The user is redirected to home page.
 
 ### Test Case 3: Verify Successful Subscription from paymentdone page.
 
@@ -100,6 +98,7 @@ Priority: High
 3. Click on "Pay and Confirm Order" button.
 
 **Test Data:**
+
 Email Scenarios:
  - email : ""
  - email : "invalidEmail"
@@ -112,41 +111,6 @@ Email Scenarios:
 
 **Expected Results:**
 - The appropriate error messages are displayed:
- - When email field is empty , an error message "Please fill out this field." is displayed.
- - When email field is field with "invalidEmail" , an error message "Please include an '@' in the email address. 'invalidEmail' is missing an '@'." is displayed.
- - When email field is field with "invalidEmail@" , an error message "Please enter a part following '@'. 'invalidEmail@' is incomplete." is displayed.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-### Test Case 1: 
-
-**Description:** 
-- 
-
-**Preconditions:**
-1. 
-
-**Test Data:**
-
-**Test Steps:**
-1. 
-
-**Expected Results:**
-- 
+  - When email field is empty , an error message "Please fill out this field." is displayed.
+  - When email field is field with "invalidEmail" , an error message "Please include an '@' in the email address. 'invalidEmail' is missing an '@'." is displayed.
+  - When email field is field with "invalidEmail@" , an error message "Please enter a part following '@'. 'invalidEmail@' is incomplete." is displayed.
