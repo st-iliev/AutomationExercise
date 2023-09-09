@@ -128,7 +128,7 @@ namespace Automation_Exercise.Test_Scripts
             productDetailsPage.AssertCorrectProductName(productName);
         }
         [Test, Order(10)]
-        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.SearchProductCases))]
+        [TestCaseSource(typeof(ProductTestCases), nameof(ProductTestCases.ProductCases))]
         public void VerifyOpenProductDeatailsPage(string productName)
         {
             test = suiteTest.CreateNode("Test Open the ProductDetailsPage of the product");
@@ -168,6 +168,7 @@ namespace Automation_Exercise.Test_Scripts
         {
             test = suiteTest.CreateNode("Test Scrollup fuctionallity of page");
             ScrollToBottom(driver);
+            ScrollToTop(driver);
             productPage.AssertSaleBannerIsDisplayed();
         }
     }
