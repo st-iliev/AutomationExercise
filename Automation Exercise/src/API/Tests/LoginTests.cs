@@ -12,7 +12,7 @@ namespace Automation_Exercise.src.API.Tests
         private string endpoint;
         private Dictionary<string, string> parameters;
         [OneTimeSetUp]
-        public void OneTIme()
+        public void OneTime()
         {
             suiteTest = extent.CreateTest("Login Test");
             apiClient = new ApiClient();

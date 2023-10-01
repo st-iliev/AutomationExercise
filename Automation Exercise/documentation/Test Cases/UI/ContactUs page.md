@@ -2,7 +2,7 @@
 
 **Test Case 1:** Verify Submitting Contact Form with Invalid Email Address
 
-Test ID: TC_ContactForm_001
+Test ID: TC_Contact_001
 
 Priority: Medium
 
@@ -41,7 +41,7 @@ Email Scenarios:
 
 **Test Case 2:** Verify Submitting Contact Form with Valid Data
 
-Test ID: TC_ContactForm_002
+Test ID: TC_Contact_002
 
 Priority: High
 
@@ -72,7 +72,7 @@ Email: "justfortest777@abv.bg"
    
 **Test Case 3:** Verify Successful Subscription from Contact Us Page
 
-Test ID: TC_Subscribe_003
+Test ID: TC_Contact_003
 
 Priority: High
 
@@ -96,7 +96,7 @@ Email: "justfortest777@abv.bg"
 
 **Test Case 4:** Verify Subscribe with Invalid Email from Contact Us Page
 
-Test ID: TC_Subscribe_004
+Test ID: TC_Contact_004
 
 Priority: Medium
 
@@ -127,7 +127,7 @@ Priority: Medium
 
 **Test Case 5:** Verify Correct Display of Feedback Information
 
-Test ID: TC_Feedback_001
+Test ID: TC_Contact_005
 
 Priority: Low
 

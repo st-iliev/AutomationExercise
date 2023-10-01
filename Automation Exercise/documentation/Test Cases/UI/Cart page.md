@@ -22,7 +22,7 @@ Priority: High
 
 **Test Case 2:** Verify Non-Logged-In User Can Add Product to Cart
 
-Test ID: TC_Auto_Cart_002
+Test ID: TC_Cart_002
 
 Priority: High
 
@@ -46,7 +46,7 @@ Priority: High
 
 **Test Case 3:** Verify Non-Logged-In User Can't Checkout
 
-Test ID: TC_Checkout_001
+Test ID: TC_Cart_003
 
 Priority: High
 
@@ -70,7 +70,7 @@ Priority: High
 
 **Test Case 4:** Verify Total Price of All Added Products Are Correct Without Login.
 
-Test ID: TC_Cart_003
+Test ID: TC_Cart_004
 
 Priority: High
 
@@ -96,7 +96,7 @@ Priority: High
 
 **Test Case 5:** Verify Non-Logged-In User Can Remove Product from Cart.
 
-Test ID: TC_Cart_004
+Test ID: TC_Cart_005
 
 Priority: High
 
@@ -120,7 +120,7 @@ Priority: High
 
 **Test Case 6:** Verify Non-Logged-In User Can Remove All Products from Cart
 
-Test ID: TC_Cart_005
+Test ID: TC_Cart_006
 
 Priority: High
 
@@ -141,7 +141,7 @@ Priority: High
 
 **Test Case 7:** Verify Non-Logged-In User Is Redirected to Home Page.
 
-Test ID: TC_Cart_006
+Test ID: TC_Cart_007
 
 Priority: High
 
@@ -161,7 +161,7 @@ Priority: High
 
 **Test Case 8:** Verify Logged-In User's Cart Is Empty
 
-Test ID: TC_Cart_007
+Test ID: TC_Cart_008
 
 Priority: High
 
@@ -182,7 +182,7 @@ Priority: High
 
 **Test Case 9:** Verify Logged-In User Can Add Product to Cart
 
-Test ID: TC_Cart_008
+Test ID: TC_Cart_009
 
 Priority: High
 
@@ -205,7 +205,7 @@ Priority: High
 
 **Test Case 10:** Verify Logged-In User Can Proceed to Checkout
 
-Test ID: TC_Cart_009
+Test ID: TC_Cart_010
 
 Priority: High
 
@@ -228,7 +228,7 @@ Priority: High
 
 **Test Case 11:** Verify Logged-In User's Total Price of Added Product Is Correct.
 
-Test ID: TC_Cart_010
+Test ID: TC_Cart_011
 
 Priority: High
 
@@ -250,7 +250,7 @@ Priority: High
 
 **Test Case 12:** Verify Logged-In User Can Remove Product from Cart.
 
-Test ID: TC_Cart_011
+Test ID: TC_Cart_012
 
 Priority: High
 
@@ -273,7 +273,7 @@ Priority: High
 
 **Test Case 13:** Verify Logged-In User's Total Price of All Added Products Is Correct.
 
-Test ID: TC_Cart_012
+Test ID: TC_Cart_013
 
 Priority: High
 
@@ -299,7 +299,7 @@ Priority: High
 
 **Test Case 14:** Verify Logged-In User Can Remove All Products from Cart.
 
-Test ID: TC_Cart_013
+Test ID: TC_Cart_014
 
 Priority: High
 
@@ -321,7 +321,7 @@ Priority: High
 
 **Test Case 15:** Verify Scroll Down Functionality.
 
-Test ID: TC_General_001
+Test ID: TC_Cart_015
 
 Priority: Medium
 
@@ -339,7 +339,7 @@ Priority: Medium
 
 **Test Case 16:** Verify Scroll Up Button Functionality.
 
-Test ID: TC_General_002
+Test ID: TC_Cart_0016
 
 Priority: Medium
 
@@ -358,7 +358,7 @@ Priority: Medium
 
 **Test Case 17:** Verify Home Button Redirection to Home Page.
 
-Test ID: TC_General_003
+Test ID: TC_Cart_017
 
 Priority: High
 

@@ -2,7 +2,7 @@
 
 ### Test Case 1: Verify Successful Subscription.
 
-Test ID: TC_Subscribe_001
+Test ID: TC_ProductDetails_001
 
 Priority: High
 
@@ -25,7 +25,7 @@ Priority: High
 
 ### Test Case 2: Verify Subscribe With Invalid Email From Product Details Page
 
-Test ID: TC_Subscribe_002
+Test ID: TC_ProductDetails_002
 
 Priority: High
 
@@ -56,7 +56,7 @@ Email Cases:
 
 ### Test Case 3: Verify Product Details Are Correct
 
-Test ID: TC_ProductDetails_001
+Test ID: TC_ProductDetails_003
 
 Priority: High
 
@@ -77,7 +77,7 @@ name = "Stylish Dress", price = "1500", brand = "Madame", condition = "New" ,ava
 
 **Test Case 4:** Verify Submitting Review for Product With Valid Data
 
-Test ID: TC_ProductReview_001
+Test ID: TC_ProductDetails_004
 
 Priority: High
 
@@ -102,7 +102,7 @@ Priority: High
 
 ### Test Case 5: Verify Submitting Review for Product With Invalid Data.
 
-Test ID: TC_ProductReview_002
+Test ID: TC_ProductDetails_005
 
 Priority: High
 
@@ -137,7 +137,7 @@ Priority: High
 
 ### Test Case 6: Verify Successful Addition of Product to Cart from Product Details Page
 
-Test ID: TC_AddProduct_001
+Test ID: TC_ProductDetails_006
 
 Priority: High
 
@@ -159,6 +159,10 @@ Priority: High
 
 
 ### Test Case 7: Verify Changing Quantity and Adding Product from Product Details Page
+
+Test ID: TC_ProductDetails_007
+
+Priority: High
 
 **Description:** 
 - This test validates the functionality of changing the quantity of a product and adding it to the cart from the product details page. 

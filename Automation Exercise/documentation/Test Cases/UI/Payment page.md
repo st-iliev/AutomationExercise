@@ -58,7 +58,7 @@ Scenatios:
 
 ### Test Case 3: Verify Successful Subscription from payment page.
 
-Test ID: TC_Subscription_001
+Test ID: TC_Payment_003
 
 Priority: High
 
@@ -81,7 +81,7 @@ Priority: High
 
 ### Test Case 4:  Verify Subscription with Invalid Email from payment page.
 
-Test ID: TC_Subscription_002
+Test ID: TC_Payment_004
 
 Priority: Medium
 
@@ -112,7 +112,7 @@ Email Cases:
 
 ### Test Case 5:Verify Home Button Redirection
 
-Test ID: TC_Redirection_HomeButton_001
+Test ID: TC_Payment_005
 
 Priority: High
 

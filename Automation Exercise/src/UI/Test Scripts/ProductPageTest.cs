@@ -13,7 +13,6 @@ namespace Automation_Exercise.Test_Scripts
         public void OneTimeSetUp()
         {
             suiteTest = extent.CreateTest("Product Page Tests");
-
         }
         [SetUp]
         public void Preconditions()

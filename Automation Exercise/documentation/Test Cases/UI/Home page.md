@@ -2,7 +2,7 @@
 
 **Test Case 1:** Verify Navigation Links Are Present. 
 
-Test ID: TC_NavLinks_001  
+Test ID: TC_Home_001  
 Priority: High  
 
 **Description:** 
@@ -19,7 +19,7 @@ Priority: High
 
 **Test Case 2:** Verify Clicking on Arrows Switches Carousel Content Image and Active Indicator
 
-Test ID: TC_Carousel_001
+Test ID: TC_Home_002
 
 Priority: Medium
 
@@ -47,7 +47,7 @@ Priority: Medium
 
 **Test Case 3:** Verify Clicking on Indicators Switches Carousel Content Image and Active Indicator
 
-  Test ID: TC_Carousel_002
+  Test ID: TC_Home_003
 
   Priority: Medium
 
@@ -74,7 +74,7 @@ Priority: Medium
 
 **Test Case 4:** Verify Category and Subcategory Are Display
 
-  Test ID: TC_Category_001
+  Test ID: TC_Home_004
 
   Priority: Medium
 
@@ -103,7 +103,7 @@ Priority: Medium
 
 **Test Case 5:** Verify Number of Brand Products Matches Brand Product Count
 
-Test ID: TC_BrandProduct_001
+Test ID: TC_Home_005
 
 Priority: Medium
 
@@ -127,7 +127,7 @@ Priority: Medium
 
 **Test Case 6:** Verify Successful Subscription
 
- Test ID: TC_Subscribe_001
+ Test ID: TC_Home_006
 
  Priority: Medium
 
@@ -152,7 +152,7 @@ Priority: Medium
 
 **Test Case 7:** Verify Subscribe with Invalid Email
 
-Test ID: TC_Subscribe_002
+Test ID: TC_Home_007
 
 Priority: Medium
 
@@ -184,7 +184,7 @@ Priority: Medium
 
 **Test Case 8:** Verify Navigation Links Lead to Correct Pages
 
-Test ID: TC_NavLinks_002
+Test ID: TC_Home_008
 
 Priority: Medium
 
@@ -214,7 +214,7 @@ Priority: Medium
 
 **Test Case 9:** Verify Correct Products from Subcategory Are Loaded
 
-Test ID: TC_Products_001
+Test ID: TC_Home_009
 
 Priority: Medium
 
@@ -247,7 +247,7 @@ Priority: Medium
 
 **est Case 10:** Verify Scroll Down Functionality
 
-Test ID: TC_Scroll_001
+Test ID: TC_Home_010
 
 Priority: Medium
 
@@ -270,7 +270,7 @@ Priority: Medium
 
 **Test Case 11:** Verify Scroll Up Functionality
 
-Test ID: TC_Scroll_002
+Test ID: TC_Home_011
 
 Priority: Medium
 
@@ -293,7 +293,7 @@ Priority: Medium
 
 **Test Case 12:** Verify Opening Product Details Page from Home Page
 
-Test ID: TC_ProductDetails_001
+Test ID: TC_Home_012
 
 Priority: Medium
 
@@ -320,7 +320,7 @@ Priority: Medium
 
 **Test Case 13:** Verify Website Logo Loaded Properly
 
-Test ID: TC_Logo_001
+Test ID: TC_Home_013
 
 Priority: Medium
 
@@ -341,7 +341,7 @@ Priority: Medium
 
 **Test Case 14:** Verify Functionality of Scroll Up Button
 
-Test ID: TC_ScrollUp_001
+Test ID: TC_Home_014
 
 Priority: Medium
 
@@ -368,7 +368,7 @@ height(in pixels) Scenarios:
 
 **Test Case 15:** Verify Functionality of Recommended Items Arrows
 
-Test ID: TC_RecommendedItems_001
+Test ID: TC_Home_015
 
 Priority: Medium
 
@@ -395,7 +395,7 @@ side Scenarios:
 
 **Test Case 16:** Verify Overlay Shown on Product
 
-Test ID: TC_Overlay_001
+Test ID: TC_Home_016
 
 Priority: Medium
 

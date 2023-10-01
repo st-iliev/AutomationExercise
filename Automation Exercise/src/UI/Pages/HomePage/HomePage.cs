@@ -61,7 +61,6 @@ namespace Automation_Exercise.Pages.HomePage
                             menTshirts.Click(); break;
                         case "JEANS":
                             menJeans.Click(); break;
-
                     }
                     break;
                 case "KIDS":
@@ -72,12 +71,10 @@ namespace Automation_Exercise.Pages.HomePage
                             kidsDress.Click(); break;
                         case "TOPS & SHIRTS":
                             kidsTopsAndShirts.Click(); break;
-
                     }
                     break;
             }
         }
-
         public void SelectBrands(Brands brandName)
         {
             switch (brandName)

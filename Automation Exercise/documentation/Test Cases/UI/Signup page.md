@@ -2,7 +2,7 @@
 
 **Test Case 1:** Verify Successful Subscription.
 
-Test ID: TC_Subscribe_001
+Test ID: TC_Signup_001
 
 Priority: High
 
@@ -29,7 +29,7 @@ Priority: High
 
 **Test Case 2:** Verify Subscription with Invalid Credentials.
 
-Test ID: TC_Subscribe_002
+Test ID: TC_Signup_002
 
 Priority: High
 
@@ -63,7 +63,7 @@ Email Scenarios:
 
 **Test Case 3:** Verify Registration of New User Filled Only Required Fields.
 
-Test ID: TC_Register_001
+Test ID: TC_Signup_003
 
 Priority: High
 
@@ -102,7 +102,7 @@ Account information:
 
 **Test Case 4:**  Verify Error Message Displayed on Required Fields.
 
-Test ID: TC_Validation_001
+Test ID: TC_Signup_004
 
 Priority: Medium
 
@@ -162,7 +162,7 @@ Account information:
 
 **Test Case 5:** Verify Registration of New User with All Credentials
 
-Test ID: TC_Registration_001
+Test ID: TC_Signup_005
 
 Priority: High
 

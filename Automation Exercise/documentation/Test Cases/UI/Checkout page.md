@@ -2,7 +2,7 @@
 
 ### Test Case 1: Verify Added Product is in Order
 
-Test ID: TC_Order_001
+Test ID: TC_Checkout_001
 
 Priority: High
 
@@ -30,7 +30,7 @@ Login credentials:
 
 ### Test Case 2: Verify Successfully Finished Order
 
-Test ID: TC_Order_002
+Test ID: TC_Checkout_002
 
 Priority: High
 
@@ -59,7 +59,7 @@ Login credentials:
 
 ### Test Case 3: Verify Information about Delivery and Billing Addresses
 
-Test ID: TC_Checkout_001
+Test ID: TC_Checkout_003
 
 Priority: High
 
@@ -99,7 +99,7 @@ mobileNumber : "(492) 957-325"
 
 ### Test Case 4: Verify Home Button Redirection.
 
-Test ID: TC_HomeButton_001
+Test ID: TC_Checkout_004
 
 Priority: Low
 
@@ -124,7 +124,7 @@ Login credentials:
 
 ## Test Case 5: Verify Scroll Down Functionality
 
-Test ID: TC_ScrollDown_001
+Test ID: TC_Checkout_005
 
 Priority: Medium
 
@@ -150,7 +150,7 @@ Login credentials:
 
 ### Test Case 6: Verify Functionality of Scroll-Up Button
 
-Test ID: TC_ScrollUpButton_001
+Test ID: TC_Checkout_006
 
 Priority: Medium
 

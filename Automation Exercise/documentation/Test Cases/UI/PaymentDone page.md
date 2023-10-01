@@ -2,7 +2,7 @@
 
 ### Test Case 1: Verify Download and Check Content of Invoice File
 
-Test ID: TC_Download_Invoice_001
+Test ID: TC_PaymentDone_001
 
 Priority: High
 
@@ -32,7 +32,7 @@ Priority: High
 
 ### Test Case 2: Verify Complete Order Without Added Product
 
-Test ID: TC_Complete_Order_No_Product_001
+Test ID: TC_PaymentDone_002
 
 Priority: High
 
@@ -61,7 +61,7 @@ Priority: High
 
 ### Test Case 3: Verify Successful Subscription from paymentdone page.
 
-Test ID: TC_Subscribe_Success_001
+Test ID: TC_PaymentDone_003
 
 Priority: High
 
@@ -85,7 +85,7 @@ Priority: High
 
 ### Test Case 4: Verify Subscription with Invalid Credentials from paymentdone page.
 
-Test ID: TC_Subscribe_InvalidCredentials_001
+Test ID: TC_PaymentDone_004
 
 Priority: High
 

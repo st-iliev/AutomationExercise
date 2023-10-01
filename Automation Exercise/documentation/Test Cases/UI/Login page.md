@@ -2,7 +2,7 @@
 
 **Test Case 1:** Verify Successful Subscription from Login Page.
 
-Test ID: TC_Subscription_001
+Test ID: TC_Login_001
 
 Priority: Medium
 
@@ -24,7 +24,7 @@ Priority: Medium
 
 **Test Case 2:** Verify Subscribe with Invalid Email from Login Page.
 
-Test ID: TC_Subscription_002
+Test ID: TC_Login_002
 
 Priority: Medium
 
@@ -117,7 +117,7 @@ email: "incorrectEmail@" , password : "testqa1"
 
 **Test Case 5:** Verify User Signup Without Credentials
 
-Test ID: TC_Signup_003
+Test ID: TC_Login_005
 
 Priority: Medium
 
@@ -147,7 +147,7 @@ name: "" , email : ""
 
 **Test Case 6:**  Verify Scroll Down Functionality
 
-Test ID: TC_Scroll_001
+Test ID: TC_Login_006
 
 Priority: Low
 
@@ -167,7 +167,7 @@ Priority: Low
 
 **Test Case 7:** Verify Scroll Up Button Functionality
 
-Test ID: TC_Scroll_002
+Test ID: TC_Login_007
 
 Priority: Low
 
@@ -188,7 +188,7 @@ Priority: Low
 
 **Test Case 8:** Verify User Login with Valid Credentials
 
-Test ID: TC_Login_001
+Test ID: TC_Login_008
 
 Priority: High
 
