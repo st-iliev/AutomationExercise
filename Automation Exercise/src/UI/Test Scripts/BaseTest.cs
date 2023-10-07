@@ -40,7 +40,7 @@ namespace Automation_Exercise.Test_Scripts
         protected ExtentTest test;
         private BrowserType browserType;
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public void BaseOneTimeSetUp()
         {
             browserType = BrowserType.Chrome; // Change this to the desired browser
             driver = DriverHelper.Start(browserType); //To use headless mode uncomment it in this method.
