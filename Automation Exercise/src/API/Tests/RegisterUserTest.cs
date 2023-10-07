@@ -7,7 +7,7 @@ namespace Automation_Exercise.src.API.Tests
 {
     [TestFixture]
     [Order(15)]
-    public class RegisterNewUserTest : ExtentReport
+    public class RegisterUserTest : ExtentReport
     {
         private string endpoint;
         private CreateAccountRequest account;

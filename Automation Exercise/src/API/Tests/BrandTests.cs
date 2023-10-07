@@ -63,7 +63,6 @@ namespace Automation_Exercise.src.API.Tests
             Assert.AreEqual(200, response.StatusCode);
             Assert.AreEqual(HttpStatusCode.MethodNotAllowed, response.Data.ResponseCode);
             Assert.AreEqual("This request method is not supported.", response.Data.Message);
-        }
-        
+        }    
     }
 }
