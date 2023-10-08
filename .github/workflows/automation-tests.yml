@@ -2,7 +2,7 @@ name: Automated Tests
 
 on:
   workflow_dispatch:
-  
+
 jobs:
   test:
     runs-on: ubuntu-latest
@@ -14,9 +14,31 @@ jobs:
       - name: Set up .NET Core
         uses: actions/setup-dotnet@v1
         with:
-          dotnet-version: 6.x 
+          dotnet-version: 6.x
+
       - name: Install dependencies
         run: dotnet restore
 
       - name: Build and run tests
         run: dotnet test
+
+      - name: Upload HTML Test Report to ClickUp
+        run: |
+          # Replace with the actual path to your HTML report
+          report_path="./Automation Exercise/src/Common/Test Results/UI/report.html"
+
+          # Read the HTML file content
+          report_content=$(cat "$report_path")
+
+          # Set up the API request to create a comment in ClickUp
+          curl -X POST \
+            -H "Authorization: ${{ secrets.CLICKUP_API_TOKEN }}" \
+            -H "Content-Type: application/json" \
+            -d "{
+              \"content\": \"$report_content\",
+              \"comment_id\": null
+            }" \
+            "https://api.clickup.com/api/v2/task/#8692w15r1/comment"
+        env:
+          CLICKUP_API_TOKEN: pk_60390997_DKB4FVPGIQ5J07DXPIMJWHX77MTDPGEE
+
