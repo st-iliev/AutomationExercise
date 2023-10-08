@@ -24,9 +24,15 @@ jobs:
 
       - name: Upload HTML Test Report to ClickUp
         run: |
-          # Read the HTML file content
-          report_content=$(cat index.html)
+          # Run your tests and capture the output
+          test_output=$(dotnet test)
 
+          # Extract information about failed tests
+          failed_tests=$(echo "$test_output" | grep "Failed:")
+
+          # Create a report content including failed tests
+          report_content="Failed Tests:\n\n$failed_tests"
+          
           # Set up the API request to create a comment in ClickUp
           curl -X POST \
             -H "Authorization: ${{ secrets.CLICKUP_API_TOKEN }}" \
