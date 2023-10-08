@@ -38,7 +38,7 @@ jobs:
               \"content\": \"$report_content\",
               \"comment_id\": null
             }" \
-            "https://api.clickup.com/api/v2/task/#8692w15r1/comment"
+            "https://api.clickup.com/api/v2/task/CU-8692w15r1/comment"
         env:
           CLICKUP_API_TOKEN: pk_60390997_DKB4FVPGIQ5J07DXPIMJWHX77MTDPGEE
 
