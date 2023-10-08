@@ -24,23 +24,14 @@ jobs:
 
       - name: Upload HTML Test Report to ClickUp
         run: |
-          # Run your tests and capture the output
-          test_output=$(dotnet test)
-
-          # Extract information about failed tests
-          failed_tests=$(echo "$test_output" | grep "Failed:")
-
-          # Create a report content including failed tests
-          report_content="Failed Tests:\n\n$failed_tests"
-          
           # Set up the API request to create a comment in ClickUp
-          curl -X POST \
-            -H "Authorization: ${{ secrets.CLICKUP_API_TOKEN }}" \
-            -H "Content-Type: application/json" \
-            -d "{
-              \"content\": \"$report_content\",
-              \"comment_id\": null
-            }" \
+           curl -X POST \
+          -H "Authorization: ${{ secrets.CLICKUP_API_TOKEN }}" \
+          -H "Content-Type: application/json" \
+          -d "{
+          \"content\": \"$report_content\",
+          \"comment_id\": null
+          }" \
             "https://api.clickup.com/api/v2/task/CU-8692w15r1/comment"
         env:
           CLICKUP_API_TOKEN: pk_60390997_DKB4FVPGIQ5J07DXPIMJWHX77MTDPGEE
