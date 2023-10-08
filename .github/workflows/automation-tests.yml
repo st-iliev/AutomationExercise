@@ -24,11 +24,8 @@ jobs:
 
       - name: Upload HTML Test Report to ClickUp
         run: |
-          # Replace with the actual path to your HTML report
-          report_path="./Automation Exercise/src/Common/Test Results/UI/report.html"
-
           # Read the HTML file content
-          report_content=$(cat "$report_path")
+          report_content=$(cat index.html)
 
           # Set up the API request to create a comment in ClickUp
           curl -X POST \
