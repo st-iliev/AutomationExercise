@@ -18,7 +18,7 @@ namespace Automation_Exercise.Utilities
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArguments("--lang=en-US");
                     //chromeOptions.AddArgument("--incognito"); // This argument enables incognito mode
-                    chromeOptions.AddArgument("--headless");
+                    //chromeOptions.AddArgument("--headless");
                     return driver = new ChromeDriver(chromeOptions);
                 case BrowserType.Firefox:
                     var mozillaOptions = new FirefoxOptions();
