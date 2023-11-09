@@ -1,38 +1,25 @@
-name: Automated Tests
+name: Run Tests and Send to ClickUp
 
 on:
-  workflow_dispatch:
+  workflow_dispatch:  # Manual trigger
+  push:    # On push
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+    - name: Checkout code
+      uses: actions/checkout@v2
 
-      - name: Set up .NET Core
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: 6.x
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.x  
 
-      - name: Install dependencies
-        run: dotnet restore
+    - name: Build and Run Tests
+      run: |
+        dotnet build Automation Exercise.sln  
+        dotnet test Automation Exercise.sln 
 
-      - name: Build and run tests
-        run: dotnet test || true
-
-      - name: Upload HTML Test Report to ClickUp
-        run: |
-          # Set up the API request to create a comment in ClickUp
-           curl -X POST \
-          -H "Authorization: ${{ secrets.CLICKUP_API_TOKEN }}" \
-          -H "Content-Type: application/json" \
-          -d "{
-          \"content\": \"$report_content\",
-          \"comment_id\": null
-          }" \
-            "https://api.clickup.com/api/v2/task/CU-8692w15r1/comment"
-        env:
-          CLICKUP_API_TOKEN: pk_60390997_DKB4FVPGIQ5J07DXPIMJWHX77MTDPGEE
 
