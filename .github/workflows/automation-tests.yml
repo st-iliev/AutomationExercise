@@ -1,9 +1,8 @@
-name: Run Tests and Send to ClickUp
+name: Automation Exercise
 
 on:
   workflow_dispatch:  # Manual trigger
-  push:    # On push
-
+ 
 jobs:
   build:
     runs-on: ubuntu-latest
