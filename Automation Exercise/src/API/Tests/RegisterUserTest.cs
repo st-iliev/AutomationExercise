@@ -25,11 +25,12 @@ namespace Automation_Exercise.src.API.Tests
         {
             test = suiteTest.CreateNode("Test Post Register New User.");
             //Arrange
+            string text = DateTime.Now.Ticks.ToString();
             var parameters = new Dictionary<string, string>
             {
                 {"name","Mat" },
-                {"email",ConfigurationHelper.Email },
-                {"password",ConfigurationHelper.Password },
+                {"email",$"test{text}@gmail.com"},
+                {"password",text},
                 {"title","Mr" },
                 {"birth_date","10" },
                 {"birth_month","may" },

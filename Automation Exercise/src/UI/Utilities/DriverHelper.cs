@@ -18,7 +18,7 @@ namespace Automation_Exercise.Utilities
                     var chromeOptions = new ChromeOptions();
                     chromeOptions.AddArguments("--lang=en-US");
                     //chromeOptions.AddArgument("--incognito"); // This argument enables incognito mode
-                    chromeOptions.AddArgument("--headless");
+                    //chromeOptions.AddArgument("--headless");
                     return driver = new ChromeDriver(chromeOptions);
                 case BrowserType.Firefox:
                     var mozillaOptions = new FirefoxOptions();
@@ -28,7 +28,7 @@ namespace Automation_Exercise.Utilities
                 case BrowserType.Edge:
                     var edgeOptions = new EdgeOptions();
                     edgeOptions.AddArguments("--lang=en-US");
-                    edgeOptions.AddArgument("--headless");
+                    //edgeOptions.AddArgument("--headless");
                     return driver = new EdgeDriver(edgeOptions);
                 default:
                     throw new ArgumentException("Invalid browser type.");

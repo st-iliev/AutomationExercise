@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using System.Text;
+using System.Text.RegularExpressions;
 using Automation_Exercise.Pages.AccountCreatedPage;
 using Automation_Exercise.Pages.CartPage;
 using Automation_Exercise.Pages.CheckoutPage;
@@ -17,6 +18,10 @@ using AventStack.ExtentReports.Reporter;
 using AventStack.ExtentReports.Reporter.Configuration;
 using NUnit.Framework.Interfaces;
 using OpenQA.Selenium;
+using System;
+using System.Net.Http;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Automation_Exercise.Test_Scripts
 {
@@ -40,7 +45,7 @@ namespace Automation_Exercise.Test_Scripts
         protected ExtentTest test;
         private BrowserType browserType;
         [OneTimeSetUp]
-        public void OneTimeSetUp()
+        public void BaseOneTimeSetUp()
         {
             browserType = BrowserType.Chrome; // Change this to the desired browser
             driver = DriverHelper.Start(browserType); //To use headless mode uncomment it in this method.
