@@ -1,8 +1,8 @@
 name: Automation Exercise
 
 on:
-  workflow_dispatch:  # Manual trigger
- 
+  workflow_dispatch:
+  
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,6 +10,8 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
+      with:
+        ref: main  # Explicitly checkout the main branch
 
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
@@ -20,5 +22,3 @@ jobs:
       run: |
         dotnet build "Automation Exercise.sln"  
         dotnet test "Automation Exercise.sln"
-
-
