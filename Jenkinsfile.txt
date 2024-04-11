@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'dotnet test "Automation Exercise/AutomationExercise.csproj"'
+                bat 'dotnet test AutomationExercise/AutomationExercise.csproj'
             }
         }
     }
