@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('Restore') {
             steps {
-                bat "dotnet restore 'Automation Exercise.sln'"
+                bat 'dotnet restore "Automation Exercise.sln"'
             }
         }
         stage('Build') {
             steps {
-                bat "dotnet build 'Automation Exercise.sln' --configuration Release"
+                bat 'dotnet build "Automation Exercise.sln" --configuration Release'
             }
         }
         stage('Test') {
             steps {
-                bat "dotnet test Automation 'Exercise/AutomationExercise.csproj'"
+                bat 'dotnet test Automation "Exercise/AutomationExercise.csproj"'
             }
         }
     }
