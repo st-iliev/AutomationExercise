@@ -13,7 +13,7 @@ pipeline {
         }
         stage('Test') {
             steps {
-                bat 'dotnet test "C:/ProgramData/Jenkins/.jenkins/workspace/PUBLIC REPO/AutomationExercise/AutomationExercise.csproj"'
+                bat 'dotnet test ""Automation Exercise.sln"'
             }
         }
     }
