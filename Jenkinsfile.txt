@@ -3,17 +3,17 @@ pipeline {
     stages {
         stage('Restore') {
             steps {
-                bat 'dotnet restore "Exercises Selenium Advanced and POM.sln"'
+                bat 'dotnet restore "Automation Exercise.sln"'
             }
         }
         stage('Build') {
             steps {
-                bat 'dotnet build "Exercises Selenium Advanced and POM.sln" --configuration Release'
+                bat 'dotnet build "Automation Exercise.sln" --configuration Release'
             }
         }
         stage('Test') {
             steps {
-                bat 'dotnet test "Exercises Selenium Advanced and POM.sln"'
+                bat 'dotnet test "Automation Exercise.sln"'
             }
         }
     }
