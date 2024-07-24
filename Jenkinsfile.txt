@@ -11,27 +11,49 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                // Start Chrome WebDriver
-                bat 'start /B chromedriver --port=9515 --url-base=/wd/hub'
-                // Run tests
-                bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
+                script {
+                    // Start Chrome WebDriver
+                    bat 'start /B chromedriver --port=9515 --url-base=/wd/hub'
+                    // Run tests
+                    try {
+                        bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
+                    } catch (Exception e) {
+                        echo 'Tests failed: ' + e.getMessage()
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
             }
         }
 
         stage('Restore and Build Leopard-Report-API') {
             steps {
-                // Restore, build, and test Leopard-Report-API project
-                bat 'dotnet restore "Automation Exercise.sln"'
-                bat 'dotnet build "Automation Exercise.sln" --configuration Release'
-                bat 'dotnet test "Automation Exercise/AutomationExercise.csproj"'
+                script {
+                    try {
+                        // Restore, build, and test Leopard-Report-API project
+                        bat 'dotnet restore "Automation Exercise.sln"'
+                        bat 'dotnet build "Automation Exercise.sln" --configuration Release'
+                        bat 'dotnet test "Automation Exercise/AutomationExercise.csproj"'
+                    } catch (Exception e) {
+                        echo 'Restore and Build Leopard-Report-API failed: ' + e.getMessage()
+                        currentBuild.result = 'FAILURE'
+                    }
+                }
             }
         }
     }
 
     post {
         always {
-            bat 'taskkill /F /IM chromedriver.exe /T || true'
+            // Correctly handle process termination
+            script {
+                try {
+                    bat 'taskkill /F /IM chromedriver.exe /T'
+                } catch (Exception e) {
+                    echo 'Error during ChromeDriver process termination: ' + e.getMessage()
+                }
+            }
         }
     }
 }
+
 
