@@ -22,8 +22,8 @@ pipeline {
             steps {
                 script {
                     
-                     bat 'start "" "C:\chromdriver\chrome-win64\chrome.exe"'
-                    
+                     bat 'start "" "C:\\chromdriver\\chrome-win64\\chrome.exe"'
+
                     // Wait for ChromeDriver to initialize
                     sleep(time: 20, unit: 'SECONDS')
 
