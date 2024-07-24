@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Start Chrome WebDriver
-                    bat 'start chromedriver --port=9515 --url-base=/wd/hub'
+                   bat 'chromedriver.exe'
                     // Run tests
                     try {
                         bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
