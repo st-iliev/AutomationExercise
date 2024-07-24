@@ -4,18 +4,24 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                bat 'dotnet restore'
-                bat 'dotnet build --configuration Release'
+                // Restore dependencies
+                bat 'dotnet restore "Automation Exercise.sln"'
+                
+                // Build the project
+                bat 'dotnet build "Automation Exercise.sln" --configuration Release'
             }
         }
 
         stage('Run Tests') {
             steps {
                 script {
-                    // Start Chrome WebDriver
-                   bat 'start "" "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe"'
-                   sleep(time: 20, unit: 'SECONDS')
-                    // Run tests
+                    
+                     bat 'start "" "C:/Program Files/Google/Chrome/Application/chrome.exe"'
+                    
+                    // Wait for ChromeDriver to initialize
+                    sleep(time: 20, unit: 'SECONDS')
+
+                    // Run the tests
                     try {
                         bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
                     } catch (Exception e) {
@@ -25,27 +31,11 @@ pipeline {
                 }
             }
         }
-
-        stage('Restore and Build Project') {
-            steps {
-                script {
-                    try {
-                        // Restore, build, and test the project
-                        bat 'dotnet restore "Automation Exercise.sln"'
-                        bat 'dotnet build "Automation Exercise.sln" --configuration Release'
-                        bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
-                    } catch (Exception e) {
-                        echo 'Restore and Build Project failed: ' + e.getMessage()
-                        currentBuild.result = 'FAILURE'
-                    }
-                }
-            }
-        }
     }
 
     post {
         always {
-            // Correctly handle process termination
+            // Terminate ChromeDriver process after tests
             script {
                 try {
                     bat 'taskkill /F /IM chromedriver.exe /T'
