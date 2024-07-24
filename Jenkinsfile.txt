@@ -1,6 +1,12 @@
 pipeline {
     agent any
-
+ stages {
+        stage('Checkout') {
+            steps {
+                // Clone the GitHub repository
+                checkout scm
+            }
+        }
     stages {
         stage('Build') {
             steps {
@@ -16,7 +22,7 @@ pipeline {
             steps {
                 script {
                     
-                     bat 'start "" "C:/Program Files/Google/Chrome/Application/chrome.exe"'
+                     bat 'start "" "C:\chromdriver\chrome-win64\chrome.exe"'
                     
                     // Wait for ChromeDriver to initialize
                     sleep(time: 20, unit: 'SECONDS')
@@ -38,7 +44,7 @@ pipeline {
             // Terminate ChromeDriver process after tests
             script {
                 try {
-                    bat 'taskkill /F /IM chromedriver.exe /T'
+                    bat 'taskkill /F /IM chrome.exe /T'
                 } catch (Exception e) {
                     echo 'Error during ChromeDriver process termination: ' + e.getMessage()
                 }
