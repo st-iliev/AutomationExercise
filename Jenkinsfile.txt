@@ -25,16 +25,16 @@ pipeline {
             }
         }
 
-        stage('Restore and Build Leopard-Report-API') {
+        stage('Restore and Build Project') {
             steps {
                 script {
                     try {
-                        // Restore, build, and test Leopard-Report-API project
+                        // Restore, build, and test the project
                         bat 'dotnet restore "Automation Exercise.sln"'
                         bat 'dotnet build "Automation Exercise.sln" --configuration Release'
-                        bat 'dotnet test "Automation Exercise/AutomationExercise.csproj"'
+                        bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
                     } catch (Exception e) {
-                        echo 'Restore and Build Leopard-Report-API failed: ' + e.getMessage()
+                        echo 'Restore and Build Project failed: ' + e.getMessage()
                         currentBuild.result = 'FAILURE'
                     }
                 }
@@ -55,5 +55,4 @@ pipeline {
         }
     }
 }
-
 
