@@ -13,7 +13,7 @@ pipeline {
             steps {
                 script {
                     // Start Chrome WebDriver
-                   bat 'chromedriver.exe'
+                   'start "" "C:\Program Files\Google\Chrome\Application\chrome.exe"'
                     // Run tests
                     try {
                         bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
