@@ -7,7 +7,11 @@ pipeline {
                 checkout scm
             }
         }
-
+     stage('Update NuGet Package') {
+            steps {
+                bat 'dotnet add package Selenium.WebDriver.ChromeDriver'
+            }
+        }
         stage('Build') {
             steps {
                 bat 'dotnet restore "Automation Exercise.sln"'
