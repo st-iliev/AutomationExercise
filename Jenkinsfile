@@ -1,35 +1,15 @@
 pipeline {
     agent any
+parameters{
+    booleanParam(name: 'trigger_auto', defaultValue: false, description: 'Trigger Job 2 if the condition is met')
     stages {
-        stage('Check Job 1 Trigger') {
+     stage('Check Job 1 Trigger') {
             steps {
                 script {
-                    def job1Name = 'start jenkins'
-                    def job1 = Jenkins.instance.getItemByFullName(job1Name)
-                    
-                    if (job1) {
-                        def lastBuild = job1.getLastBuild()
-
-                        if (lastBuild) {
-                            def triggerCause = lastBuild.getAction(hudson.model.ParametersAction)?.parameters?.find { it.name == 'trigger_mode' }?.value
-
-                            if (triggerCause == 'auto') {
-                                echo 'Job 1 was triggered automatically. Proceeding to trigger Job 2.'
-                                
-                                build job: 'TEST UI'
-                            } else {
-                                echo 'Job 1 was not triggered automatically or parameter not found.'
-                            }
-                        } else {
-                            echo 'No builds found for Job 1.'
-                        }
-                    } else {
-                        error 'Job 1 not found.'
+                    // Check if the job was triggered manually
+                    if (params.trigger_auto) {
+                        return // Skip further checks and proceed to the next stages
                     }
-                }
-            }
-        }
-
         stage('Checkout') {
             steps {
                 checkout scm
