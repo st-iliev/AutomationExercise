@@ -9,7 +9,7 @@ pipeline {
         }
      stage('Update NuGet Package') {
             steps {
-                bat 'dotnet add package Selenium.WebDriver.ChromeDriver'
+                bat 'dotnet add package Selenium.WebDriver'
             }
         }
         stage('Build') {
