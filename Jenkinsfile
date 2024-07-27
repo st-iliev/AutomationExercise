@@ -1,27 +1,22 @@
-ppipeline {
+pipeline {
     agent any
 
     stages {
         stage('Check Job 1 Trigger') {
             steps {
                 script {
-                    // Име на първия джоб
                     def job1Name = 'start jenkins'
                     def job1 = Jenkins.instance.getItemByFullName(job1Name)
                     
                     if (job1) {
-                        // Вземете последния строеж на Джоб 1
                         def lastBuild = job1.getLastBuild()
 
                         if (lastBuild) {
-                            // Проверете причината за тригъра на последния строеж
                             def triggerCause = lastBuild.getAction(hudson.model.ParametersAction)?.parameters?.find { it.name == 'trigger_mode' }?.value
 
-                            // Проверете дали стойността на параметъра е 'auto'
                             if (triggerCause == 'auto') {
                                 echo 'Job 1 was triggered automatically. Proceeding to trigger Job 2.'
                                 
-                                // Тригървайте Джоб 2
                                 build job: 'TEST UI'
                             } else {
                                 echo 'Job 1 was not triggered automatically or parameter not found.'
