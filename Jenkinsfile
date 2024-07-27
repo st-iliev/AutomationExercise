@@ -52,7 +52,7 @@ pipeline {
     post {
         always {
             script {
-                bat 'taskkill /F /IM chrome.exe'
+                bat 'taskkill /F /IM chrome.exe || echo "No chrome.exe process found."'
             }
         }
     }
