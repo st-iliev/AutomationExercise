@@ -4,6 +4,10 @@ pipeline {
         string(name: 'trigger_auto', defaultValue: '', description: 'Trigger Job 2 if the condition is met')
     }
 
+    environment {
+        WORKSPACE_DIR = 'C:/Users/User/.jenkins/workspace/TEST_UI/Automation_Exercise'
+    }
+
     stages {
         stage('Checkout') {
             when {
@@ -19,7 +23,7 @@ pipeline {
                 expression { params.trigger_auto == 'auto' }
             }
             steps {
-                dir('C:/Users/User/.jenkins/workspace/TEST UI/Automation Exercise') {
+                dir("${env.WORKSPACE_DIR}") {
                     bat 'dotnet add package Selenium.WebDriver.ChromeDriver'
                 }
             }
@@ -47,9 +51,6 @@ pipeline {
 
     post {
         always {
-            when {
-                expression { params.trigger_auto == 'auto' }
-            }
             script {
                 bat 'taskkill /F /IM chrome.exe'
             }
