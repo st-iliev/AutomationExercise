@@ -27,7 +27,6 @@ pipeline {
         always {
             script {
                 bat 'taskkill /F /IM chrome.exe'
-                bat 'taskkill /F /IM chromedriver.exe'
             }
         }
     }
