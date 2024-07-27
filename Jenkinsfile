@@ -7,7 +7,13 @@ pipeline {
     environment {
         WORKSPACE_DIR = 'C:/Users/User/.jenkins/workspace/TEST_UI/Automation_Exercise'
     }
-
+    stage('Debug Parameters') {
+            steps {
+                script {
+                    echo "Received parameter trigger_auto with value: ${params.trigger_auto}"
+                }
+            }
+        }
     stages {
         stage('Checkout') {
             when {
