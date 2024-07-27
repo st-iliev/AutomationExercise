@@ -1,32 +1,36 @@
-pipeline {
+ppipeline {
     agent any
 
     stages {
         stage('Check Job 1 Trigger') {
             steps {
                 script {
-                    // Name of the first job
-                    def job1 = Jenkins.instance.getItemByFullName('start jenkins')
+                    // Get Job 1 details using Jenkins' built-in API
+                    def job1 = Jenkins.instance.getItem('start jenkins')
                     
-                    // Get the last build of Job 1
-                    def lastBuild = job1.getLastBuild()
+                    if (job1) {
+                        def lastBuild = job1.getLastBuild()
+                        
+                        if (lastBuild) {
+                            def parametersAction = lastBuild.getAction(hudson.model.ParametersAction)
+                            def triggerMode = parametersAction?.parameters?.find { it.name == 'trigger_mode' }?.value
 
-                    // Check the cause of the last build trigger
-                    def triggerCause = lastBuild.getAction(hudson.model.ParametersAction)?.parameters?.find { it.name == 'trigger_mode' }?.value
-
-                    // Check if the parameter value is 'auto'
-                    if (triggerCause == 'auto') {
-                        echo 'Job 1 was triggered automatically. Proceeding to trigger Job 2.'
-
-                        // Trigger Job 2
-                        build job: 'TEST UI'
+                            if (triggerMode == 'auto') {
+                                echo 'Job 1 was triggered automatically. Proceeding to trigger Job 2.'
+                                build job: 'TEST UI'
+                            } else {
+                                echo 'Job 1 was not triggered automatically or parameter not found.'
+                            }
+                        } else {
+                            echo 'No builds found for Job 1.'
+                        }
                     } else {
-                        echo 'Job 1 was not triggered automatically or parameter not found.'
+                        echo 'Job 1 not found.'
                     }
                 }
             }
         }
-        
+
         stage('Checkout') {
             steps {
                 checkout scm
