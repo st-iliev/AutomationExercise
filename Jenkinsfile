@@ -10,7 +10,7 @@ pipeline {
      stage('Update NuGet Package') {
             steps {
                dir('C:/Users/User/.jenkins/workspace/TEST UI/Automation Exercise') {
-                    bat 'dotnet add package Selenium.WebDriver'
+                    bat 'dotnet add package Selenium.WebDriver.ChromeDriver'
                 }
             }
         }
