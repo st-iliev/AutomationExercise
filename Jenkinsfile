@@ -61,6 +61,9 @@ pipeline {
 
     post {
         always {
+            when {
+                expression { params.trigger_auto == 'auto' }
+            }
             script {
                 bat 'taskkill /F /IM chrome.exe'
             }
