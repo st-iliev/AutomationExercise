@@ -5,20 +5,6 @@ pipeline {
     }
 
     stages {
-       stage('Check Trigger Source') {
-            steps {
-                script {
-                    if (params.trigger_auto == 'auto') {
-                        echo 'Job 2 was triggered automatically. Handling automated tasks.'
-                        // Proceed with automated tasks
-                    } else {
-                        echo 'Job 2 was not triggered automatically.'
-                        // Handle manual trigger or skip tasks
-                        return
-                    }
-                }
-            }
-        }
         stage('Checkout') {
             when {
                 expression { params.trigger_auto == 'auto' }
