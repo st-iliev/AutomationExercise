@@ -10,6 +10,9 @@ parameters{
                     if (params.trigger_auto) {
                         return // Skip further checks and proceed to the next stages
                     }
+                }
+            }
+     }
         stage('Checkout') {
             steps {
                 checkout scm
