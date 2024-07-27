@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    parameters {
-        booleanParam(name: 'MANUAL_TRIGGER', defaultValue: true, description: 'Trigger this job manually')
-    }
     stages {
         stage('Check Job 1 Trigger') {
             steps {
