@@ -20,12 +20,18 @@ pipeline {
             }
         }
         stage('Checkout') {
+            when {
+                expression { params.trigger_auto == 'auto' }
+            }
             steps {
                 checkout scm
             }
         }
 
         stage('Update NuGet Package') {
+            when {
+                expression { params.trigger_auto == 'auto' }
+            }
             steps {
                 dir('C:/Users/User/.jenkins/workspace/TEST UI/Automation Exercise') {
                     bat 'dotnet add package Selenium.WebDriver.ChromeDriver'
@@ -34,6 +40,9 @@ pipeline {
         }
 
         stage('Build') {
+            when {
+                expression { params.trigger_auto == 'auto' }
+            }
             steps {
                 bat 'dotnet restore "Automation Exercise.sln"'
                 bat 'dotnet build "Automation Exercise.sln" --configuration Release'
@@ -41,6 +50,9 @@ pipeline {
         }
 
         stage('Run Tests') {
+            when {
+                expression { params.trigger_auto == 'auto' }
+            }
             steps {
                 bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
             }
