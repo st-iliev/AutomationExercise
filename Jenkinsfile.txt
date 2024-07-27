@@ -21,20 +21,7 @@ pipeline {
 
         stage('Run Tests') {
             steps {
-                script {
-                    // Start Chrome browser (not ChromeDriver)
-                    bat 'start "" "C:\\chromdriver\\chrome-win64\\chrome.exe"'
-                    
-                    // Wait for ChromeDriver or Chrome browser to initialize
-                    sleep(time: 20, unit: 'SECONDS')
-
-                    // Run the tests
-                    try {
-                        bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
-                    } catch (Exception e) {
-                        echo 'Tests failed: ' + e.getMessage()
-                        currentBuild.result = 'FAILURE'
-                    }
+                bat 'dotnet test "Automation Exercise/AutomationExercise.csproj" --configuration Release'
                 }
             }
         }
@@ -44,10 +31,8 @@ pipeline {
         always {
             // Terminate Chrome process after tests
             script {
-                try {
-                    bat 'taskkill /F /IM chrome.exe /T'
-                } catch (Exception e) {
-                    echo 'Error during Chrome process termination: ' + e.getMessage()
+                    bat 'taskkill /F /IM chrome.exe'
+                    bat 'taskkill /F /IM chromedriver.exe'
                 }
             }
         }
