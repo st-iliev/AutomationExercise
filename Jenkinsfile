@@ -29,7 +29,7 @@ pipeline {
                 expression { params.trigger_auto == 'auto' }
             }
             steps {
-                dir("${env.WORKSPACE_DIR}") {
+                dir('C:/Users/User/.jenkins/workspace/TEST UI/Automation Exercise') {
                     bat 'dotnet add package Selenium.WebDriver'
                 }
             }
