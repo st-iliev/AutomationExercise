@@ -30,7 +30,7 @@ pipeline {
             }
             steps {
                 dir("${env.WORKSPACE_DIR}") {
-                    bat 'dotnet add package Selenium.WebDriver.ChromeDriver'
+                    bat 'dotnet add package Selenium.WebDriver'
                 }
             }
         }
