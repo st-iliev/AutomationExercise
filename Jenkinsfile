@@ -1,14 +1,14 @@
 pipeline {
     agent any
     parameters {
-        string(name: 'trigger_auto', defaultValue: '', description: 'Trigger Job 2 if the condition is met')
+        booleanParam(name: 'trigger_auto', defaultValue: '', description: 'Trigger Job 2 if the condition is met')
     }
 
     stages {
        stage('Check Trigger Source') {
             steps {
                 script {
-                    if (params.trigger_auto == 'auto') {
+                    if (params.trigger_auto) {
                         echo 'Job 2 was triggered automatically. Handling automated tasks.'
                         // Proceed with automated tasks
                     } else {
