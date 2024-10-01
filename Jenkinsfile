@@ -55,11 +55,14 @@ pipeline {
         }
     }
 
-    post {
+     post {
         always {
-            script {
-                bat 'taskkill /F /IM chrome.exe || echo "No chrome.exe process found."'
-            }
+            allure([
+                includeProperties: false,
+                jdk: '',
+                reportBuildPolicy: 'ALWAYS',
+                results: [[path: 'allure-results']]
+            ])
         }
     }
 }
