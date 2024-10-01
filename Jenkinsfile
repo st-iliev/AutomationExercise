@@ -57,12 +57,11 @@ pipeline {
 
      post {
         always {
-            allure([
-                includeProperties: false,
-                jdk: '',
-                reportBuildPolicy: 'ALWAYS',
-                results: [[path: 'allure-results']]
+            // Publish the Allure report
+           allure([
+    results: [[path: 'C:\\Users\\User\\.jenkins\\workspace\\test\\allure-results']]
             ])
         }
+    }
     }
 }
